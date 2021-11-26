@@ -36472,11 +36472,17 @@ function handleUndockedState()
 			end
 		end
 		if goodsAvailable then
-			addCommsReply("What goods do you have available for sale or trade?", function()
+			addCommsReply("What goods do you buy or have available for sale or trade?", function()
 				local ctd = comms_target.comms_data
 				local goodsAvailableMsg = string.format("Station %s:\nGoods or components available: quantity, cost in reputation",comms_target:getCallSign())
 				for good, goodData in pairs(ctd.goods) do
 					goodsAvailableMsg = goodsAvailableMsg .. string.format("\n   %14s: %2i, %3i",good,goodData["quantity"],goodData["cost"])
+				end
+				if ctd.buy ~= nil then
+					goodsReport = goodsReport .. "\nGoods or components station will buy: price in reputation\n"
+					for good, price in pairs(ctd.buy) do
+						goodsAvailableMsg = goodsAvailableMsg .. string.format("     %s: %i\n",good,price)
+					end
 				end
 				setCommsMessage(goodsAvailableMsg)
 				addCommsReply("Back", commsStation)
@@ -36548,7 +36554,7 @@ function handleUndockedState()
 			setCommsMessage(service_status)
 			addCommsReply("Back", commsStation)
 		end)
-		addCommsReply("Where can I find particular goods?", function()
+		addCommsReply("Where can I buy or sell particular goods?", function()
 			local ctd = comms_target.comms_data
 			gkMsg = "Friendly stations often have food or medicine or both. Neutral stations may trade their goods for food, medicine or luxury."
 			if ctd.goodsKnowledge == nil then
@@ -36557,18 +36563,32 @@ function handleUndockedState()
 				local knowledgeMax = 10
 				for i=1,#regionStations do
 					local station = regionStations[i]
-					if station ~= nil and station:isValid() then
+					if station ~= nil and station:isValid() and station.comms_data ~= nil then
+						local ctdOther = station.comms_data
+						local stationCallSign = station:getCallSign()
+						local stationSector = station:getSectorName()
 						local brainCheckChance = 60
 						if distance(comms_target,station) > 75000 then
 							brainCheckChance = 20
 						end
-						for good, goodData in pairs(ctd.goods) do
+						for good, goodData in pairs(ctdOther.goods) do
 							if random(1,100) <= brainCheckChance then
-								local stationCallSign = station:getCallSign()
-								local stationSector = station:getSectorName()
 								ctd.goodsKnowledge[good] =	{	station = stationCallSign,
 																sector = stationSector,
+																transaction = "sell",
 																cost = goodData["cost"] }
+								knowledgeCount = knowledgeCount + 1
+								if knowledgeCount >= knowledgeMax then
+									break
+								end
+							end
+						end
+						for good, price in pairs(ctdOther.buy) do
+							if random(1,100) <= brainCheckChance then
+								ctd.goodsKnowledge[good] =	{	station = stationCallSign,
+																sector = stationSector,
+																transaction = "buy",
+																cost = price }
 								knowledgeCount = knowledgeCount + 1
 								if knowledgeCount >= knowledgeMax then
 									break
@@ -36589,8 +36609,13 @@ function handleUndockedState()
 					local stationName = ctd.goodsKnowledge[good]["station"]
 					local sectorName = ctd.goodsKnowledge[good]["sector"]
 					local goodName = good
+					local transaction = ctd.goodsKnowledge[good]["transaction"]
 					local goodCost = ctd.goodsKnowledge[good]["cost"]
-					setCommsMessage(string.format("Station %s in sector %s has %s for %i reputation",stationName,sectorName,goodName,goodCost))
+					if transaction == "sell" then
+						setCommsMessage(string.format("Station %s in sector %s has %s for %i reputation",stationName,sectorName,goodName,goodCost))
+					else
+						setCommsMessage(string.format("Station %s in sector %s buys %s for %i reputation",stationName,sectorName,goodName,goodCost))
+					end
 					addCommsReply("Back", commsStation)
 				end)
 			end
