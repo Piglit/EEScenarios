@@ -41612,7 +41612,10 @@ function commsStation()
         max_weapon_refill_amount = {
             friend = 1.0,
             neutral = 0.5,
-        }
+        },
+		produce_goods = {
+			amount = 0
+		}
     })
     comms_data = comms_target.comms_data
     if comms_source:isEnemy(comms_target) then
@@ -42473,6 +42476,7 @@ function handleDockedState()
 	end
 	if goodCount > 0 then
 		addCommsReply("Buy, sell, trade", function()
+			produceGoods()
 			local ctd = comms_target.comms_data
 			local goodsReport = string.format("Station %s:\nGoods or components available for sale: quantity, cost in reputation\n",comms_target:getCallSign())
 			for good, goodData in pairs(ctd.goods) do
@@ -42537,6 +42541,7 @@ function handleDockedState()
 								comms_source:addReputationPoints(price)
 								goodTransactionMessage = goodTransactionMessage .. "\nOne sold"
 								comms_source.cargo = comms_source.cargo + 1
+								addResouceToProduceGoods()
 								setCommsMessage(goodTransactionMessage)
 								addCommsReply("Back", commsStation)
 							end)
@@ -42563,6 +42568,7 @@ function handleDockedState()
 							end
 							comms_source.goods[good] = comms_source.goods[good] + 1
 							comms_source.goods["food"] = comms_source.goods["food"] - 1
+							addResouceToProduceGoods()
 							goodTransactionMessage = goodTransactionMessage .. "\nTraded"
 						end
 						setCommsMessage(goodTransactionMessage)
@@ -42586,6 +42592,7 @@ function handleDockedState()
 							end
 							comms_source.goods[good] = comms_source.goods[good] + 1
 							comms_source.goods["medicine"] = comms_source.goods["medicine"] - 1
+							addResouceToProduceGoods()
 							goodTransactionMessage = goodTransactionMessage .. "\nTraded"
 						end
 						setCommsMessage(goodTransactionMessage)
@@ -42597,7 +42604,7 @@ function handleDockedState()
 				for good, goodData in pairs(ctd.goods) do
 					addCommsReply(string.format("Trade luxury for %s",good), function()
 						local goodTransactionMessage = string.format("Type: %s,  Quantity: %i",good,goodData["quantity"])
-						if goodData[quantity] < 1 then
+						if goodData["quantity"] < 1 then
 							goodTransactionMessage = goodTransactionMessage .. "\nInsufficient station inventory"
 						else
 							goodData["quantity"] = goodData["quantity"] - 1
@@ -42609,6 +42616,7 @@ function handleDockedState()
 							end
 							comms_source.goods[good] = comms_source.goods[good] + 1
 							comms_source.goods["luxury"] = comms_source.goods["luxury"] - 1
+							addResouceToProduceGoods()
 							goodTransactionMessage = goodTransactionMessage .. "\nTraded"
 						end
 						setCommsMessage(goodTransactionMessage)
@@ -43177,6 +43185,58 @@ function preOrderOrdnance()
 					end)
 				end
 			end
+		end
+	end
+end
+function addResouceToProduceGoods(station)
+	-- player just sold something or freighter arrived
+	-- gives the station resources to produce 1 good
+	if station == nil then
+		station = comms_target
+	end
+	local ctd = station.comms_data
+	if ctd.produce_goods == nil then
+		ctd.produce_goods = {
+			amount = 0
+		}
+	end
+	local pg = ctd.produce_goods
+	if pg.amount == 0 then
+		-- start to produce goods
+		pg.started = getScenarioTime()
+	end
+	pg.amount = pg.amount + 1
+end
+function produceGoods()
+	-- adds goods produced in meantime if station has resources
+	local ctd = comms_target.comms_data
+	local pg = ctd.produce_goods
+	local now = getScenarioTime()
+	while true do
+		if pg.amount == 0 then
+			return
+		end
+		if pg.nextGood == nil or ctd.goods[pg.nextGood] == nil then
+			local keys = {}
+			for good, goodData in pairs(ctd.goods) do
+				table.insert(keys, good)
+			end
+			if #keys == 0 then
+				pg.nextGood = nil
+				return
+			end
+			--select new good at random
+			pg.nextGood = keys[math.random(#keys)]
+		end
+		local cost = ctd.goods[pg.nextGood]["cost"]
+		local timePassed = now - pg.started
+		if cost <= timePassed then
+			ctd.goods[pg.nextGood]["quantity"] = ctd.goods[pg.nextGood]["quantity"] + 1
+			pg.amount = pg.amount - 1
+			pg.started = pg.started + cost
+			pg.nextGood = nil
+		else
+			return
 		end
 	end
 end
@@ -47490,6 +47550,8 @@ function updateCommerce(assets,region_station)
 					if docked_object ~= nil then
 --						print("    Docked")
 						if ship.commerce_target == docked_object then
+							-- commerce finished sucessful
+							addResouceToProduceGoods(ship.commerce_target)
 							if region_station == nil then
 								skeletalDestination(ship)
 							else
