@@ -209,6 +209,14 @@ function math.extraTests()
 	math.lerpTest()
 	math.clampTest()
 end
+function math.shuffle(list)
+	shuffled = {}
+	for i, v in ipairs(list) do
+		local pos = math.random(1, #shuffled+1)
+		table.insert(shuffled, pos, v)
+	end
+	return shuffled
+end
 ------------------
 -- web gm tools --
 ------------------

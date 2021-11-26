@@ -36561,9 +36561,10 @@ function handleUndockedState()
 				ctd.goodsKnowledge = {}
 				local knowledgeCount = 0
 				local knowledgeMax = 10
-				for i=1,#regionStations do
-					local station = regionStations[i]
-					if station ~= nil and station:isValid() and station.comms_data ~= nil then
+				local shuffledStations = math.shuffle(regionStations)
+				for i=1,#shuffledStations do
+					local station = shuffledStations[i]
+					if station ~= nil and station:isValid() and station.comms_data ~= nil and station ~= comms_target then
 						local ctdOther = station.comms_data
 						local stationCallSign = station:getCallSign()
 						local stationSector = station:getSectorName()
@@ -36572,7 +36573,16 @@ function handleUndockedState()
 							brainCheckChance = 20
 						end
 						for good, goodData in pairs(ctdOther.goods) do
-							if random(1,100) <= brainCheckChance then
+							local modifiedBrainCheckChance = brainCheckChance
+							if ctd.goods[good] ~= nil and ctd.goods[good]["cost"] > goodData["cost"] then
+								-- do less likely report station where you can buy cheaper
+								modifiedBrainCheckChance = modifiedBrainCheckChance * 0.5
+							end
+							if ctd.buy[good] ~= nil then
+								-- report station where you can buy goods this station wants
+								modifiedBrainCheckChance = modifiedBrainCheckChance + 30
+							end
+							if random(1,100) <= modifiedBrainCheckChance then
 								ctd.goodsKnowledge[good] =	{	station = stationCallSign,
 																sector = stationSector,
 																transaction = "sell",
@@ -36584,7 +36594,16 @@ function handleUndockedState()
 							end
 						end
 						for good, price in pairs(ctdOther.buy) do
-							if random(1,100) <= brainCheckChance then
+							local modifiedBrainCheckChance = brainCheckChance
+							if ctd.buy ~= nil and ctd.buy[good] ~= nil and ctd.buy[good] < price then
+								-- do less likely report station that pay more
+								modifiedBrainCheckChance = modifiedBrainCheckChance * 0.5
+							end
+							if ctd.goods[good] ~= nil then
+								-- report station where you can sell goods this station sells
+								modifiedBrainCheckChance = modifiedBrainCheckChance + 30
+							end
+							if random(1,100) <= modifiedBrainCheckChance then
 								ctd.goodsKnowledge[good] =	{	station = stationCallSign,
 																sector = stationSector,
 																transaction = "buy",
