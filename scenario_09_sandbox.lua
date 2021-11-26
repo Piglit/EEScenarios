@@ -43442,7 +43442,16 @@ function handleUndockedState()
 						end
 						if ctdOther.goods ~= nil then
 							for good, goodData in pairs(ctdOther.goods) do
-								if random(1,100) <= brainCheckChance then
+								local modifiedBrainCheckChance = brainCheckChance
+								if ctd.goods ~= nil and ctd.goods[good] ~= nil and ctd.goods[good]["cost"] > goodData["cost"] then
+									-- do less likely report station where you can buy cheaper
+									modifiedBrainCheckChance = modifiedBrainCheckChance * 0.5
+								end
+								if ctd.buy ~= nil and ctd.buy[good] ~= nil then
+									-- report station where you can buy goods this station wants
+									modifiedBrainCheckChance = modifiedBrainCheckChance + 30
+								end
+								if random(1,100) <= modifiedBrainCheckChance then
 									ctd.goodsKnowledge[good] =	{	station = stationCallSign,
 																	sector = stationSector,
 																	transaction = "sell",
@@ -43456,7 +43465,16 @@ function handleUndockedState()
 						end
 						if ctdOther.buy ~= nil then
 							for good, price in pairs(ctdOther.buy) do
-								if random(1,100) <= brainCheckChance then
+								local modifiedBrainCheckChance = brainCheckChance
+								if ctd.buy ~= nil and ctd.buy[good] ~= nil and ctd.buy[good] < price then
+									-- do less likely report station that pay more
+									modifiedBrainCheckChance = modifiedBrainCheckChance * 0.5
+								end
+								if ctd.goods ~= nil and ctd.goods[good] ~= nil then
+									-- report station where you can sell goods this station sells
+									modifiedBrainCheckChance = modifiedBrainCheckChance + 30
+								end
+								if random(1,100) <= modifiedBrainCheckChance then
 									ctd.goodsKnowledge[good] =	{	station = stationCallSign,
 																	sector = stationSector,
 																	transaction = "buy",
