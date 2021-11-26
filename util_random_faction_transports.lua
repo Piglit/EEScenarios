@@ -50,6 +50,24 @@ function chooseTransportTarget(transport,faction_irrelevant)
 		transport.target = candidate
 	end
 end
+function addResouceToStationProduceGoods(station)
+	-- gives the station resources to produce 1 good
+	if station ~= nil and station.isValid() then
+		local ctd = station.comms_data
+		if ctd == nil then
+			return
+		end
+		local pg = ctd.produce_goods
+		if pg == nil then
+			return
+		end
+		if pg.amount == 0 then
+			-- start to produce goods
+			pg.started = getScenarioTime()
+		end
+		pg.amount = pg.amount + 1
+	end
+end
 function update(delta)
 	local valid_transport_count = 0
 	for index, transport in ipairs(transport_list) do
@@ -63,6 +81,7 @@ function update(delta)
 						end
 						transport.undock_delay = transport.undock_delay - delta
 						if transport.undock_delay < 0 then
+							addResouceToStationProduceGoods(transport.target)
 							chooseTransportTarget(transport,false)
 							transport:orderDock(transport.target)
 							transport.undock_delay = nil
