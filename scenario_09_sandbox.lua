@@ -34269,7 +34269,8 @@ function commsStation()
         },
 		produce_goods = {
 			amount = 0
-		}
+		},
+		wealth = 0
     })
     comms_data = comms_target.comms_data
     if comms_source:isEnemy(comms_target) then
@@ -35192,6 +35193,7 @@ function handleDockedState()
 							end
 							comms_source.goods[good] = comms_source.goods[good] + 1
 							addResouceToProduceGoods()
+							ctd.wealth = ctd.wealth + 1
 							goodTransactionMessage = goodTransactionMessage .. "\npurchased"
 						else
 							goodTransactionMessage = goodTransactionMessage .. "\nInsufficient reputation for purchase"
@@ -35239,6 +35241,7 @@ function handleDockedState()
 							comms_source.goods[good] = comms_source.goods[good] + 1
 							comms_source.goods["food"] = comms_source.goods["food"] - 1
 							addResouceToProduceGoods()
+							ctd.wealth = ctd.wealth + 1
 							goodTransactionMessage = goodTransactionMessage .. "\nTraded"
 						end
 						setCommsMessage(goodTransactionMessage)
@@ -35263,6 +35266,7 @@ function handleDockedState()
 							comms_source.goods[good] = comms_source.goods[good] + 1
 							comms_source.goods["medicine"] = comms_source.goods["medicine"] - 1
 							addResouceToProduceGoods()
+							ctd.wealth = ctd.wealth + 1
 							goodTransactionMessage = goodTransactionMessage .. "\nTraded"
 						end
 						setCommsMessage(goodTransactionMessage)
@@ -35287,6 +35291,7 @@ function handleDockedState()
 							comms_source.goods[good] = comms_source.goods[good] + 1
 							comms_source.goods["luxury"] = comms_source.goods["luxury"] - 1
 							addResouceToProduceGoods()
+							ctd.wealth = ctd.wealth + 1
 							goodTransactionMessage = goodTransactionMessage .. "\nTraded"
 						end
 						setCommsMessage(goodTransactionMessage)
