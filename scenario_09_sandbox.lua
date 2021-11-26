@@ -41615,7 +41615,8 @@ function commsStation()
         },
 		produce_goods = {
 			amount = 0
-		}
+		},
+		wealth = 0
     })
     comms_data = comms_target.comms_data
     if comms_source:isEnemy(comms_target) then
@@ -42478,7 +42479,7 @@ function handleDockedState()
 		addCommsReply("Buy, sell, trade", function()
 			produceGoods()
 			local ctd = comms_target.comms_data
-			local goodsReport = string.format("Station %s:\nGoods or components available for sale: quantity, cost in reputation\n",comms_target:getCallSign())
+			local goodsReport = string.format("Station %s:\nGoods or components available for sale: quantity, cost in reputation",comms_target:getCallSign())
 			for good, goodData in pairs(ctd.goods) do
 				if goodData["quantity"] > 0 then
 					goodsReport = goodsReport .. string.format("     %s: %i, %i\n",good,goodData["quantity"],goodData["cost"])
@@ -42537,6 +42538,7 @@ function handleDockedState()
 								comms_source.goods[good] = 0
 							end
 							comms_source.goods[good] = comms_source.goods[good] + 1
+							ctd.wealth = ctd.wealth + 1
 							goodTransactionMessage = goodTransactionMessage .. "\npurchased"
 						else
 							goodTransactionMessage = goodTransactionMessage .. "\nInsufficient reputation for purchase"
@@ -42584,6 +42586,7 @@ function handleDockedState()
 							comms_source.goods[good] = comms_source.goods[good] + 1
 							comms_source.goods["food"] = comms_source.goods["food"] - 1
 							addResouceToProduceGoods()
+							ctd.wealth = ctd.wealth + 1
 							goodTransactionMessage = goodTransactionMessage .. "\nTraded"
 						end
 						setCommsMessage(goodTransactionMessage)
@@ -42608,6 +42611,7 @@ function handleDockedState()
 							comms_source.goods[good] = comms_source.goods[good] + 1
 							comms_source.goods["medicine"] = comms_source.goods["medicine"] - 1
 							addResouceToProduceGoods()
+							ctd.wealth = ctd.wealth + 1
 							goodTransactionMessage = goodTransactionMessage .. "\nTraded"
 						end
 						setCommsMessage(goodTransactionMessage)
@@ -42632,6 +42636,7 @@ function handleDockedState()
 							comms_source.goods[good] = comms_source.goods[good] + 1
 							comms_source.goods["luxury"] = comms_source.goods["luxury"] - 1
 							addResouceToProduceGoods()
+							ctd.wealth = ctd.wealth + 1
 							goodTransactionMessage = goodTransactionMessage .. "\nTraded"
 						end
 						setCommsMessage(goodTransactionMessage)
