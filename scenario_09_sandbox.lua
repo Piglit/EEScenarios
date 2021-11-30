@@ -1425,6 +1425,7 @@ function createSkeletonUniverse()
         goods = {	food = 		{quantity = 10,		cost = 1},
         			medicine =	{quantity = 10,		cost = 5}	},
         trade = {	food = false, medicine = false, luxury = false },
+        tradeChances = {	food = 0, medicine = 0, luxury = 0 },
         public_relations = true,
         general_information = "Shipyard for human navy ships. Regional headquarters. Development site for the Atlantis model ship",
     	history = "As humans ran up against more and more unfriendly races, this station became the nexus for research and development of new space ship building technologies. After a few experimental accidents involving militarily driven scientists and fabrication specialists, the station was renamed from Research-37 to Icarus referencing the mythical figure that flew too close to the sun",
@@ -1475,6 +1476,7 @@ function createSkeletonUniverse()
         			medicine =	{quantity = 10,		cost = 5},
         			luxury =	{quantity = 10,		cost = math.random(80,120)}	},
         trade = {	food = false, medicine = false, luxury = false },
+        tradeChances = {	food = 0, medicine = 0, luxury = 0 },
         public_relations = true,
         general_information = "Regional headquarters. Jumping off point for actions against Kraylor activity",
     	history = "This used to be a scientific observation and research station. As the Kraylors have grown more agressive, it's been built up and serves as a strategic cornerstone for actions against the Kraylors. The name Kentar derives from Kentauros or Centaurus, after the nearby star's prominent position in the constellation Centaurus",
@@ -1568,6 +1570,7 @@ function createSkeletonUniverse()
         			medicine =	{quantity = 10,		cost = 5},
         			luxury =	{quantity = 10,		cost = math.random(80,120)}	},
         trade = {	food = false, medicine = false, luxury = false },
+        tradeChances = {	food = 0, medicine = 0, luxury = 0 },
         public_relations = true,
         general_information = "Military observation post established to observe any hostile Ghost activity",
     	history = "Civilian scientists and military personnel share observation facilities on this station. The scientists are interested in the nebulae, the military, the Ghosts. Other civilian personnel are evaluating the mining possibilities of the asteroids. The station is named after the astrophysical observatory that circled Earth in the mid 1980's",
@@ -1612,6 +1615,7 @@ function createSkeletonUniverse()
         			medicine =	{quantity = 10,		cost = 5},
         			luxury =	{quantity = 10,		cost = math.random(80,120)}	},
         trade = {	food = false, medicine = false, luxury = false },
+        tradeChances = {	food = 0, medicine = 0, luxury = 0 },
         public_relations = true,
         general_information = "Black hole research conducted in conjunction with Arlenian scientists",
     	history = "The Arlenians built this station to observe the black hole. When Arlenian government funding started running short, they entered into a mutual research sharing agreement with the Human Navy and turned over primary administration of the station to the Human Navy. The CUF has taken over that protection and support contract to facilitate the scientific research and to have a convenient contact point for Arlenain/Human correspondence",
@@ -1661,6 +1665,7 @@ function createSkeletonUniverse()
         goods = {	food = 		{quantity = 10,		cost = 1},
         			medicine =	{quantity = 10,		cost = 5}	},
         trade = {	food = false, medicine = false, luxury = false },
+        tradeChances = {	food = 0, medicine = 0, luxury = 0 },
         public_relations = true,
         general_information = "Regional headquarters. Commercial and educational hub.",
     	history = "Teresh is a diminuative for Valentina Tereshkova, the first female astronaut in space in the late 20th century. Several station founders were historical enthusiasts and chose the name. The university also takes the name Teresh",
@@ -2628,6 +2633,7 @@ function tweakTerrain()
 							goods = {	[componentGoods[math.random(1,#componentGoods)]]	=	{quantity = math.random(1,5),	cost = math.random(60,95)},
 										[mineralGoods[math.random(1,#mineralGoods)]]		=	{quantity = math.random(1,5),	cost = math.random(30,60)} },
 							trade = {	food = false, medicine = false, luxury = true },
+							tradeChances = {	food = 0, medicine = 0, luxury = 0 },
 							public_relations = false
 						}
 						addGMMessage(string.format("Station %s now has sandbox communications",tempObject:getCallSign()))
@@ -2646,6 +2652,7 @@ function tweakTerrain()
 								goods = {	[componentGoods[math.random(1,#componentGoods)]]	=	{quantity = math.random(1,5),	cost = math.random(60,95)},
 											[mineralGoods[math.random(1,#mineralGoods)]]		=	{quantity = math.random(1,5),	cost = math.random(30,60)} },
 								trade = {	food = false, medicine = false, luxury = true },
+								tradeChances = {	food = 0, medicine = 0, luxury = 0 },
 								public_relations = false
 							}
 							addGMMessage(string.format("Faux Station %s now has sandbox communications",tempObject:getCallSign()))
@@ -2690,6 +2697,7 @@ function tweakTerrain()
 									goods = {	[componentGoods[math.random(1,#componentGoods)]]	=	{quantity = math.random(1,5),	cost = math.random(60,95)},
 												[mineralGoods[math.random(1,#mineralGoods)]]		=	{quantity = math.random(1,5),	cost = math.random(30,60)} },
 									trade = {	food = false, medicine = false, luxury = true },
+									tradeChances = {	food = 0, medicine = 0, luxury = 0 },
 									public_relations = false
 								}
 								addGMMessage(string.format("Faux Station %s now has sandbox communications",temp_object:getCallSign()))
@@ -4418,6 +4426,7 @@ function santaContainment()
         goods = {	food = 		{quantity = 10,		cost = 1},
         			medicine =	{quantity = 10,		cost = 5}	},
         trade = {	food = false, medicine = false, luxury = false },
+        tradeChances = {	food = 0, medicine = 0, luxury = 0 },
     	idle_defense_fleet = {
 			DF1 = "MT52 Hornet",
 			DF2 = "MU52 Hornet",
@@ -4465,6 +4474,7 @@ function santaContainment()
         goods = {	food = 		{quantity = 10,		cost = 1},
         			medicine =	{quantity = 10,		cost = 5}	},
         trade = {	food = false, medicine = false, luxury = false },
+        tradeChances = {	food = 0, medicine = 0, luxury = 0 },
     	idle_defense_fleet = {
 			DF1 = "MT52 Hornet",
 			DF2 = "MU52 Hornet",
@@ -5513,6 +5523,9 @@ function createIcarusStations()
 	local tradeFood = true
 	local tradeMedicine = true
 	local tradeLuxury = true
+	local tradeChanceFood = 0
+	local tradeChanceMedicine = 0
+	local tradeChanceLuxury = 0
 	--Aquarius F4m9
 	--local aquariusZone = squareZone(-4295, 14159, "Aquarius VIII F4.9")
 	--aquariusZone:setColor(51,153,255)
@@ -5520,8 +5533,11 @@ function createIcarusStations()
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
-    if random(1,100) <= 39 then tradeMedicine = true else tradeMedicine = false end
-    if random(1,100) <= 82 then tradeFood = true else tradeFood = false end
+	tradeChanceLuxury = 0
+	tradeChanceMedicine = 39
+	tradeChanceFood = 82
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
+	if random(1,100) <= tradeChanceFood then tradeFood = true else tradeFood = false end
     stationAquarius.comms_data = {
     	friendlyness = 67,
         weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "friend",		Nuke = "friend", 			EMP = "friend"},
@@ -5543,6 +5559,7 @@ function createIcarusStations()
         goods = {	platinum = 	{quantity = math.random(4,8),	cost = math.random(50,80)},
         			nickel =	{quantity = math.random(6,12),	cost = math.random(45,65)}	},
         trade = {	food = tradeFood, medicine = tradeMedicine, luxury = false },
+        tradeChances = {	food = tradeChangeFood, medicine = tradeChangeMedicine, luxury = 0 },
         public_relations = true,
         general_information = "Facilitate mining the nearby asteroids",
     	history = "Station named after the platinum mine on ancient Earth on the African continent",
@@ -5568,7 +5585,10 @@ function createIcarusStations()
     if random(1,100) <= 40 then empAvail = true else empAvail = false end
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 13 then tradeMedicine = true else tradeMedicine = false end
+	tradeChanceFood = 0
+	tradeChanceLuxury = 0
+	tradeChanceMedicine = 13
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
     stationBorlan.comms_data = {
     	friendlyness = 75,
         weapons = 			{Homing = "neutral",HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
@@ -5596,6 +5616,7 @@ function createIcarusStations()
         			cobalt ={quantity = math.random(6,12),	cost = math.random(75,95)},
         			luxury ={quantity = math.random(2,8),	cost = math.random(55,95)} },
         trade = {	food = false, medicine = tradeMedicine, luxury = false },
+        tradeChances = {	food = 0, medicine = tradeChangeMedicine, luxury = 0 },
         buy = {		circuit =	math.random(95,140),
         			warp =		math.random(125,150)},
         public_relations = true,
@@ -5626,8 +5647,11 @@ function createIcarusStations()
     if random(1,100) <= 37 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 44 then hvliAvail = true else hvliAvail = false end
     if random(1,100) <= 23 then mineAvail = true else mineAvail = false end
-    if random(1,100) <= 13 then tradeLuxury = true else tradeLuxury = false end
-    if random(1,100) <= 27 then tradeMedicine = true else tradeMedicine = false end
+	tradeChanceFood = 0
+	tradeChanceLuxury = 13
+	tradeChanceMedicine = 27
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
     stationCindyFolly.comms_data = {
     	friendlyness = 64,
         weapons = 			{Homing = "neutral",HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
@@ -5647,6 +5671,7 @@ function createIcarusStations()
         			tritanium =	{quantity = math.random(6,12),	cost = math.random(45,65)},
         			platinum =	{quantity = math.random(6,12),	cost = math.random(45,65)}	},
         trade = {	food = false, medicine = tradeMedicine, luxury = tradeLuxury },
+        tradeChances = {	food = 0, medicine = tradeChangeMedicine, luxury = tradeChangeLuxury },
         public_relations = true,
         general_information = "Mine nearby asteroids",
     	history = "A mining operation often on the brink of failure due to the loss of spacecraft in the nearby black holes",
@@ -5663,7 +5688,10 @@ function createIcarusStations()
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
     if random(1,100) <= 40 then empAvail = true else empAvail = false end
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
-    if random(1,100) <= 13 then tradeLuxury = true else tradeLuxury = false end
+	tradeChanceFood = 0
+	tradeChanceMedicine = 0
+	tradeChanceLuxury = 13
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
     stationElysium.comms_data = {
     	friendlyness = 29,
         weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "neutral"},
@@ -5680,6 +5708,7 @@ function createIcarusStations()
         goods = {	warp =		{quantity = math.random(2,4),	cost = math.random(80,120)},
         			cobalt =	{quantity = math.random(2,4),	cost = math.random(30,70)},	},
         trade = {	food = false, medicine = false, luxury = tradeLuxury },
+        tradeChances = {	food = 0, medicine = 0, luxury = tradeChangeLuxury },
         public_relations = true,
         general_information = "This is where all the wealthy species shop and stay when traveling",
     	history = "Named after a fictional station from early 21st century literature as a reminder of what can happen if people don't pay attention to what goes on in all levels of the society in which they live",
@@ -5703,7 +5732,10 @@ function createIcarusStations()
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
     if random(1,100) <= 40 then empAvail = true else empAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 63 then tradeMedicine = true else tradeMedicine = false end
+	tradeChanceFood = 0
+	tradeChanceLuxury = 0
+	tradeChanceMedicine = 63
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
     stationFinnegan.comms_data = {
     	friendlyness = 52,
         weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
@@ -5724,6 +5756,7 @@ function createIcarusStations()
         goods = {	circuit = 	{quantity = math.random(4,8),	cost = math.random(40,80)},
         			nickel =	{quantity = math.random(6,12),	cost = math.random(45,65)}	},
         trade = {	food = true, medicine = tradeMedicine, luxury = false },
+        tradeChances = {	food = 0, medicine = tradeChangeMedicine, luxury = 0 },
         public_relations = true,
         general_information = "We mine the asteroids and the nebula and use these to manufacture various specialized circuits",
     	history = "The Finnegan family set up this station here to take advantage of the readily available resources",
@@ -5754,7 +5787,10 @@ function createIcarusStations()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 23 then tradeMedicine = true else tradeMedicine = false end
+	tradeChanceFood = 0
+	tradeChanceLuxury = 0
+	tradeChanceMedicine = 23
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
     stationGagarin.comms_data = {
     	friendlyness = 82,
         weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "friend",		Nuke = "friend", 			EMP = "friend"},
@@ -5775,6 +5811,7 @@ function createIcarusStations()
         goods = {	platinum = 	{quantity = math.random(4,8),	cost = math.random(50,80)},
         			nickel =	{quantity = math.random(6,12),	cost = math.random(45,65)}	},
         trade = {	food = true, medicine = tradeMedicine, luxury = false },
+        tradeChances = {	food = 0, medicine = tradeChangeMedicine, luxury = 0 },
         public_relations = true,
         general_information = "Facilitate mining the nearby asteroids",
     	history = "Station named after the Cosmonaut from 20th century Earth"
@@ -5793,8 +5830,11 @@ function createIcarusStations()
     if random(1,100) <= 40 then empAvail = true else empAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 37 then tradeLuxury = true else tradeLuxury = false end
-    if random(1,100) <= 12 then tradeFood = true else tradeFood = false end
+	tradeChanceMedicine = 0
+	tradeChanceLuxury = 37
+	tradeChanceFood = 12
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
+	if random(1,100) <= tradeChanceFood then tradeFood = true else tradeFood = false end
     stationMacassa.comms_data = {
     	friendlyness = 55,
         weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "friend",		Nuke = "friend", 			EMP = "friend"},
@@ -5809,6 +5849,7 @@ function createIcarusStations()
         goods = {	gold = 	{quantity = math.random(4,8),	cost = math.random(60,70)},
         			dilithium = {quantity = math.random(2,11),	cost = math.random(55,85)}	},
         trade = {	food = tradeFood, medicine = false, luxury = tradeLuxury },
+        tradeChances = {	food = tradeChangeFood, medicine = 0, luxury = tradeChangeLuxury },
         public_relations = true,
         general_information = "Station location facilitates mining the nearby asteroids. This is the 8th time the staion has been rebuilt",
     	history = "The station was named in the hopes that the asteroids will be as productive as the Macassa mine was on Earth in the mid to late 1900s"
@@ -5826,8 +5867,11 @@ function createIcarusStations()
     if random(1,100) <= 40 then empAvail = true else empAvail = false end
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 39 then tradeMedicine = true else tradeMedicine = false end
-    if random(1,100) <= 62 then tradeFood = true else tradeFood = false end
+	tradeChanceLuxury = 0
+	tradeChanceMedicine = 39
+	tradeChanceFood = 62
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
+	if random(1,100) <= tradeChanceFood then tradeFood = true else tradeFood = false end
     stationMaximilian.comms_data = {
     	friendlyness = 43,
         weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "friend",		Nuke = "friend", 			EMP = "friend"},
@@ -5842,6 +5886,7 @@ function createIcarusStations()
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
         goods = {	filament = 	{quantity = math.random(4,8),	cost = math.random(50,80)}	},
         trade = {	food = tradeFood, medicine = tradeMedicine, luxury = true },
+        tradeChances = {	food = tradeChangeFood, medicine = tradeChangeMedicine, luxury = 0 },
         public_relations = true,
         general_information = "Observe and measure black hole for scientific understanding purposes",
     	history = "One of the researchers also develops software and watches ancient films. He was put in charge of naming the station so he named it after a mute evil robot depicted in an old movie about a black hole from the late 1970s",
@@ -5866,7 +5911,10 @@ function createIcarusStations()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 17 then tradeLuxury = true else tradeLuxury = false end
+	tradeChanceFood = 0
+	tradeChanceMedicine = 0
+	tradeChanceLuxury = 17
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
     stationMermaid.comms_data = {
     	friendlyness = 75,
         weapons = 			{Homing = "neutral",HVLI = "neutral", 		Mine = "friend",		Nuke = "friend", 			EMP = "friend"},
@@ -5880,6 +5928,7 @@ function createIcarusStations()
         goods = {	luxury = 	{quantity = math.random(5,10),	cost = math.random(60,70)},
         			gold = 		{quantity = 5,					cost = math.random(75,90)}	},
         trade = {	food = true, medicine = false, luxury = tradeLuxury },
+        tradeChances = {	food = 0, medicine = 0, luxury = tradeChangeLuxury },
         public_relations = true,
         general_information = "Rest stop, refueling and convenience shopping",
     	history = "In the tradition of taverns at crossroads on olde Earth in Kingston where the Millstone river and the Assunpink trail crossed and The Sign of the Mermaid tavern was built in the 1600s, the builders of this station speculated that this would be a good spot for space travelers to stop\n\nFree drinks for the crew of the freighter Gamma Hydra",
@@ -5907,7 +5956,10 @@ function createIcarusStations()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 26 then tradeFood = true else tradeFood = false end
+	tradeChanceMedicine = 0
+	tradeChanceLuxury = 0
+	tradeChanceFood = 26
+	if random(1,100) <= tradeChanceFood then tradeFood = true else tradeFood = false end
     stationMosEspa.comms_data = {
     	friendlyness = 93,
         weapons = 			{Homing = "neutral",HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
@@ -5929,6 +5981,7 @@ function createIcarusStations()
         goods = {	impulse = 	{quantity = math.random(5,10),	cost = math.random(80,100)},
         			lifter = 	{quantity = 5,					cost = math.random(75,90)}	},
         trade = {	food = tradeFood, medicine = true, luxury = false },
+        tradeChances = {	food = tradeChangeFood, medicine = 0, luxury = 0 },
         public_relations = true,
         general_information = "Relax, maybe observe a scheduled race",
     	history = "You will never find a more wretched hive of scum and villainy... except in Mos Eisley space port. Mos Espa is a much better place",
@@ -5956,8 +6009,11 @@ function createIcarusStations()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 17 then tradeLuxury = true else tradeLuxury = false end
-    if random(1,100) <= 69 then tradeMedicine = true else tradeMedicine = false end
+	tradeChanceFood = 0
+	tradeChanceLuxury = 17
+	tradeChanceMedicine = 69
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
     stationNerva.comms_data = {
     	friendlyness = 75,
         weapons = 			{Homing = "neutral",HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
@@ -5968,6 +6024,7 @@ function createIcarusStations()
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
         goods = {	optic = 	{quantity = math.random(5,10),	cost = math.random(60,70)}	},
         trade = {	food = false, medicine = tradeMedicine, luxury = tradeLuxury },
+        tradeChances = {	food = 0, medicine = tradeChangeMedicine, luxury = tradeChangeLuxury },
         public_relations = true,
         general_information = "Observatory of stellar phenomena and space ship traffic",
     	history = "A combination of science and military staff share the various delicate instruments on this station. Originally designed to watch for incoming Kraylor and Exuari ships, other stations now share the early warning military purpose and these sensors double as research resources",
@@ -5995,7 +6052,10 @@ function createIcarusStations()
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
     if random(1,100) <= 40 then empAvail = true else empAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
-    if random(1,100) <= 37 then tradeLuxury = true else tradeLuxury = false end
+	tradeChanceFood = 0
+	tradeChanceMedicine = 0
+	tradeChanceLuxury = 37
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
     stationPistil.comms_data = {
     	friendlyness = 55,
         weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "friend",		Nuke = "friend", 			EMP = "friend"},
@@ -6010,6 +6070,7 @@ function createIcarusStations()
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
         goods = {	sensor = 	{quantity = math.random(4,8),	cost = math.random(60,70)}	},
         trade = {	food = false, medicine = true, luxury = tradeLuxury },
+        tradeChances = {	food = 0, medicine = 0, luxury = tradeChangeLuxury },
         buy =	{	robotic = math.random(40,200),
         			dilithium = math.random(40,200)	},
         public_relations = true,
@@ -6036,7 +6097,10 @@ function createIcarusStations()
 	--relay13Zone:setColor(0,255,0)
     stationRelay13 = SpaceStation():setTemplate("Small Station"):setFaction("Human Navy"):setCallSign("Relay-13 F"):setPosition(77918, 23876):setDescription("Communications Relay"):setCommsScript(""):setCommsFunction(commsStation)
     stationRelay13:setShortRangeRadarRange(12000)
-    if random(1,100) <= 69 then tradeMedicine = true else tradeMedicine = false end
+	tradeChanceFood = 0
+	tradeChanceLuxury = 0
+	tradeChanceMedicine = 69
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
     stationRelay13.comms_data = {
     	friendlyness = 75,
         weapons = 			{Homing = "neutral",HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
@@ -6057,6 +6121,7 @@ function createIcarusStations()
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
         goods = {	communication = {quantity = math.random(5,10),	cost = math.random(40,70)}	},
         trade = {	food = false, medicine = tradeMedicine, luxury = false },
+        tradeChances = {	food = 0, medicine = tradeChangeMedicine, luxury = 0 },
         public_relations = true,
         general_information = "Communication traffic relay and coordination",
     	idle_defense_fleet = {
@@ -6083,8 +6148,11 @@ function createIcarusStations()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 17 then tradeLuxury = true else tradeLuxury = false end
-    if random(1,100) <= 57 then tradeMedicine = true else tradeMedicine = false end
+	tradeChanceFood = 0
+	tradeChanceLuxury = 17
+	tradeChanceMedicine = 57
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
     stationSlurry.comms_data = {
     	friendlyness = 75,
         weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
@@ -6096,6 +6164,7 @@ function createIcarusStations()
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
         goods = {	tractor = 	{quantity = math.random(5,10),	cost = math.random(60,70)}	},
         trade = {	food = false, medicine = tradeMedicine, luxury = tradeLuxury },
+        tradeChances = {	food = 0, medicine = tradeChangeMedicine, luxury = tradeChangeLuxury },
         public_relations = true,
         general_information = "Mining and research of nearby stellar phenomena",
     	history = "Joint effort between miners and scientists to establish station to research and to provide resources to support research",
@@ -6122,8 +6191,11 @@ function createIcarusStations()
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 40 then empAvail = true else empAvail = false end
-    if random(1,100) <= 37 then tradeMedicine = true else tradeMedicine = false end
-    if random(1,100) <= 37 then tradeLuxury = true else tradeLuxury = false end
+	tradeChanceFood = 0
+	tradeChanceMedicine = 37
+	tradeChanceLuxury = 37
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
     stationSovinec.comms_data = {
     	friendlyness = 62,
         weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "friend",		Nuke = "friend", 			EMP = "friend"},
@@ -6146,6 +6218,7 @@ function createIcarusStations()
         goods = {	beam =	 	{quantity = math.random(4,8),	cost = math.random(40,80)},
         			tritanium =	{quantity = math.random(6,12),	cost = math.random(45,65)}	},
         trade = {	food = false, medicine = tradeMedicine, luxury = tradeLuxury },
+        tradeChances = {	food = 0, medicine = tradeChangeMedicine, luxury = tradeChangeLuxury },
         buy = {		filament = math.random(90,120),
         			impulse = math.random(105,130)	},
         public_relations = true,
@@ -6175,7 +6248,10 @@ function createIcarusStations()
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
     if random(1,100) <= 40 then empAvail = true else empAvail = false end
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
-    if random(1,100) <= 13 then tradeMedicine = true else tradeMedicine = false end
+	tradeChanceFood = 0
+	tradeChanceLuxury = 0
+	tradeChanceMedicine = 13
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
     stationSpeculator.comms_data = {
     	friendlyness = 82,
         weapons = 			{Homing = "neutral",HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
@@ -6193,6 +6269,7 @@ function createIcarusStations()
         			dilithium =	{quantity = math.random(6,12),	cost = math.random(75,95)},
         			tritanium =	{quantity = math.random(2,8),	cost = math.random(45,85)} },
         trade = {	food = false, medicine = tradeMedicine, luxury = true },
+        tradeChances = {	food = 0, medicine = tradeChangeMedicine, luxury = 0 },
         public_relations = true,
         general_information = "Mining operations are the primary purpose, but there are scientists here conducting research on the mobile nebula in the area",
     	history = "A consorium of mining interests and scientists banded together to create this station. It was considered a risk for both groups, but they undertook it anyway.",
@@ -6220,7 +6297,10 @@ function createIcarusStations()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 23 then tradeMedicine = true else tradeMedicine = false end
+	tradeChanceFood = 0
+	tradeChanceLuxury = 0
+	tradeChanceMedicine = 23
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
     stationStromboli.comms_data = {
     	friendlyness = 35,
         weapons = 			{Homing = "neutral",HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
@@ -6239,6 +6319,7 @@ function createIcarusStations()
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
         goods = {	luxury = 	{quantity = math.random(5,10),	cost = math.random(60,70)}	},
         trade = {	food = false, medicine = tradeMedicine, luxury = false },
+        tradeChances = {	food = 0, medicine = tradeChangeMedicine, luxury = 0 },
         public_relations = true,
         general_information = "A remote station location for the Stromboli family and gusts to get away from the pressures of modern life",
     	history = "The Stromboli family picked this station up cheap from the Human Navy when this sector was practically empty. Now it serves as a nice place for the family to escape to when they are stressed out",
@@ -6268,7 +6349,10 @@ function createIcarusStations()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 23 then tradeFood = true else tradeFood = false end
+	tradeChanceMedicine = 0
+	tradeChanceLuxury = 0
+	tradeChanceFood = 23
+	if random(1,100) <= tradeChanceFood then tradeFood = true else tradeFood = false end
     stationTransylvania.comms_data = {
     	friendlyness = 35,
         weapons = 			{Homing = "neutral",HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
@@ -6292,6 +6376,7 @@ function createIcarusStations()
         goods = {	luxury = 	{quantity = math.random(5,10),	cost = math.random(60,70)},
         			medicine =	{quantity = math.random(5,10),	cost = math.random(5,10)}	},
         trade = {	food = tradeFood, medicine = false, luxury = false },
+        tradeChances = {	food = tradeChangeFood, medicine = 0, luxury = 0 },
         public_relations = true,
         general_information = "Transylvania is a refuge from those who would prejudge our cultural practices",
     	history = "Originally a science station, now it caters to a group of persecuted beings whose cultural practices offend a number of other species",
@@ -6335,7 +6420,10 @@ function createIcarusStations()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 39 then tradeMedicine = true else tradeMedicine = false end
+	tradeChanceFood = 0
+	tradeChanceLuxury = 0
+	tradeChanceMedicine = 39
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
     stationWookie.comms_data = {
     	friendlyness = 76,
         weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
@@ -6348,6 +6436,7 @@ function createIcarusStations()
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
         goods = {	software = 	{quantity = math.random(4,8),	cost = math.random(80,90)}	},
         trade = {	food = false, medicine = tradeMedicine, luxury = false },
+        tradeChances = {	food = 0, medicine = tradeChangeMedicine, luxury = 0 },
         public_relations = true,
         general_information = "Researchers here study the Wookie language as well as several other languages of intelligent species. -Oka is a Wookie language suffix meaning 4",
     	history = "The first language studied when the station was founded was Wookie. Wookie language and culture is still a major focus of study",
@@ -7312,6 +7401,9 @@ function createKentarStations()
 	local tradeFood = true
 	local tradeMedicine = true
 	local tradeLuxury = true
+	local tradeChanceFood = 0
+	local tradeChanceMedicine = 0
+	local tradeChanceLuxury = 0
 	--Gamma
 	--local gamma3Zone = squareZone(266825, 314128, "Gamma-4 U18")
 	--gamma3Zone:setColor(0,128,0)
@@ -7322,8 +7414,11 @@ function createKentarStations()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 42 then tradeLuxury = true else tradeLuxury = false end
-    if random(1,100) <= 42 then tradeMedicine = true else tradeMedicine = false end
+	tradeChanceFood = 0
+	tradeChanceLuxury = 42
+	tradeChanceMedicine = 42
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
     stationGamma3.comms_data = {
     	friendlyness = 68,
         weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "friend",		Nuke = "friend", 			EMP = "friend"},
@@ -7344,6 +7439,7 @@ function createKentarStations()
         goods = {	tractor = 	{quantity = math.random(2,5),	cost = math.random(40,70)},
         			repulsor = 	{quantity = math.random(2,5),	cost = math.random(55,90)}	},
         trade = {	food = true, medicine = tradeMedicine, luxury = tradeLuxury },
+        tradeChances = {	food = 0, medicine = tradeChangeMedicine, luxury = tradeChangeLuxury },
         public_relations = true,
         general_information = "We watch and report on enemy vessel movement. We also run a small tractor and repulsor component machine shop",
     	history = "The Human Navy set this station up as a strategic observation post",
@@ -7709,7 +7805,10 @@ function createKentarStations()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 67 then tradeLuxury = true else tradeLuxury = false end
+	tradeChanceFood = 0
+	tradeChanceMedicine = 0
+	tradeChanceLuxury = 67
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
     stationKatanga.comms_data = {
     	friendlyness = 75,
         weapons = 			{Homing = "neutral",HVLI = "neutral", 		Mine = "friend",		Nuke = "friend", 			EMP = "friend"},
@@ -7729,6 +7828,7 @@ function createKentarStations()
         goods = {	cobalt = 	{quantity = math.random(5,10),	cost = math.random(60,70)},
         			gold = 		{quantity = math.random(5,10),	cost = math.random(55,90)}	},
         trade = {	food = true, medicine = false, luxury = tradeLuxury },
+        tradeChances = {	food = 0, medicine = 0, luxury = tradeChangeLuxury },
         public_relations = true,
         general_information = "Extracting minerals from these asteroids is our job",
     	history = "Based on the scans showing cobalt in many of these asteroids, we named this station after an ancient earth mining operation that was part of the Glencore Public Limited Company",
@@ -7753,7 +7853,10 @@ function createKentarStations()
 	stationKeyhole23 = SpaceStation():setTemplate("Small Station"):setFaction("Human Navy"):setCallSign("Keyhole-23"):setPosition(213600,290000):setDescription("Gravitational lensing spy satellite"):setCommsScript(""):setCommsFunction(commsStation)
     stationKeyhole23:setShortRangeRadarRange(6500)
 	stationKeyhole23.total_time = 0
-    if random(1,100) <= 67 then tradeLuxury = true else tradeLuxury = false end
+	tradeChanceFood = 0
+	tradeChanceMedicine = 0
+	tradeChanceLuxury = 67
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
     stationKeyhole23.comms_data = {
     	friendlyness = 25,
         weapons = 			{Homing = "neutral",HVLI = "neutral", 		Mine = "friend",		Nuke = "friend", 			EMP = "friend"},
@@ -7771,6 +7874,7 @@ function createKentarStations()
         goods = {	dilithium = 	{quantity = math.random(5,10),	cost = math.random(20,30)},
         			tritanium =		{quantity = math.random(5,10),	cost = math.random(25,40)}	},
         trade = {	food = true, medicine = false, luxury = tradeLuxury },
+        tradeChances = {	food = 0, medicine = 0, luxury = tradeChangeLuxury },
         public_relations = true,
         general_information = "Work here is classified, however, it involves research on this black hole",
     	history = "Reference classified archives at headquarters. Public access redacted"
@@ -7790,9 +7894,12 @@ function createKentarStations()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 42 then tradeLuxury = true else tradeLuxury = false end
-    if random(1,100) <= 42 then tradeFood = true else tradeFood = false end
-    if random(1,100) <= 42 then tradeMedicine = true else tradeMedicine = false end
+	tradeChanceLuxury = 42
+	tradeChanceFood = 42
+	tradeChanceMedicine = 42
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
+	if random(1,100) <= tradeChanceFood then tradeFood = true else tradeFood = false end
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
     stationKolar.comms_data = {
     	friendlyness = 85,
         weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "neutral"},
@@ -7817,6 +7924,7 @@ function createKentarStations()
         			autodoc =	{quantity = math.random(5,9),	cost = math.random(63,70)},
         			gold =		{quantity = math.random(5,9),	cost = math.random(33,50)}	},
         trade = {	food = tradeFood, medicine = tradeMedicine, luxury = tradeLuxury },
+        tradeChances = {	food = tradeChangeFood, medicine = tradeChangeMedicine, luxury = tradeChangeLuxury },
         public_relations = true,
         general_information = "We mine gold, we make and sell autodoc and circuit",
     	history = "We said, 'thar's gold in them there rocks' and we just had to get some",
@@ -7843,9 +7951,12 @@ function createKentarStations()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 42 then tradeLuxury = true else tradeLuxury = false end
-    if random(1,100) <= 42 then tradeFood = true else tradeFood = false end
-    if random(1,100) <= 42 then tradeMedicine = true else tradeMedicine = false end
+	tradeChanceLuxury = 42
+	tradeChanceFood = 42
+	tradeChanceMedicine = 42
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
+	if random(1,100) <= tradeChanceFood then tradeFood = true else tradeFood = false end
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
     stationLocarno.comms_data = {
     	friendlyness = 85,
         weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "neutral",		Nuke = "neutral", 			EMP = "neutral"},
@@ -7862,6 +7973,7 @@ function createKentarStations()
         			android =	{quantity = math.random(5,9),	cost = math.random(63,70)},
         			cobalt =	{quantity = math.random(5,9),	cost = math.random(33,50)}	},
         trade = {	food = tradeFood, medicine = tradeMedicine, luxury = tradeLuxury },
+        tradeChances = {	food = tradeChangeFood, medicine = tradeChangeMedicine, luxury = tradeChangeLuxury },
         public_relations = true,
         general_information = "We mine, we trade, we sell nanites and android components",
     	history = "It looked like a good location for resupply and mining and it's served us well",
@@ -7916,6 +8028,7 @@ function createKentarStations()
         goods = {	sensor = 		{quantity = math.random(5,9),	cost = math.random(30,50)},
         			communication = {quantity = math.random(2,5),	cost = math.random(55,90)}	},
         trade = {	food = true, medicine = tradeMedicine, luxury = tradeLuxury },
+        tradeChances = {	food = 0, medicine = tradeChangeMedicine, luxury = tradeChangeLuxury },
         public_relations = true,
         general_information = "In conjunction with station Pastern, we observe the asteroids in orbit around Rigil. We also provide supplies for Human Navy ships that might need them",
     	history = string.format("Established in Nov2020, %s was intended to help Pastern observe asteroids in exchange for information about T'k'nol'g, suspected of biological research using human tissue illicitly obtained. The results of the research so far have yielded an addictive drug that in large enough doses not only kills the consumer but turns their body into a hyper-acidic blob that tends to eat through the hulls of ships and stations. Certain personnel on %s are tasked with watching for T'k'nol'g and reporting any additional sightings or gleaned information",stationMonocle:getCallSign(),stationMonocle:getCallSign()),
@@ -7940,8 +8053,11 @@ function createKentarStations()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 42 then tradeLuxury = true else tradeLuxury = false end
-    if random(1,100) <= 42 then tradeMedicine = true else tradeMedicine = false end
+	tradeChanceFood = 0
+	tradeChanceLuxury = 42
+	tradeChanceMedicine = 42
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
     stationNereus.comms_data = {
     	friendlyness = 58,
         weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "friend",		Nuke = "friend", 			EMP = "friend"},
@@ -7962,6 +8078,7 @@ function createKentarStations()
         goods = {	nickel = 	{quantity = math.random(2,5),	cost = math.random(30,50)},
         			lifter = 	{quantity = math.random(2,5),	cost = math.random(55,90)}	},
         trade = {	food = true, medicine = tradeMedicine, luxury = tradeLuxury },
+        tradeChances = {	food = 0, medicine = tradeChangeMedicine, luxury = tradeChangeLuxury },
         public_relations = true,
         general_information = "We mine primarily for nickel, watch for enemy vessels and manufacture lifter components",
     	history = "These asteroids provide a good nearby source for nickel, so a station was placed to facilitate mining. One of the original station members had lifter experience and over time built up a lifter manufacturing facility",
@@ -7986,8 +8103,11 @@ function createKentarStations()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 42 then tradeLuxury = true else tradeLuxury = false end
-    if random(1,100) <= 42 then tradeMedicine = true else tradeMedicine = false end
+	tradeChanceFood = 0
+	tradeChanceLuxury = 42
+	tradeChanceMedicine = 42
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
     stationPastern.comms_data = {
     	friendlyness = 58,
         weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "friend",		Nuke = "friend", 			EMP = "friend"},
@@ -8010,6 +8130,7 @@ function createKentarStations()
         goods = {	circuit = 	{quantity = math.random(2,5),	cost = math.random(30,50)},
         			battery = 	{quantity = math.random(2,5),	cost = math.random(55,90)}	},
         trade = {	food = true, medicine = tradeMedicine, luxury = tradeLuxury },
+        tradeChances = {	food = 0, medicine = tradeChangeMedicine, luxury = tradeChangeLuxury },
         public_relations = true,
         general_information = "We research the relationship between Rigil, Ergot and the cosmos",
     	history = "Continuing the equine anatomy nomenclature, the station builders named this station Pastern due to its proximity to Ergot"
@@ -8030,9 +8151,12 @@ function createKentarStations()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 42 then tradeLuxury = true else tradeLuxury = false end
-    if random(1,100) <= 42 then tradeFood = true else tradeFood = false end
-    if random(1,100) <= 42 then tradeMedicine = true else tradeMedicine = false end
+	tradeChanceLuxury = 42
+	tradeChanceFood = 42
+	tradeChanceMedicine = 42
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
+	if random(1,100) <= tradeChanceFood then tradeFood = true else tradeFood = false end
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
     stationTalos.comms_data = {
     	friendlyness = 35,
         weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "friend",		Nuke = "friend", 			EMP = "friend"},
@@ -8051,6 +8175,7 @@ function createKentarStations()
         goods = {	platinum = 	{quantity = math.random(2,5),	cost = math.random(50,80)},
         			gold =	 	{quantity = math.random(2,5),	cost = math.random(43,70)}	},
         trade = {	food = tradeFood, medicine = tradeMedicine, luxury = tradeLuxury },
+        tradeChances = {	food = tradeChangeFood, medicine = tradeChangeMedicine, luxury = tradeChangeLuxury },
         public_relations = true,
         general_information = "We mine primarily for platinum and gold and watch for enemy vessels",
     	history = "These asteroids provide a good nearby source for gold and platinum, so a station was placed to facilitate mining. It also serves as a good early warning post for enemy vessels",
@@ -8075,9 +8200,12 @@ function createKentarStations()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 42 then tradeLuxury = true else tradeLuxury = false end
-    if random(1,100) <= 42 then tradeFood = true else tradeFood = false end
-    if random(1,100) <= 42 then tradeMedicine = true else tradeMedicine = false end
+	tradeChanceLuxury = 42
+	tradeChanceFood = 42
+	tradeChanceMedicine = 42
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
+	if random(1,100) <= tradeChanceFood then tradeFood = true else tradeFood = false end
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
     stationSutter.comms_data = {
     	friendlyness = 45,
         weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "friend",		Nuke = "friend", 			EMP = "friend"},
@@ -8099,6 +8227,7 @@ function createKentarStations()
         			dilithium =	{quantity = math.random(5,9),	cost = math.random(43,70)},
         			cobalt =	{quantity = math.random(5,9),	cost = math.random(63,70)}	},
         trade = {	food = tradeFood, medicine = tradeMedicine, luxury = tradeLuxury },
+        tradeChances = {	food = tradeChangeFood, medicine = tradeChangeMedicine, luxury = tradeChangeLuxury },
         public_relations = true,
         general_information = "We mine for nickel, dilithium and cobalt. A science team researches some extraordinarily rare minerals found here",
     	history = "These asteroids provide a good nearby source for nickel, dilithium and cobalt, so a station was placed to facilitate mining. A scientific research team is also based herer to investigate unusual readings on some of the asteroids",
@@ -11020,6 +11149,9 @@ function ghostNebulaSector()
 	local tradeFood = true
 	local tradeMedicine = true
 	local tradeLuxury = true
+	local tradeChanceFood = 0
+	local tradeChanceMedicine = 0
+	local tradeChanceLuxury = 0
 	--Brillo
     stationBrillo = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Brillo"):setPosition(466525, 301218):setDescription("Mining"):setCommsScript(""):setCommsFunction(commsStation)
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
@@ -11027,8 +11159,11 @@ function ghostNebulaSector()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 42 then tradeLuxury = true else tradeLuxury = false end
-    if random(1,100) <= 42 then tradeMedicine = true else tradeMedicine = false end
+	tradeChanceFood = 0
+	tradeChanceLuxury = 42
+	tradeChanceMedicine = 42
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
     stationBrillo.comms_data = {
     	friendlyness = 68,
         weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "friend",		Nuke = "friend", 			EMP = "friend"},
@@ -11044,6 +11179,7 @@ function ghostNebulaSector()
         			transporter =	{quantity = math.random(2,5),	cost = math.random(50,80)},
         			nickel = 		{quantity = math.random(2,5),	cost = math.random(55,90)}	},
         trade = {	food = true, medicine = tradeMedicine, luxury = tradeLuxury },
+        tradeChances = {	food = 0, medicine = tradeChangeMedicine, luxury = tradeChangeLuxury },
         public_relations = true,
         general_information = "We coordinate mining nearby asteroids",
     	history = "Shortly after Astron was established, a group of entrepreneurs wanted to take advantage of the proximity of mineral laden asteroids. Astron agreed under the stipulation that mining activity be kept hidden from the Ghosts in the area"
@@ -11090,6 +11226,9 @@ function createLafrinaStations()
 	local tradeFood = true
 	local tradeMedicine = true
 	local tradeLuxury = true
+	local tradeChanceFood = 0
+	local tradeChanceMedicine = 0
+	local tradeChanceLuxury = 0
 	--Bond
     stationBond = SpaceStation():setTemplate("Small Station"):setFaction("TSN"):setCallSign("Bond"):setPosition(-271961, 284971):setDescription("Observation and Research"):setCommsScript(""):setCommsFunction(commsStation)
     stationBond.comms_data = {
@@ -11106,6 +11245,7 @@ function createLafrinaStations()
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.8 },
         goods = {	circuit = 	{quantity = math.random(5,9),	cost = math.random(50,80)}, },
         trade = {	food = random(1,100)<30, medicine = random(1,100)<30, luxury = random(1,100)<30 },
+        tradeChances = {	food = random(1,100)<30, medicine = random(1,100)<30, luxury = random(1,100)<30 },
         public_relations = true,
         general_information = "We research the nearby black hole in conjunction with Lafrina",
     	history = "Lafrina requested research assistance. TSN had the available reseources and set up another base to help",
@@ -11131,9 +11271,12 @@ function createLafrinaStations()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 52 then tradeLuxury = true else tradeLuxury = false end
-    if random(1,100) <= 32 then tradeFood = true else tradeFood = false end
-    if random(1,100) <= 42 then tradeMedicine = true else tradeMedicine = false end
+	tradeChanceLuxury = 52
+	tradeChanceFood = 32
+	tradeChanceMedicine = 42
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
+	if random(1,100) <= tradeChanceFood then tradeFood = true else tradeFood = false end
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
     stationBorie.comms_data = {
     	friendlyness = 45,
         weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
@@ -11150,6 +11293,7 @@ function createLafrinaStations()
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.8 },
         goods = {	gold = 	{quantity = math.random(5,9),	cost = math.random(50,80)}, },
         trade = {	food = tradeFood, medicine = tradeMedicine, luxury = tradeLuxury },
+        tradeChances = {	food = tradeChangeFood, medicine = tradeChangeMedicine, luxury = tradeChangeLuxury },
         public_relations = true,
         general_information = "We mine asteroids for minerals and we've got facilities for miners and others to try their hand at games of chance... for a price",
     	history = "Mining alone could not pay the bills for station maintenance, so we added a gambling facility to help. The gambling revenue pays about half of the bills now",
@@ -11173,9 +11317,12 @@ function createLafrinaStations()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 42 then tradeLuxury = true else tradeLuxury = false end
-    if random(1,100) <= 32 then tradeFood = true else tradeFood = false end
-    if random(1,100) <= 52 then tradeMedicine = true else tradeMedicine = false end
+	tradeChanceLuxury = 42
+	tradeChanceFood = 32
+	tradeChanceMedicine = 52
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
+	if random(1,100) <= tradeChanceFood then tradeFood = true else tradeFood = false end
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
     stationIlorea.comms_data = {
     	friendlyness = 62,
         weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
@@ -11197,6 +11344,7 @@ function createLafrinaStations()
         			tritanium =	{quantity = math.random(5,9),	cost = math.random(43,70)},
         			platinum =	{quantity = math.random(5,9),	cost = math.random(63,70)}	},
         trade = {	food = tradeFood, medicine = tradeMedicine, luxury = tradeLuxury },
+        tradeChances = {	food = tradeChangeFood, medicine = tradeChangeMedicine, luxury = tradeChangeLuxury },
         public_relations = true,
         general_information = "We mine for nickel, dilithium and cobalt. With these minerals we build components for ships as well as entire ships for exploration, mining and research",
     	history = "These asteroids provide a good nearby source for nickel, dilithium and cobalt, so a station was placed to facilitate mining. Materials experts and manufacturing experts are employed to convert local resources into completed ships and ship systems. This was one of the first bases established in the area to take advantage of asteroids here filled with rich deposits of valuable resources",
@@ -11224,9 +11372,12 @@ function createLafrinaStations()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 62 then tradeLuxury = true else tradeLuxury = false end
-    if random(1,100) <= 42 then tradeFood = true else tradeFood = false end
-    if random(1,100) <= 22 then tradeMedicine = true else tradeMedicine = false end
+	tradeChanceLuxury = 62
+	tradeChanceFood = 42
+	tradeChanceMedicine = 22
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
+	if random(1,100) <= tradeChanceFood then tradeFood = true else tradeFood = false end
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
     stationLurive.comms_data = {
     	friendlyness = 45,
         weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
@@ -11245,6 +11396,7 @@ function createLafrinaStations()
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.8 },
         goods = {	tritanium = 	{quantity = math.random(5,9),	cost = math.random(50,80)}, },
         trade = {	food = tradeFood, medicine = tradeMedicine, luxury = tradeLuxury },
+        tradeChances = {	food = tradeChangeFood, medicine = tradeChangeMedicine, luxury = tradeChangeLuxury },
         public_relations = true,
         general_information = "We mine and study the asteroids nearby",
     	history = "We started out as just a research station, but as time went on, we found our research could be applied to efficiently mine the asteroids for valuable minerals. As it happens, we needed that money when the grant funds ran dry",
@@ -11266,9 +11418,12 @@ function createLafrinaStations()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 32 then tradeLuxury = true else tradeLuxury = false end
-    if random(1,100) <= 42 then tradeFood = true else tradeFood = false end
-    if random(1,100) <= 52 then tradeMedicine = true else tradeMedicine = false end
+	tradeChanceLuxury = 32
+	tradeChanceFood = 42
+	tradeChanceMedicine = 52
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
+	if random(1,100) <= tradeChanceFood then tradeFood = true else tradeFood = false end
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
     stationMarielle.comms_data = {
     	friendlyness = 82,
         weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "neutral",		Nuke = "neutral", 			EMP = "neutral"},
@@ -11293,6 +11448,7 @@ function createLafrinaStations()
         			dilithium =	{quantity = math.random(5,9),	cost = math.random(43,70)},
         			cobalt =	{quantity = math.random(5,9),	cost = math.random(63,70)}	},
         trade = {	food = tradeFood, medicine = tradeMedicine, luxury = tradeLuxury },
+        tradeChances = {	food = tradeChangeFood, medicine = tradeChangeMedicine, luxury = tradeChangeLuxury },
         public_relations = true,
         general_information = "We mine for nickel, dilithium and cobalt. With these minerals we build components for ships as well as entire ships for exploration, mining and research",
     	history = "These asteroids provide a good nearby source for nickel, dilithium and cobalt, so a station was placed to facilitate mining. Materials experts and manufacturing experts are employed to convert local resources into completed ships and ship systems. This was one of the first bases established in the area to take advantage of asteroids here filled with rich deposits of valuable resources",
@@ -11323,9 +11479,12 @@ function createLafrinaStations()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 52 then tradeLuxury = true else tradeLuxury = false end
-    if random(1,100) <= 42 then tradeFood = true else tradeFood = false end
-    if random(1,100) <= 32 then tradeMedicine = true else tradeMedicine = false end
+	tradeChanceLuxury = 52
+	tradeChanceFood = 42
+	tradeChanceMedicine = 32
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
+	if random(1,100) <= tradeChanceFood then tradeFood = true else tradeFood = false end
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
     stationRivelle.comms_data = {
     	friendlyness = 45,
         weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
@@ -11340,6 +11499,7 @@ function createLafrinaStations()
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.8 },
         goods = {	nickel = 	{quantity = math.random(5,9),	cost = math.random(50,80)}, },
         trade = {	food = tradeFood, medicine = tradeMedicine, luxury = tradeLuxury },
+        tradeChances = {	food = tradeChangeFood, medicine = tradeChangeMedicine, luxury = tradeChangeLuxury },
         public_relations = true,
         general_information = "We mine asteroids for minerals",
     	history = "We wanted in on the mining rush. So far, we have not had much luck",
@@ -11366,9 +11526,12 @@ function createLafrinaStations()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    if random(1,100) <= 52 then tradeLuxury = true else tradeLuxury = false end
-    if random(1,100) <= 42 then tradeFood = true else tradeFood = false end
-    if random(1,100) <= 32 then tradeMedicine = true else tradeMedicine = false end
+	tradeChanceLuxury = 52
+	tradeChanceFood = 42
+	tradeChanceMedicine = 32
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
+	if random(1,100) <= tradeChanceFood then tradeFood = true else tradeFood = false end
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
     stationVilairre.comms_data = {
     	friendlyness = 45,
         weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
@@ -11386,6 +11549,7 @@ function createLafrinaStations()
         			communication = {quantity = math.random(5,9),	cost = math.random(50,80)}, 
         			transporter = 	{quantity = math.random(5,9),	cost = math.random(50,80)},},
         trade = {	food = tradeFood, medicine = tradeMedicine, luxury = tradeLuxury },
+        tradeChances = {	food = tradeChangeFood, medicine = tradeChangeMedicine, luxury = tradeChangeLuxury },
         public_relations = true,
         general_information = "We handle planetary and station communications as well as administering the sale and transfer of minerals to and from planetary industries and manufacturing",
     	history = "This staiton was established when the Arlenians first arrived in this system. It was used as a convenient point to interact with Wilaux and gradually started handling administration as well as inter-station communication",
@@ -11923,6 +12087,7 @@ function createTereshStations()
         goods = {	dilithium = {quantity = math.random(5,9),	cost = math.random(50,80)}, 
         			filament =	{quantity = math.random(4,11),	cost = math.random(55,120)}, },
         trade = {	food = random(1,100) < 32, medicine = random(1,100) < 42, luxury = random(1,100) < 52 },
+        tradeChances = {	food = 32, medicine = 42, luxury = 52 },
         public_relations = true,
         general_information = "We research the interactions between nebulae and black holes. We mine the asteroids to help support the research.",
     	history = "We started as a dedicated research station. We added mining to supplement the waning academic support. The mineral deposits in the asteroids were rich enough to let us thumb our noses at those academics that thought our research was trivial. Unfortunately, the mineral deposits were valuable enough that we installed a warp jammer to help deter casual piracy (even from nominally friendly transports). The warp jammer was destroyed so many times, we had mines installed around it as yet another deterrent. We renamed our station from Research-91 to Bastion to represent the last bastion of truly independent research, free from government influence",
@@ -11956,6 +12121,7 @@ function createTereshStations()
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.8 },
         goods = {	cobalt = 	{quantity = math.random(5,9),	cost = math.random(50,80)}, },
         trade = {	food = random(1,100) < 32, medicine = random(1,100) < 42, luxury = random(1,100) < 52 },
+        tradeChances = {	food = 32, medicine = 42, luxury = 52 },
         public_relations = true,
         general_information = "We mine asteroids for minerals",
     	history = "The miners here hope to strike it rich with valuable ores on the nearby asteroids. Dristan is the name of the first miner to examine these asteroids for possible mineral extraction",
@@ -11998,6 +12164,7 @@ function createTereshStations()
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.8 },
         goods = {	tritanium = 	{quantity = math.random(5,9),	cost = math.random(50,80)}, },
         trade = {	food = random(1,100) < 32, medicine = random(1,100) < 42, luxury = random(1,100) < 52 },
+        tradeChances = {	food = 32, medicine = 42, luxury = 52 },
         public_relations = true,
         general_information = "We monitor the geology and magnetic fields of Ursid. We also coordinate travel to and from the surface of Ursid",
     	history = "The station name honors the 19th century Australian natural history illustrators, Harriet and Helena Scott",
@@ -12034,6 +12201,7 @@ function createTereshStations()
         goods = {	nickel = 		{quantity = math.random(5,9),	cost = math.random(50,80)},
         			circuit =	{quantity = math.random(4,12),	cost = math.random(62,98)}, },
         trade = {	food = random(1,100) < 32, medicine = random(1,100) < 42, luxury = random(1,100) < 52 },
+        tradeChances = {	food = 32, medicine = 42, luxury = 52 },
         public_relations = true,
         general_information = "We monitor and predict weather patterns in the Ursid atmosphere. We also provide communication services for Ursid and nearby stations",
     	history = "The station name honors the 19th century Australian natural history illustrators, Helena and Harriet Scott",
@@ -12068,6 +12236,7 @@ function createTereshStations()
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.8 },
         goods = {	platinum = 	{quantity = math.random(5,9),	cost = math.random(50,80)}, },
         trade = {	food = random(1,100) < 32, medicine = random(1,100) < 42, luxury = random(1,100) < 52 },
+        tradeChances = {	food = 32, medicine = 42, luxury = 52 },
         public_relations = true,
         general_information = "We watch for approaching enemies and mine the nearby asteroids and nebulae",
     	history = "The station was originally a conglomeration of equipment used as a convenient waypoint on the way to scout for enemies. Now it's become a permanent facility and has added mining to it operational mandate.",
@@ -21992,6 +22161,7 @@ function missilePod(enemyFaction)
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
         goods = {	food = 		{quantity = math.random(5,9),	cost = 1},},
         trade = {	food = false, medicine = random(1,10)<3, luxury = random(1,10)<5 },
+        tradeChances = {	food = 0, medicine = 30, luxury = 50 },
         public_relations = false,
         general_information = "",
     	history = "",
@@ -22488,6 +22658,7 @@ function commandBase(enemyFaction)
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
         goods = {	food = 		{quantity = math.random(5,9),	cost = 1},},
         trade = {	food = false, medicine = random(1,10)<3, luxury = random(1,10)<5 },
+        tradeChances = {	food = 0, medicine = 30, luxury = 50 },
         public_relations = false,
         general_information = "",
     	history = "",
@@ -22581,6 +22752,7 @@ function militaryOutpost(enemyFaction)
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
         goods = {	food = 		{quantity = math.random(5,9),	cost = 1},},
         trade = {	food = false, medicine = random(1,10)<3, luxury = random(1,10)<5 },
+        tradeChances = {	food = 0, medicine = 30, luxury = 50 },
         public_relations = false,
         general_information = "",
     	history = "",
@@ -22657,6 +22829,7 @@ function sniperTower(enemyFaction)
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
         goods = {	food = 		{quantity = math.random(5,9),	cost = 1},},
         trade = {	food = false, medicine = random(1,10)<3, luxury = random(1,10)<5 },
+        tradeChances = {	food = 0, medicine = 30, luxury = 50 },
         public_relations = false,
         general_information = "",
     	history = "",
