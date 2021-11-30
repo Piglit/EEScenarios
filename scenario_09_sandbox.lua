@@ -41787,6 +41787,36 @@ function commsStation()
 		wealth = 0
     })
     comms_data = comms_target.comms_data
+	if comms_data.tradeGoodThreshold == nil and comms_data.goods ~= nil then
+		-- set wealth threshold to amount of initially offered goods
+		local threshold = 0
+		for good, goodData in pairs(comms_data.goods) do
+			threshold = threshold + goodData["quantity"]
+		end
+		threshold = math.max(threshold, 8)
+		comms_data.tradeGoodThreshold = threshold
+	end
+	if comms_data.wealth >= comms_data.tradeGoodThreshold then
+		if comms_data.tradeChances ~= nil and comms_data.trade ~= nil then
+			-- whenever threshold is reached there is a chance that the station accepts more trade goods
+			local disableRoll = true
+			for good, doesTrade in pairs(comms_data.trade) do
+				if not doesTrade then
+					disableRoll = false
+					if random(1,100) < comms_data.tradeChances[good] then
+						comms_data.trade[good] = true
+						comms_data.tradeGoodThreshold = comms_data.tradeGoodThreshold * 2
+						break
+					end
+				end
+			end
+			-- raise threshold after each roll (successful or not)
+			comms_data.tradeGoodThreshold = comms_data.tradeGoodThreshold + math.random(1,5)
+			if disableRoll then
+				comms_data.tradeGoodThreshold = 99999	-- all goods available or disabled, no need to roll
+			end
+		end
+	end
     if comms_source:isEnemy(comms_target) then
         return false
     end
