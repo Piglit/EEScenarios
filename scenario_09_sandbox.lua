@@ -42480,7 +42480,22 @@ function handleDockedState()
 			local ctd = comms_target.comms_data
 			local goodsReport = string.format("Station %s:\nGoods or components available for sale: quantity, cost in reputation\n",comms_target:getCallSign())
 			for good, goodData in pairs(ctd.goods) do
-				goodsReport = goodsReport .. string.format("     %s: %i, %i\n",good,goodData["quantity"],goodData["cost"])
+				if goodData["quantity"] > 0 then
+					goodsReport = goodsReport .. string.format("     %s: %i, %i\n",good,goodData["quantity"],goodData["cost"])
+				else
+					if ctd.produce_goods.nextGood == good then
+						local now = getScenarioTime()
+						local timePassed = now - ctd.produce_goods.started
+						local timeRemain = goodData["cost"] - timePassed
+						timeRemain = math.max(1, math.ceil(timeRemain/60))
+						if timeRemain > 1 then
+							timeRemain = string.format("%i minutes", timeRemain)
+						else
+							timeRemain = string.format("%i minute", timeRemain)
+						end
+						goodsReport = goodsReport .. string.format("     %s: out of stock. 1 available in %s\n",good,timeRemain)
+					end
+				end
 			end
 			if ctd.buy ~= nil then
 				goodsReport = goodsReport .. "Goods or components station will buy: price in reputation\n"
