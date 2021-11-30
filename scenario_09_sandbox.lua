@@ -41784,7 +41784,8 @@ function commsStation()
 		produce_goods = {
 			amount = 0
 		},
-		wealth = 0
+		wealth = 0,
+		reports = {}
     })
     comms_data = comms_target.comms_data
 	if comms_data.tradeGoodThreshold == nil and comms_data.goods ~= nil then
@@ -41805,6 +41806,7 @@ function commsStation()
 					disableRoll = false
 					if random(1,100) < comms_data.tradeChances[good] then
 						comms_data.trade[good] = true
+						table.insert(comms_data.reports, "This station now accepts " .. good .. " for trade.")
 						comms_data.tradeGoodThreshold = comms_data.tradeGoodThreshold * 2
 						break
 					end
@@ -41893,8 +41895,12 @@ function handleDockedState()
 		oMsg = "Welcome to our lovely station.\n"
     end
     if comms_target:areEnemiesInRange(20000) then
-		oMsg = oMsg .. "Forgive us if we seem a little distracted. We are carefully monitoring the enemies nearby."
+		oMsg = oMsg .. "Forgive us if we seem a little distracted. We are carefully monitoring the enemies nearby.\n"
 	end
+	for _, msg in ipairs(ctd.reports) do
+		oMsg = oMsg .. "\n" .. msg .. "\n"
+	end
+	ctd.reports = {}
 	setCommsMessage(oMsg)
 	local gm_verb = gm_verbs[math.random(1,#gm_verbs)]
 	local gm_name = gm_names[math.random(1,#gm_names)]
@@ -43632,7 +43638,7 @@ function handleUndockedState()
 					goodsAvailableMsg = goodsAvailableMsg .. string.format("\n   %14s: %2i, %3i",good,goodData["quantity"],goodData["cost"])
 				end
 				if ctd.buy ~= nil then
-					goodsReport = goodsReport .. "\nGoods or components station will buy: price in reputation\n"
+					goodsAvailableMsg = goodsAvailableMsg .. "\nGoods or components station will buy: price in reputation\n"
 					for good, price in pairs(ctd.buy) do
 						goodsAvailableMsg = goodsAvailableMsg .. string.format("     %s: %i\n",good,price)
 					end
