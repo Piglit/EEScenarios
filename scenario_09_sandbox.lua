@@ -43232,16 +43232,27 @@ function produceGoods()
 			return
 		end
 		if pg.nextGood == nil or ctd.goods[pg.nextGood] == nil then
-			local keys = {}
+			local weights = {}
+			local sumWeights = 0
 			for good, goodData in pairs(ctd.goods) do
-				table.insert(keys, good)
+				local weight = 1 / math.max(1, goodData["quantity"])
+				weights[good] = weight
+				sumWeights = sumWeights + weight
 			end
-			if #keys == 0 then
+			if sumWeights == 0 then
 				pg.nextGood = nil
 				return
 			end
-			--select new good at random
-			pg.nextGood = keys[math.random(#keys)]
+			--select new good at random, weighted by rareness
+			local result = math.random() * sumWeights
+			for good, weight in pairs(weights) do
+				if result <= weight then
+					pg.nextGood = good
+					break
+				else
+					result = result - weight
+				end
+			end
 		end
 		local cost = ctd.goods[pg.nextGood]["cost"]
 		local timePassed = now - pg.started
