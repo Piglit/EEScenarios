@@ -880,6 +880,7 @@ function setConstants()
 	commonGoods = {"food","medicine","nickel","platinum","gold","dilithium","tritanium","luxury","cobalt","impulse","warp","shield","tractor","repulsor","beam","optic","robotic","filament","transporter","sensor","communication","autodoc","lifter","android","nanites","software","circuit","battery"}
 	componentGoods = {"impulse","warp","shield","tractor","repulsor","beam","optic","robotic","filament","transporter","sensor","communication","autodoc","lifter","android","nanites","software","circuit","battery"}
 	mineralGoods = {"nickel","platinum","gold","dilithium","tritanium","cobalt"}
+	newGoods = {"carbon", "silicates", "minerals", "metal", "water", "seeds", "dirt", "fertilizer", "oxygen", "food", "algae", "plants", "spices", "microbes", "livestock", "radioactive isotope", "hydrogen", "helium-4", "noble gas", "deuterium", "tritium", "fission isotopes", "governance", "culture", "intelectual property", "administration", "military", "scientific expertice", "one-time-pad (crypto)", "passengers", "tourists", "quantum entangled dots", "mass data", "communication data", "garbage"}
 	goods = {}					--overall tracking of goods
 	tradeFood = {}				--stations that will trade food for other goods
 	tradeLuxury = {}			--stations that will trade luxury for other goods
