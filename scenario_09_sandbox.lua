@@ -1525,6 +1525,7 @@ function createSkeletonUniverse()
 	CubicMineObject:addToUpdate()
 	skeleton_stations = {}
 	station_names = {}
+	regionStations = {}
 	--Icarus
 	stationIcarus = SpaceStation():setTemplate("Large Station"):setFaction("Human Navy"):setPosition(icx,icy):setCallSign("Icarus"):setDescription("Shipyard, Naval Regional Headquarters"):setCommsScript(""):setCommsFunction(commsStation)
     stationIcarus:setShortRangeRadarRange(20000)
