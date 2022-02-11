@@ -284,31 +284,31 @@ function setConstants()
 		["Missile Pod S4"] =	{strength = 20,	adder = false,	missiler = false,	beamer = false,	frigate = false,	chaser = false,	fighter = false,	drone = false,	unusual = true,		base = false,	short_range_radar = 6500,	hop_angle = 0,	hop_range = 1000,	create = missilePodS4},
 		["Transport"] =			{strength = 1,	adder = false,	missiler = false,	beamer = false,	frigate = false,	chaser = false,	fighter = false,	drone = false,	unusual = true,		base = false,	short_range_radar = 6500,	hop_angle = 0,	hop_range = 1000,	create = auxiliaryCruiser},
 		-- normal ships that are part of the fleet spawn process
-		["Gnat"] =				{strength = 2,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true,		drone = true,	unusual = false,	base = false,	short_range_radar = 4500,	hop_angle = 0,	hop_range = 580,	create = gnat},
-		["Lite Drone"] =		{strength = 3,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true, 	drone = true,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 580,	create = droneLite},
-		["Jacket Drone"] =		{strength = 4,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true, 	drone = true,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 580,	create = droneJacket},
-		["Ktlitan Drone"] =		{strength = 4,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true, 	drone = true,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 580,	create = stockTemplate},
-		["Heavy Drone"] =		{strength = 5,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true, 	drone = true,	unusual = false,	base = false,	short_range_radar = 5500,	hop_angle = 0,	hop_range = 580,	create = droneHeavy},
+		["Gnat"] =				{strength = 2,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true,		drone = true,	unusual = false,	base = false,	short_range_radar = 4500,	hop_angle = 0,	hop_range = 580,	create = gnat,	faction = "Ktlitans"},
+		["Lite Drone"] =		{strength = 3,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true, 	drone = true,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 580,	create = droneLite,	faction = "Ktlitans"},
+--		["Jacket Drone"] =		{strength = 4,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true, 	drone = true,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 580,	create = droneJacket,	faction = "Ktlitans"},
+		["Ktlitan Drone"] =		{strength = 4,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true, 	drone = true,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 580,	create = stockTemplate,	faction = "Ktlitans"},
+		["Heavy Drone"] =		{strength = 5,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true, 	drone = true,	unusual = false,	base = false,	short_range_radar = 5500,	hop_angle = 0,	hop_range = 580,	create = droneHeavy,	faction = "Ktlitans"},
 		["Adder MK3"] =			{strength = 5,	adder = true,	missiler = false,	beamer = false,	frigate = false,	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 580,	create = stockTemplate},
 		["MT52 Hornet"] =		{strength = 5,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true, 	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 680,	create = stockTemplate},
 		["MU52 Hornet"] =		{strength = 5,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true, 	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 880,	create = stockTemplate},
-		["Dagger"] =			{strength = 6,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true, 	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 980,	create = stockTemplate},
+		["Dagger"] =			{strength = 6,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true, 	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 980,	create = stockTemplate,	faction = "Exuari"},
 		["MV52 Hornet"] =		{strength = 6,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true, 	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 980,	create = hornetMV52},
 		["MT55 Hornet"] =		{strength = 6,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true, 	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 680,	create = hornetMT55},
 		["Adder MK4"] =			{strength = 6,	adder = true,	missiler = false,	beamer = false,	frigate = false,	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 580,	create = stockTemplate},
 		["Fighter"] =			{strength = 6,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true, 	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 980,	create = stockTemplate},
-		["Ktlitan Fighter"] =	{strength = 6,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true, 	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 1180,	create = stockTemplate},
+		["Ktlitan Fighter"] =	{strength = 6,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true, 	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 1180,	create = stockTemplate,	faction = "Ktlitans"},
 		["MU55 Hornet"] =		{strength = 7,	adder = false,	missiler = false,	beamer = false,	frigate = false,	chaser = false,	fighter = true, 	drone = false,	unusual = false,	base = false,	short_range_radar = 5500,	hop_angle = 0,	hop_range = 880,	create = hornetMU55},
-		["Blade"] =				{strength = 7,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true, 	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 980,	create = stockTemplate},
-		["Gunner"] =			{strength = 7,	adder = false,	missiler = false,	beamer = false,	frigate = false,	chaser = false,	fighter = true, 	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 980,	create = stockTemplate},
-		["K2 Fighter"] =		{strength = 7,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true, 	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 1180,	create = k2fighter},
+		["Blade"] =				{strength = 7,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true, 	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 980,	create = stockTemplate,	faction = "Exuari"},
+		["Gunner"] =			{strength = 7,	adder = false,	missiler = false,	beamer = false,	frigate = false,	chaser = false,	fighter = true, 	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 980,	create = stockTemplate,	faction = "Exuari"},
+		["K2 Fighter"] =		{strength = 7,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true, 	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 1180,	create = k2fighter,	faction = "Ktlitans"},
 		["Adder MK5"] =			{strength = 7,	adder = true,	missiler = false,	beamer = false,	frigate = false,	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 580,	create = stockTemplate},
 		["WX-Lindworm"] =		{strength = 7,	adder = false,	missiler = true,	beamer = false,	frigate = false,	chaser = false,	fighter = true, 	drone = false,	unusual = false,	base = false,	short_range_radar = 5500,	hop_angle = 0,	hop_range = 2500,	create = stockTemplate},
-		["K3 Fighter"] =		{strength = 8,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true, 	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 1180,	create = k3fighter},
-		["Shooter"] =			{strength = 8,	adder = false,	missiler = false,	beamer = false,	frigate = false,	chaser = false,	fighter = true, 	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 980,	create = stockTemplate},
-		["Jagger"] =			{strength = 8,	adder = false,	missiler = false,	beamer = false,	frigate = false,	chaser = false,	fighter = true, 	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 980,	create = stockTemplate},
+		["K3 Fighter"] =		{strength = 8,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = true, 	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 1180,	create = k3fighter,	faction = "Ktlitans"},
+		["Shooter"] =			{strength = 8,	adder = false,	missiler = false,	beamer = false,	frigate = false,	chaser = false,	fighter = true, 	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 980,	create = stockTemplate,	faction = "Exuari"},
+		["Jagger"] =			{strength = 8,	adder = false,	missiler = false,	beamer = false,	frigate = false,	chaser = false,	fighter = true, 	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 980,	create = stockTemplate,	faction = "Exuari"},
 		["Adder MK6"] =			{strength = 8,	adder = true,	missiler = false,	beamer = false,	frigate = false,	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 580,	create = stockTemplate},
-		["Ktlitan Scout"] =		{strength = 8,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 7000,	hop_angle = 0,	hop_range = 580,	create = stockTemplate},
+		["Ktlitan Scout"] =		{strength = 8,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 7000,	hop_angle = 0,	hop_range = 580,	create = stockTemplate,	faction = "Ktlitans"},
 		["WZ-Lindworm"] =		{strength = 9,	adder = false,	missiler = true,	beamer = false,	frigate = false,	chaser = false,	fighter = true, 	drone = false,	unusual = false,	base = false,	short_range_radar = 5500,	hop_angle = 0,	hop_range = 2500,	create = wzLindworm},
 		["Adder MK7"] =			{strength = 9,	adder = true,	missiler = false,	beamer = false,	frigate = false,	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 580,	create = stockTemplate},
 		["Adder MK8"] =			{strength = 10,	adder = true,	missiler = false,	beamer = false,	frigate = false,	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5500,	hop_angle = 0,	hop_range = 580,	create = stockTemplate},
@@ -319,7 +319,7 @@ function setConstants()
 		["Waddle 5"] =			{strength = 15,	adder = true,	missiler = false,	beamer = false,	frigate = false,	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 580,	create = waddle5},
 		["Jade 5"] =			{strength = 15,	adder = true,	missiler = false,	beamer = false,	frigate = false,	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 580,	create = jade5},
 		["Phobos T3"] =			{strength = 15,	adder = false,	missiler = false,	beamer = false,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 1180,	create = stockTemplate},
-		["Guard"] =				{strength = 15,	adder = false,	missiler = false,	beamer = false,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 1180,	create = stockTemplate},
+		["Guard"] =				{strength = 15,	adder = false,	missiler = false,	beamer = false,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 1180,	create = stockTemplate,	faction = "Exuari"},
 		["Piranha F8"] =		{strength = 15,	adder = false,	missiler = true,	beamer = false,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 6000,	hop_angle = 90,	hop_range = 2500,	create = stockTemplate},
 		["Piranha F12"] =		{strength = 15,	adder = false,	missiler = true,	beamer = false,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 6000,	hop_angle = 90,	hop_range = 2500,	create = stockTemplate},
 		["Piranha F12.M"] =		{strength = 16,	adder = false,	missiler = true,	beamer = false,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 6000,	hop_angle = 90,	hop_range = 2500,	create = stockTemplate},
@@ -334,26 +334,26 @@ function setConstants()
 		["Farco 8"] =			{strength = 19,	adder = false,	missiler = false,	beamer = false,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 8000,	hop_angle = 0,	hop_range = 1480,	create = farco8},
 		["Nirvana R5A"] =		{strength = 20,	adder = false,	missiler = false,	beamer = true,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 1180,	create = stockTemplate},
 		["Adv. Gunship"] =		{strength = 20,	adder = false,	missiler = false,	beamer = false,	frigate = true,		chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 7000,	hop_angle = 0,	hop_range = 980,	create = stockTemplate},
-		["Ktlitan Worker"] =	{strength = 20,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 90,	hop_range = 580,	create = stockTemplate},
+		["Ktlitan Worker"] =	{strength = 20,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 90,	hop_range = 580,	create = stockTemplate,	faction = "Ktlitans"},
 		["Piranha F10"] =		{strength = 21,	adder = false,	missiler = true,	beamer = false,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 6000,	hop_angle = 90,	hop_range = 2500,	create = piranhaF10},
 		["Farco 11"] =			{strength = 21,	adder = false,	missiler = false,	beamer = false,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 8000,	hop_angle = 0,	hop_range = 1480,	create = farco11},
 		["Storm"] =				{strength = 22,	adder = false,	missiler = true,	beamer = false,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 6000,	hop_angle = 0,	hop_range = 1180,	create = stockTemplate},
-		["Warden"] =			{strength = 22,	adder = false,	missiler = false,	beamer = false,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 6000,	hop_angle = 0,	hop_range = 1180,	create = stockTemplate},
-		["Racer"] =				{strength = 22,	adder = false,	missiler = false,	beamer = true,	frigate = true, 	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 980,	create = stockTemplate},
+		["Warden"] =			{strength = 22,	adder = false,	missiler = false,	beamer = false,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 6000,	hop_angle = 0,	hop_range = 1180,	create = stockTemplate,	faction = "Exuari"},
+		["Racer"] =				{strength = 22,	adder = false,	missiler = false,	beamer = true,	frigate = true, 	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 980,	create = stockTemplate,	faction = "Exuari"},
 		["Stalker R5"] =		{strength = 22,	adder = false,	missiler = false,	beamer = true,	frigate = true, 	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 980,	create = stalkerR5},
 		["Stalker Q5"] =		{strength = 22,	adder = false,	missiler = false,	beamer = true,	frigate = true, 	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 980,	create = stalkerQ5},
-		["Strike"] =			{strength = 23,	adder = false,	missiler = false,	beamer = false,	frigate = true, 	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5500,	hop_angle = 0,	hop_range = 980,	create = stockTemplate},
-		["Dash"] =				{strength = 23,	adder = false,	missiler = false,	beamer = false,	frigate = true, 	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5500,	hop_angle = 0,	hop_range = 980,	create = stockTemplate},
+		["Strike"] =			{strength = 23,	adder = false,	missiler = false,	beamer = false,	frigate = true, 	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5500,	hop_angle = 0,	hop_range = 980,	create = stockTemplate,	faction = "Exuari"},
+		["Dash"] =				{strength = 23,	adder = false,	missiler = false,	beamer = false,	frigate = true, 	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5500,	hop_angle = 0,	hop_range = 980,	create = stockTemplate,	faction = "Exuari"},
 		["Farco 13"] =			{strength = 24,	adder = false,	missiler = false,	beamer = false,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 1480,	create = farco13},
-		["Sentinel"] =			{strength = 24,	adder = false,	missiler = false,	beamer = true,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 1180,	create = stockTemplate},
+		["Sentinel"] =			{strength = 24,	adder = false,	missiler = false,	beamer = true,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 1180,	create = stockTemplate,	faction = "Exuari"},
 		["Ranus U"] =			{strength = 25,	adder = false,	missiler = true,	beamer = false,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 6000,	hop_angle = 0,	hop_range = 2500,	create = stockTemplate},
-		["Flash"] =				{strength = 25,	adder = false,	missiler = true,	beamer = false,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 6000,	hop_angle = 0,	hop_range = 2500,	create = stockTemplate},
-		["Ranger"] =			{strength = 25,	adder = false,	missiler = true,	beamer = false,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 6000,	hop_angle = 0,	hop_range = 2500,	create = stockTemplate},
-		["Buster"] =			{strength = 25,	adder = false,	missiler = true,	beamer = false,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 6000,	hop_angle = 0,	hop_range = 2500,	create = stockTemplate},
+		["Flash"] =				{strength = 25,	adder = false,	missiler = true,	beamer = false,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 6000,	hop_angle = 0,	hop_range = 2500,	create = stockTemplate,	faction = "Exuari"},
+		["Ranger"] =			{strength = 25,	adder = false,	missiler = true,	beamer = false,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 6000,	hop_angle = 0,	hop_range = 2500,	create = stockTemplate,	faction = "Exuari"},
+		["Buster"] =			{strength = 25,	adder = false,	missiler = true,	beamer = false,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 6000,	hop_angle = 0,	hop_range = 2500,	create = stockTemplate,	faction = "Exuari"},
 		["Stalker Q7"] =		{strength = 25,	adder = false,	missiler = false,	beamer = true,	frigate = true, 	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 980,	create = stockTemplate},
 		["Stalker R7"] =		{strength = 25,	adder = false,	missiler = false,	beamer = true,	frigate = true, 	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 980,	create = stockTemplate},
 		["Whirlwind"] =			{strength = 26,	adder = false,	missiler = true,	beamer = false,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 6000,	hop_angle = 90,	hop_range = 2500,	create = whirlwind},
-		["Hunter"] =			{strength = 26,	adder = false,	missiler = false,	beamer = true,	frigate = true, 	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5500,	hop_angle = 0,	hop_range = 980,	create = stockTemplate},
+		["Hunter"] =			{strength = 26,	adder = false,	missiler = false,	beamer = true,	frigate = true, 	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5500,	hop_angle = 0,	hop_range = 980,	create = stockTemplate,	faction = "Exuari"},
 		["Adv. Striker"] =		{strength = 27,	adder = false,	missiler = false,	beamer = true,	frigate = true,		chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 980,	create = stockTemplate},
 		["Elara P2"] =			{strength = 28,	adder = false,	missiler = false,	beamer = false,	frigate = true, 	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 8000,	hop_angle = 0,	hop_range = 1480,	create = elaraP2},
 		["Tempest"] =			{strength = 30,	adder = false,	missiler = true,	beamer = false,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 6000,	hop_angle = 90,	hop_range = 2500,	create = tempest},
@@ -365,16 +365,16 @@ function setConstants()
 		["Cucaracha"] =			{strength = 36,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 1480,	create = cucaracha},
 		["Fiend G5"] =			{strength = 37,	adder = false,	missiler = false,	beamer = false,	frigate = true, 	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 6500,	hop_angle = 0,	hop_range = 980,	create = fiendG5},
 		["Fiend G6"] =			{strength = 39,	adder = false,	missiler = false,	beamer = false,	frigate = true, 	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 6500,	hop_angle = 0,	hop_range = 980,	create = fiendG6},
-		["Ryder"] =				{strength = 41, adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 8000,	hop_angle = 90,	hop_range = 1180,	create = stockTemplate},
+		["Ryder"] =				{strength = 41, adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 8000,	hop_angle = 90,	hop_range = 1180,	create = stockTemplate,	faction = "Exuari"},
 		["Predator"] =			{strength = 42,	adder = false,	missiler = false,	beamer = false,	frigate = true, 	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 7500,	hop_angle = 0,	hop_range = 980,	create = predator},
 		["Predator V2"] =		{strength = 43,	adder = false,	missiler = false,	beamer = false,	frigate = true, 	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 8500,	hop_angle = 0,	hop_range = 980,	create = predatorV2},
-		["Diva"] =				{strength = 44,	adder = false,	missiler = true,	beamer = false,	frigate = false, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 9000,	hop_angle = 0,	hop_range = 2500,	create = diva},
-		["Ktlitan Breaker"] =	{strength = 45,	adder = false,	missiler = false,	beamer = false,	frigate = false,	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 780,	create = stockTemplate},
+		["Diva"] =				{strength = 44,	adder = false,	missiler = true,	beamer = false,	frigate = false, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 9000,	hop_angle = 0,	hop_range = 2500,	create = diva,	faction = "Ktlitans"},
+		["Ktlitan Breaker"] =	{strength = 45,	adder = false,	missiler = false,	beamer = false,	frigate = false,	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 780,	create = stockTemplate,	faction = "Ktlitans"},
 		["Hurricane"] =			{strength = 46,	adder = false,	missiler = true,	beamer = false,	frigate = true, 	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 6000,	hop_angle = 15,	hop_range = 2500,	create = hurricane},
-		["Ktlitan Feeder"] =	{strength = 48,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 580,	create = stockTemplate},
+		["Ktlitan Feeder"] =	{strength = 48,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 580,	create = stockTemplate,	faction = "Ktlitans"},
 		["Atlantis X23"] =		{strength = 50,	adder = false,	missiler = false,	beamer = false,	frigate = false,	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 10000,	hop_angle = 0,	hop_range = 1480,	create = stockTemplate},
-		["K2 Breaker"] =		{strength = 55,	adder = false,	missiler = false,	beamer = false,	frigate = false,	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 780,	create = k2breaker},
-		["Ktlitan Destroyer"] =	{strength = 50,	adder = false,	missiler = false,	beamer = false,	frigate = false,	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 9000,	hop_angle = 0,	hop_range = 980,	create = stockTemplate},
+		["K2 Breaker"] =		{strength = 55,	adder = false,	missiler = false,	beamer = false,	frigate = false,	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5000,	hop_angle = 0,	hop_range = 780,	create = k2breaker,	faction = "Ktlitans"},
+		["Ktlitan Destroyer"] =	{strength = 50,	adder = false,	missiler = false,	beamer = false,	frigate = false,	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 9000,	hop_angle = 0,	hop_range = 980,	create = stockTemplate,	faction = "Ktlitans"},
 		["Atlantis Y42"] =		{strength = 60,	adder = false,	missiler = false,	beamer = false,	frigate = false,	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 10000,	hop_angle = 0,	hop_range = 1480,	create = atlantisY42},
 		["Blockade Runner"] =	{strength = 65,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5500,	hop_angle = 0,	hop_range = 980,	create = stockTemplate},
 		["Starhammer II"] =		{strength = 70,	adder = false,	missiler = false,	beamer = false,	frigate = false,	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 10000,	hop_angle = 0,	hop_range = 1480,	create = stockTemplate},
@@ -387,7 +387,7 @@ function setConstants()
 		["Starhammer V"] =		{strength = 90,	adder = false,	missiler = false,	beamer = false,	frigate = false,	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 15000,	hop_angle = 0,	hop_range = 1480,	create = starhammerV},
 		["Strongarm"] =			{strength = 95,	adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = false,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 5500,	hop_angle = 0,	hop_range = 1480,	create = strongarm},
 		["Battlestation"] =		{strength = 100,adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 9000,	hop_angle = 90,	hop_range = 2480,	create = stockTemplate},
-		["Fortress"] =			{strength = 130,adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 9000,	hop_angle = 90,	hop_range = 2380,	create = stockTemplate},
+		["Fortress"] =			{strength = 130,adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 9000,	hop_angle = 90,	hop_range = 2380,	create = stockTemplate,	faction = "Exuari"},
 		["Tyr"] =				{strength = 150,adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 9500,	hop_angle = 90,	hop_range = 2480,	create = tyr},
 		["Prador"] =			{strength = 160,adder = false,	missiler = false,	beamer = true,	frigate = false,	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 9500,	hop_angle = 0,	hop_range = 2480,	create = prador},
 		["Odin"] =				{strength = 250,adder = false,	missiler = false,	beamer = false,	frigate = false,	chaser = true,	fighter = false,	drone = false,	unusual = false,	base = false,	short_range_radar = 20000,	hop_angle = 0,	hop_range = 3180,	create = stockTemplate},
@@ -747,42 +747,23 @@ function setConstants()
 						{angle = 210, dist = 2	},
 					},
 	}
-	prebuilt_leaders = {		--120			125				120		140					140			140			150				100
-		["Cucaracha"] =			{"MT52 Hornet","MU52 Hornet","Fighter","Ktlitan Fighter","K2 Fighter","K3 Fighter","Ktlitan Scout"},
-		["Dreadnought"] =		{"MT52 Hornet","MU52 Hornet","Fighter","Ktlitan Fighter","K2 Fighter","K3 Fighter","Ktlitan Scout","Cucaracha"},
-		["Dread No More"] =		{"MT52 Hornet","MU52 Hornet","Fighter","Ktlitan Fighter","K2 Fighter","K3 Fighter","Ktlitan Scout","Cucaracha"},
-		["MT52 Hornet"] =		{"MU52 Hornet","Ktlitan Scout"},
-		["Heavy Drone"] =		{"MU52 Hornet","Ktlitan Scout"},
-		["Nirvana R3"] =		{"MT52 Hornet","MU52 Hornet","Fighter","Ktlitan Fighter","K2 Fighter","K3 Fighter","Ktlitan Scout","Cucaracha"},
-		["Nirvana R5"] =		{"MT52 Hornet","MU52 Hornet","Fighter","Ktlitan Fighter","K2 Fighter","K3 Fighter","Ktlitan Scout","Cucaracha"},
-		["Nirvana R5A"] =		{"MT52 Hornet","MU52 Hornet","Fighter","Ktlitan Fighter","K2 Fighter","K3 Fighter","Ktlitan Scout","Cucaracha"},
-		["Blockade Runner"] =	{"MT52 Hornet","MU52 Hornet","Fighter","Ktlitan Fighter","K2 Fighter","K3 Fighter","Ktlitan Scout","Cucaracha"},
-		["Sentinel"] =			{"MT52 Hornet","MU52 Hornet","Fighter","Ktlitan Fighter","K2 Fighter","K3 Fighter","Ktlitan Scout","Cucaracha"},
-		["Strongarm"] =			{"MT52 Hornet","MU52 Hornet","Fighter","Ktlitan Fighter","K2 Fighter","K3 Fighter","Ktlitan Scout","Cucaracha"},
-		["Phobos T3"] =			{"MT52 Hornet","MU52 Hornet","Fighter","Ktlitan Fighter","K2 Fighter","K3 Fighter","Ktlitan Scout","Cucaracha"},
-		["Phobos T4"] =			{"MT52 Hornet","MU52 Hornet","Fighter","Ktlitan Fighter","K2 Fighter","K3 Fighter","Ktlitan Scout","Cucaracha"},
-		["Phobos R2"] =			{"MT52 Hornet","MU52 Hornet","Fighter","Ktlitan Fighter","K2 Fighter","K3 Fighter","Ktlitan Scout","Cucaracha"},
-		["Farco 3"] =			{"MT52 Hornet","MU52 Hornet","Fighter","Ktlitan Fighter","K2 Fighter","K3 Fighter","Ktlitan Scout","Cucaracha"},
-		["Farco 5"] =			{"MT52 Hornet","MU52 Hornet","Fighter","Ktlitan Fighter","K2 Fighter","K3 Fighter","Ktlitan Scout","Cucaracha"},
-		["Farco 8"] =			{"MT52 Hornet","MU52 Hornet","Fighter","Ktlitan Fighter","K2 Fighter","K3 Fighter","Ktlitan Scout","Cucaracha"},
-		["Farco 11"] =			{"MT52 Hornet","MU52 Hornet","Fighter","Ktlitan Fighter","K2 Fighter","K3 Fighter","Ktlitan Scout","Cucaracha"},
-		["Farco 13"] =			{"MT52 Hornet","MU52 Hornet","Fighter","Ktlitan Fighter","K2 Fighter","K3 Fighter","Ktlitan Scout","Cucaracha"},
-		["Gunship"] =			{"MT52 Hornet","MU52 Hornet","Fighter","Ktlitan Fighter","K2 Fighter","K3 Fighter","Ktlitan Scout","Cucaracha"},
-		["Adv. Gunship"] =		{"MT52 Hornet","MU52 Hornet","Fighter","Ktlitan Fighter","K2 Fighter","K3 Fighter","Ktlitan Scout","Cucaracha"},
-		["Adder MK5"] =			{"MT52 Hornet","MU52 Hornet","Fighter","Ktlitan Fighter","K2 Fighter","K3 Fighter","Ktlitan Scout","Cucaracha"},
-		["Adder MK6"] =			{"MT52 Hornet","MU52 Hornet","Fighter","Ktlitan Fighter","K2 Fighter","K3 Fighter","Ktlitan Scout","Cucaracha"},
-		["Adder MK7"] =			{"MT52 Hornet","MU52 Hornet","Fighter","Ktlitan Fighter","K2 Fighter","K3 Fighter","Ktlitan Scout","Cucaracha"},
+	prebuilt_leaders = {
+		["Cucaracha"] = {"MT52 Hornet","MU52 Hornet","Fighter"},
+		["Dreadnought"] = {"MT52 Hornet","MU52 Hornet","Fighter","Cucaracha"},
+		["MT52 Hornet"] = {"MU52 Hornet"},
+		["Nirvana R3"] = {"MT52 Hornet","MU52 Hornet","Fighter","Cucaracha"},
+		["Nirvana R5"] = {"MT52 Hornet","MU52 Hornet","Fighter","Cucaracha"},
+		["Nirvana R5A"] = {"MT52 Hornet","MU52 Hornet","Fighter","Cucaracha"},
+		["Blockade Runner"] = {"MT52 Hornet","MU52 Hornet","Fighter","Cucaracha"},
+		["Enforcer V2"] = {"MT52 Hornet","MU52 Hornet","Fighter","Cucaracha"},
+		["Sentinel"] = {"MT52 Hornet","MU52 Hornet","Fighter","Cucaracha"},
 	}
 	prebuilt_leader = "Nirvana R5"	--default
-	prebuilt_followers = {		--100			30				65			60					70			70				50				75			70				60			60		60			60			60			60			60				55			60			60				80			80			80
-		["MT52 Hornet"] =		{"Cucaracha", "Dreadnought", "Nirvana R3", "Blockade Runner", "Sentinel", "Nirvana R5", "Dread No More", "Strongarm", "Nirvana R5A", "Farco 3", "Farco 5", "Farco 8", "Farco 11", "Farco 13", "Phobos T3", "Phobos T4", "Phobos R2", "Gunship", "Adv. Gunship", "Adder MK5", "Adder MK6", "Adder MK7", "Heavy Drone"},
-		["MU52 Hornet"] =		{"Cucaracha", "Dreadnought", "Nirvana R3", "Blockade Runner", "Sentinel", "Nirvana R5", "Dread No More", "Strongarm", "Nirvana R5A", "Farco 3", "Farco 5", "Farco 8", "Farco 11", "Farco 13", "Phobos T3", "Phobos T4", "Phobos R2", "Gunship", "Adv. Gunship", "Adder MK5", "Adder MK6", "Adder MK7", "MT52 Hornet"},
-		["Fighter"] =			{"Cucaracha", "Dreadnought", "Nirvana R3", "Blockade Runner", "Sentinel", "Nirvana R5", "Dread No More", "Strongarm", "Nirvana R5A", "Farco 3", "Farco 5", "Farco 8", "Farco 11", "Farco 13", "Phobos T3", "Phobos T4", "Phobos R2", "Gunship", "Adv. Gunship", "Adder MK5", "Adder MK6", "Adder MK7"},
-		["Ktlitan Fighter"] =	{"Cucaracha", "Dreadnought", "Nirvana R3", "Blockade Runner", "Sentinel", "Nirvana R5", "Dread No More", "Strongarm", "Nirvana R5A", "Farco 3", "Farco 5", "Farco 8", "Farco 11", "Farco 13", "Phobos T3", "Phobos T4", "Phobos R2", "Gunship", "Adv. Gunship", "Adder MK5", "Adder MK6", "Adder MK7"},
-		["K2 Fighter"] =		{"Cucaracha", "Dreadnought", "Nirvana R3", "Blockade Runner", "Sentinel", "Nirvana R5", "Dread No More", "Strongarm", "Nirvana R5A", "Farco 3", "Farco 5", "Farco 8", "Farco 11", "Farco 13", "Phobos T3", "Phobos T4", "Phobos R2", "Gunship", "Adv. Gunship", "Adder MK5", "Adder MK6", "Adder MK7"},
-		["K3 Fighter"] =		{"Cucaracha", "Dreadnought", "Nirvana R3", "Blockade Runner", "Sentinel", "Nirvana R5", "Dread No More", "Strongarm", "Nirvana R5A", "Farco 3", "Farco 5", "Farco 8", "Farco 11", "Farco 13", "Phobos T3", "Phobos T4", "Phobos R2", "Gunship", "Adv. Gunship", "Adder MK5", "Adder MK6", "Adder MK7"},
-		["Ktlitan Scout"] =		{"Cucaracha", "Dreadnought", "Nirvana R3", "Blockade Runner", "Sentinel", "Nirvana R5", "Dread No More", "Strongarm", "Nirvana R5A", "Farco 3", "Farco 5", "Farco 8", "Farco 11", "Farco 13", "Phobos T3", "Phobos T4", "Phobos R2", "Gunship", "Adv. Gunship", "Adder MK5", "Adder MK6", "Adder MK7", "MT52 Hornet", "Heavy Drone"},
-		["Cucaracha"] =			{			  "Dreadnought", "Nirvana R3", "Blockade Runner", "Sentinel", "Nirvana R5", "Dread No More", "Strongarm", "Nirvana R5A", "Farco 3", "Farco 5", "Farco 8", "Farco 11", "Farco 13", "Phobos T3", "Phobos T4", "Phobos R2", "Gunship", "Adv. Gunship", "Adder MK5", "Adder MK6", "Adder MK7"},
+	prebuilt_followers = {
+		["MT52 Hornet"] =		{"Cucaracha", "Dreadnought", "Nirvana R3", "Blockade Runner", "Enforcer V2", "Sentinel", "Nirvana R5", "Nirvana R5A"},
+		["MU52 Hornet"] =		{"Cucaracha", "Dreadnought", "Nirvana R3", "Blockade Runner", "Enforcer V2", "Sentinel", "Nirvana R5", "Nirvana R5A", "MT52 Hornet"},
+		["Fighter"] =			{"Cucaracha", "Dreadnought", "Nirvana R3", "Blockade Runner", "Enforcer V2", "Sentinel", "Nirvana R5", "Nirvana R5A"},
+		["Cucaracha"] =			{"Dreadnought", "Nirvana R3", "Blockade Runner", "Enforcer V2", "Sentinel", "Nirvana R5", "Nirvana R5A"},
 	}
 	prebuilt_follower = "MT52 Hornet"	--default
 	fleet_exclusions = {
@@ -6552,10 +6533,9 @@ function createIcarusStations()
     	history = "Named after a fictional station from early 21st century literature as a reminder of what can happen if people don't pay attention to what goes on in all levels of the society in which they live",
     	idle_defense_fleet = {
 			DF1 = "MT52 Hornet",
-			DF2 = "Ktlitan Drone",
-			DF3 = "MU52 Hornet",
-			DF4 = "Adder MK5",
-			DF5 = "Adder MK6",
+			DF2 = "MU52 Hornet",
+			DF3 = "Adder MK5",
+			DF4 = "Adder MK6",
     	},
 	}
 	if random(1,100) <= 86 then stationElysium:setRestocksScanProbes(false) end
@@ -6609,14 +6589,13 @@ function createIcarusStations()
     	history = "The Finnegan family set up this station here to take advantage of the readily available resources",
     	idle_defense_fleet = {
 			DF1 = "MT52 Hornet",
-			DF2 = "Ktlitan Drone",
-			DF3 = "MU52 Hornet",
-			DF4 = "Adder MK5",
-			DF5 = "Adder MK6",
-			DF6 = "Phobos T3",
-			DF7 = "Stalker Q7",
-			DF8 = "Nirvana R5A",
-			DF9 = "WX-Lindworm",
+			DF2 = "MU52 Hornet",
+			DF3 = "Adder MK5",
+			DF4 = "Adder MK6",
+			DF5 = "Phobos T3",
+			DF6 = "Stalker Q7",
+			DF7 = "Nirvana R5A",
+			DF8 = "WX-Lindworm",
     	},
 	}
 	if random(1,100) <= 63 then stationFinnegan:setRestocksScanProbes(false) end
@@ -6819,12 +6798,11 @@ function createIcarusStations()
     	history = "In the tradition of taverns at crossroads on olde Earth in Kingston where the Millstone river and the Assunpink trail crossed and The Sign of the Mermaid tavern was built in the 1600s, the builders of this station speculated that this would be a good spot for space travelers to stop\n\nFree drinks for the crew of the freighter Gamma Hydra",
     	idle_defense_fleet = {
 			DF1 = "MT52 Hornet",
-			DF2 = "Ktlitan Drone",
-			DF3 = "MU52 Hornet",
-			DF4 = "Adder MK5",
-			DF5 = "Adder MK6",
-			DF6 = "Nirvana R5A",
-			DF7 = "WX-Lindworm",
+			DF2 = "MU52 Hornet",
+			DF3 = "Adder MK5",
+			DF4 = "Adder MK6",
+			DF5 = "Nirvana R5A",
+			DF6 = "WX-Lindworm",
     	},
 	}
 	if random(1,100) <= 36 then stationMermaid:setRestocksScanProbes(false) end
@@ -6881,12 +6859,11 @@ function createIcarusStations()
     	history = "You will never find a more wretched hive of scum and villainy... except in Mos Eisley space port. Mos Espa is a much better place",
     	idle_defense_fleet = {
 			DF1 = "MT52 Hornet",
-			DF2 = "Ktlitan Drone",
-			DF3 = "MU52 Hornet",
-			DF4 = "Adder MK5",
-			DF5 = "Adder MK6",
-			DF6 = "Nirvana R5A",
-			DF7 = "WX-Lindworm",
+			DF2 = "MU52 Hornet",
+			DF3 = "Adder MK5",
+			DF4 = "Adder MK6",
+			DF5 = "Nirvana R5A",
+			DF6 = "WX-Lindworm",
     	},
 	}
 	if random(1,100) <= 28 then stationMosEspa:setRestocksScanProbes(false) end
@@ -6934,13 +6911,11 @@ function createIcarusStations()
     	history = "A combination of science and military staff share the various delicate instruments on this station. Originally designed to watch for incoming Kraylor and Exuari ships, other stations now share the early warning military purpose and these sensors double as research resources",
     	idle_defense_fleet = {
 			DF1 = "MT52 Hornet",
-			DF2 = "Ktlitan Drone",
-			DF3 = "MU52 Hornet",
-			DF4 = "WX-Lindworm",
-			DF5 = "MT52 Hornet",
-			DF6 = "Ktlitan Drone",
-			DF7 = "MU52 Hornet",
-			DF8 = "WX-Lindworm",
+			DF2 = "MU52 Hornet",
+			DF3 = "WX-Lindworm",
+			DF4 = "MT52 Hornet",
+			DF5 = "MU52 Hornet",
+			DF6 = "WX-Lindworm",
     	},
 	}
 	if random(1,100) <= 13 then stationNerva:setRestocksScanProbes(false) end
@@ -6992,13 +6967,12 @@ function createIcarusStations()
     	history = "The station naming continued in the vein of the nebula which we study. Station personnel have started paying closer attention to readings indicating enemy vessels in the area after some stray Exuari got past the defensive patrols and destroyed the station.",
     	idle_defense_fleet = {
 			DF1 = "MT52 Hornet",
-			DF2 = "Ktlitan Drone",
-			DF3 = "MU52 Hornet",
-			DF4 = "WX-Lindworm",
-			DF5 = "Phobos T3",
-			DF6 = "Nirvana R5A",
-			DF7 = "Phobos T3",
-			DF8 = "WX-Lindworm",
+			DF2 = "MU52 Hornet",
+			DF3 = "WX-Lindworm",
+			DF4 = "Phobos T3",
+			DF5 = "Nirvana R5A",
+			DF6 = "Phobos T3",
+			DF7 = "WX-Lindworm",
     	},
 	}
 	if random(1,100) <= 4  then stationPistil:setRestocksScanProbes(false) end
@@ -22888,6 +22862,7 @@ end
 -- Button Text		   FD*	Related Function(s)
 -- -FROM COMPOSITION GROUP	F	spawnGMFleet
 -- RANDOM*					*	inline		asterisk = current selection
+-- FACTION					*	inline
 -- FIGHTERS					*	inline
 -- CHASERS					*	inline
 -- FRIGATES					*	inline
@@ -22908,6 +22883,14 @@ function setFleetGroupComposition(caller)
 	end
 	addGMFunction(GMSetFleetCompositionRandom,function()
 		fleetComposition = "Random"
+		caller()
+	end)
+	local GMSetFleetCompositionFaction = "Faction"
+	if fleetComposition == "Faction" then
+		GMSetFleetCompositionFaction = "Faction*"
+	end
+	addGMFunction(GMSetFleetCompositionFaction,function()
+		fleetComposition = "Faction"
 		caller()
 	end)
 	local GMSetFleetCompositionFighters = "Fighters"
@@ -23821,6 +23804,25 @@ function excludeShip(current_ship_template)
 	ship:destroy()
 	return exclude
 end
+function matchesFleetComposition(current_ship_template)
+	if fleetComposition == "Non-DB" then
+		if ship_template[current_ship_template].create ~= stockTemplate then
+			return true
+		end
+	elseif fleetComposition == "Random" then
+		return true
+	elseif fleetComposition == "Faction" then
+		if ship_template[current_ship_template].faction == fleetSpawnFaction then
+			-- TODO check if nil in .faction works
+			return true
+		end
+	else
+		if ship_template[current_ship_template].fleet_group[fleetComposition] then
+			return true
+		end
+	end
+	return false
+end
 function getTemplatePool(max_strength)
 	local function getStrengthSort(tbl, sortFunction)
 		local keys = {}
@@ -23840,16 +23842,8 @@ function getTemplatePool(max_strength)
 		for _, current_ship_template in ipairs(ship_template_by_strength) do
 			if not excludeShip(current_ship_template) then
 				if ship_template[current_ship_template].strength <= max_strength then
-					if fleetComposition == "Non-DB" then
-						if ship_template[current_ship_template].create ~= stockTemplate then
-							table.insert(template_pool,current_ship_template)
-						end
-					elseif fleetComposition == "Random" then
+					if matchesFleetComposition(current_ship_template) then
 						table.insert(template_pool,current_ship_template)
-					else
-						if ship_template[current_ship_template].fleet_group[fleetComposition] then
-							table.insert(template_pool,current_ship_template)							
-						end
 					end
 				end
 			end
@@ -23862,16 +23856,8 @@ function getTemplatePool(max_strength)
 			local current_ship_template = ship_template_by_strength[i]
 			if not excludeShip(current_ship_template) then
 				if ship_template[current_ship_template].strength <= max_strength then
-					if fleetComposition == "Non-DB" then
-						if ship_template[current_ship_template].create ~= stockTemplate then
-							table.insert(template_pool,current_ship_template)
-						end
-					elseif fleetComposition == "Random" then
+					if matchesFleetComposition(current_ship_template) then
 						table.insert(template_pool,current_ship_template)
-					else
-						if ship_template[current_ship_template].fleet_group[fleetComposition] then
-							table.insert(template_pool,current_ship_template)							
-						end
 					end
 				end
 			end
@@ -23883,16 +23869,8 @@ function getTemplatePool(max_strength)
 		for current_ship_template, details in pairs(ship_template) do
 			if not excludeShip(current_ship_template) then
 				if details.strength <= max_strength then
-					if fleetComposition == "Non-DB" then
-						if ship_template[current_ship_template].create ~= stockTemplate then
-							table.insert(template_pool,current_ship_template)
-						end
-					elseif fleetComposition == "Random" then
+					if matchesFleetComposition(current_ship_template) then
 						table.insert(template_pool,current_ship_template)
-					else
-						if ship_template[current_ship_template][fleet_group[fleetComposition]] then
-							table.insert(template_pool,current_ship_template)							
-						end
 					end
 				end
 			end
@@ -25763,7 +25741,7 @@ function k2fighter(enemyFaction)
 			queryScienceDatabase("Ships","No Class","Ktlitan Fighter"),	--base ship database entry
 			k2_fighter_db,	--modified ship database entry
 			ship,			--ship just created, long description on the next line
-			"Enterprising designers published this design specification based on salvaged Ktlitan Fighters. Comparatively, it's got beams that cycle faster, but the hull is a bit weaker.",
+			"It's got beams that cycle faster, but the hull is a bit weaker.",
 			nil,
 			nil,	--jump range
 			"sci_fi_alien_ship_1"
@@ -25800,7 +25778,7 @@ function k3fighter(enemyFaction)
 			queryScienceDatabase("Ships","No Class","Ktlitan Fighter"),	--base ship database entry
 			k3_fighter_db,	--modified ship database entry
 			ship,			--ship just created, long description on the next line
-			"Enterprising designers published this design specification based on salvaged Ktlitan Fighters. Comparatively, it's got beams that are stronger and that cycle faster, but the hull is weaker.",
+			"It's got beams that are stronger and that cycle faster, but the hull is weaker.",
 			nil,
 			nil,		--jump range
 			"sci_fi_alien_ship_1"
@@ -26014,7 +25992,7 @@ function droneLite(enemyFaction)
 			queryScienceDatabase("Ships","No Class","Ktlitan Drone"),	--base ship database entry
 			drone_lite_db,	--modified ship database entry
 			ship,			--ship just created, long description on the next line
-			"The light drone was pieced together from scavenged parts of various damaged Ktlitan drones. Compared to the Ktlitan drone, the lite drone has a weaker hull, and a weaker beam, but a faster turn and impulse speed",
+			"The lite drone has a weaker hull, and a weaker beam, but a faster turn and impulse speed than the normal Ktlitan Drone",
 			nil,
 			nil,
 			"sci_fi_alien_ship_4"
@@ -26756,7 +26734,7 @@ function k2breaker(enemyFaction)
 			queryScienceDatabase("Ships","No Class","Ktlitan Breaker"),	--base ship database entry
 			k2_breaker_db,	--modified ship database entry
 			ship,			--ship just created, long description on the next line
-			"The K2 Breaker designers took the Ktlitan Breaker and beefed up the hull, added two bracketing tubes, enlarged the center tube and added more missiles to shoot. Should be good for a couple of enemy ships",
+			"The K2 Breaker is a Ktlitan Breaker with beefed up hull, and two bracketing tubes, enlarged center tube and more missiles to shoot. Should be good for a couple of enemy ships",
 			{
 				{key = "Large tube 0", value = "13 sec"},	--torpedo tube direction and load speed
 				{key = "Tube -30", value = "13 sec"},		--torpedo tube direction and load speed
