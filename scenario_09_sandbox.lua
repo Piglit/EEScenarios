@@ -5510,6 +5510,15 @@ function squareZone(x,y,name)
 	table.insert(zone_list,zone)
 	return zone
 end
+function addRegionalStation(station)
+    station:setCommsScript(""):setCommsFunction(commsStation)
+	table.insert(regionStations,station)
+end
+describeFunction("addRegionalStation",
+	"add a station to the regional stations affected by trade and set commsFunktion",
+	{
+		{"station", "table"},
+	})
 function createIcarusStations()
 	local stations = {}
 	local nukeAvail = true
