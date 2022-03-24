@@ -20,8 +20,8 @@
 -- Warning[On|Default]: Players warned about enemies observed
 -- Warning[Off]: Players not warned about enemies observed
 -- Setting[Warn Ship Type]: Configures whether the warnings include ship types
--- Warn Ship Type[On|Default]: Enemy warnings include ship type if applicable
--- Warn Ship Type[Off]: Enemy warnings don't include ship type
+-- Warn Ship Type[On]: Enemy warnings include ship type if applicable
+-- Warn Ship Type[Off|Default]: Enemy warnings don't include ship type
 -- Setting[Warn Proximity]: Configures how close the enemies get before a warning is sent
 -- Warn Proximity[20|default]: Warning sent when enemies are within twenty units
 -- Warn Proximity[30]: Warning sent when enemies are within thirty units
@@ -6209,20 +6209,20 @@ function icarusSector()
 		objects = {}
 	}
 	-- Ghost jump trace (from moons GM session @ 2020-07-18)
-	local art=Artifact():setPosition(23387, 73994)
-	update_system:addPeriodicCallback(art,
-		function (self, obj)
-			self:setCallSign(string.format("%.2f",450*(200*math.cos(getScenarioTime()))))
-		end
-		,0.1)
-	table.insert(ret.objects,art)
+	--local art=Artifact():setPosition(23387, 73994)
+	--update_system:addPeriodicCallback(art,
+	--	function (self, obj)
+	--		self:setCallSign(string.format("%.2f",450*(200*math.cos(getScenarioTime()))))
+	--	end
+	--	,0.1)
+	--table.insert(ret.objects,art)
 	return ret
 end
 function createIcarusColor()
 	icarus_color = true
 	icarusDefensePlatforms = {}
 	icarusMines = {}
-	icarus_artifacts = createIcarusArtifacts()
+	icarus_artifacts = {}--createIcarusArtifacts()
 	macassaAsteroids = createMacassaAsteroids()
 	aquariusAsteroids = createAquariusAsteroids()
 	cindyFollyAsteroids = createCindyFollyAsteroids()
@@ -6233,8 +6233,8 @@ function createIcarusColor()
 	J4_to_L8_nebulae = createJ4toL8nebulae()
 	borlanFeatures = createBorlanFeatures()
 	finneganFeatures = createFinneganFeatures()
-	icarusStations = createIcarusStations()
-	icarusWormholeRiptideStuff = createIcarusToRiptideWormholeArea()
+	icarusStations = {} --createIcarusStations()
+	--icarusWormholeRiptideStuff = createIcarusToRiptideWormholeArea()
 	regionStations = icarusStations
 	if stationIcarus ~= nil then
 		table.insert(regionStations,stationIcarus)
@@ -6273,12 +6273,12 @@ function createIcarusColor()
 end
 function removeIcarusColor()
 	icarus_color = false
-	icarusWormholeRiptideStuff = destroyEEtable(icarusWormholeRiptideStuff)
+	--icarusWormholeRiptideStuff = destroyEEtable(icarusWormholeRiptideStuff)
 	icarusDefensePlatforms = destroyEEtable(icarusDefensePlatforms)
 	icarusMines = destroyEEtable(icarusMines)
 	icarus_artifacts = destroyEEtable(icarus_artifacts)
 	macassaAsteroids = destroyEEtable(macassaAsteroids)
-	icarusWormholeRiptideStuff = destroyEEtable(icarusWormholeRiptideStuff)
+	--icarusWormholeRiptideStuff = destroyEEtable(icarusWormholeRiptideStuff)
 	aquariusAsteroids = destroyEEtable(aquariusAsteroids)
 	cindyFollyAsteroids = destroyEEtable(cindyFollyAsteroids)
 	H0_to_K2_asteroids = destroyEEtable(H0_to_K2_asteroids)
@@ -38617,6 +38617,7 @@ function oneOffs()
 	addGMFunction("+MMOTM",mmotmOneOff)
 	addGMFunction("+Starry",starryOneOff)
 	addGMFunction("+Kosai",kosaiOneOff)
+	addGMFunction("+Pithlit",pithlitOneOff)
 end
 ----------------------------------------------
 --	Custom > Dangerous description grabber  --
@@ -39610,8 +39611,1553 @@ function starryChristmas()
 		end
 	end)
 end
+----------------------------------
+--	Custom > One-Offs > Pithlit --
+----------------------------------
+-- Button Text		   FD*	Related Function(s)
+-- -MAIN FROM KOSAI	F	initialGMFunctions
+-- -CUSTOM				F	customButtons
+-- -ONE-OFFS			F	oneOffs
+function pithlitOneOff()
+	clearGMFunctions()
+	addGMFunction("-Main From Pithlit",initialGMFunctions)
+	addGMFunction("-Custom",customButtons)
+	addGMFunction("-One-Offs",oneOffs)
+	addGMFunction("+Create Icarus Stuff",createIcarusStuff)
+end
+function toggleZoneAquarius()
+	local deleted = false
+	for idx, zone in ipairs(zone_list) do
+		if zone.name == "Aquarius IX F4.9" then
+			deleted = true
+			table.remove(zone_list, idx)
+			zone:destroy()
+			break
+		end
+	end
+	if not deleted then
+		squareZone(-4295, 14159, "Aquarius IX F4.9"):setColor(51,153,255):setLabel("A")
+	end
+	createIcarusStuff()
+end
+function createStationAquarius()
+    stationAquarius = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Aquarius IX"):setPosition(-4295, 14159):setDescription("Mining"):setCommsScript(""):setCommsFunction(commsStation)
 
+    if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
+    if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
+    if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
+    tradeChanceMedicine = 39
 
+    tradeChanceFood = 82
+
+    stationAquarius.comms_data = {
+    	friendlyness = 67,
+        weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "friend",		Nuke = "friend", 			EMP = "friend"},
+        weapon_cost =		{Homing = 5,				HVLI = math.random(2,5),Mine = math.random(3,7),Nuke = math.random(12,18),	EMP = math.random(9,13) },
+        weapon_available = 	{Homing = homeAvail,		HVLI = true,		Mine = mineAvail,		Nuke = nukeAvail,			EMP = true},
+        service_cost = 		{
+        	supplydrop = math.random(80,120), 
+        	reinforcements = math.random(123,175),
+			shield_overcharge = math.random(1,5)*5,
+        },
+        system_repair = {
+        	["reactor"] =		{cost = math.random(0,9),	max = random(.8, .99),	avail = random(1,100)<40},
+        	["beamweapons"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["missilesystem"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["maneuver"] =		{cost = math.random(0,9),	max = random(.9, .99),	avail = random(1,100)<40},
+        	["impulse"] =		{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<80},
+        	["warp"] =			{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<70},
+        	["jumpdrive"] =		{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<60},
+        	["frontshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        	["rearshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = true},
+        },
+        shield_overcharge =		true,
+        hack_repair =			true,
+        scan_repair =			true,
+        tube_slow_down_repair = random(1,100)<30,
+        sensor_boost = {value = 10000, cost = 10},
+        sensor_boost_probes = {name = "Binoc", cost = math.random(39,55), quantity = math.random(1,3), speed = 1000, boost = 20, range = 40},
+        reputation_cost_multipliers = {friend = 1.0, neutral = 2.0},
+        max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
+        goods = {	platinum = 	{quantity = math.random(4,8),	cost = math.random(50,80)},
+        			nickel =	{quantity = math.random(6,12),	cost = math.random(45,65)}	},
+        trade = {	food = tradeFood, medicine = tradeMedicine, luxury = false },
+        tradeChances = {	food = tradeChanceFood, medicine = tradeChanceMedicine, luxury = 0 },
+        public_relations = true,
+        general_information = "Facilitate mining the nearby asteroids",
+    	history = "Station named after the platinum mine on ancient Earth on the African continent",
+    	idle_defense_fleet = {
+			DF1 = "MT52 Hornet",
+			DF2 = "MT52 Hornet",
+			DF3 = "Adder MK5",
+			DF4 = "Adder MK5",
+			DF5 = "Phobos T3",
+			DF6 = "Phobos T3",
+    	},
+	}
+	if random(1,100) <= 72 then stationAquarius:setRestocksScanProbes(false) end
+	if random(1,100) <= 61 then stationAquarius:setRepairDocked(false) end
+	if random(1,100) <= 37 then stationAquarius:setSharesEnergyWithDocked(false) end
+	station_names[stationAquarius:getCallSign()] = {stationAquarius:getSectorName(), stationAquarius}
+	table.insert(icarusStations,stationAquarius)
+
+	createdIcarusStations["Aquarius"] = true
+	createIcarusStuff()
+end
+function toggleZoneBorlan()
+	local deleted = false
+	for idx, zone in ipairs(zone_list) do
+		if zone.name == "Borlan 2 G8" then
+			deleted = true
+			table.remove(zone_list, idx)
+			zone:destroy()
+			break
+		end
+	end
+	if not deleted then
+		squareZone(68808, 39300, "Borlan 2 G8"):setColor(51,153,255)
+	end
+	createIcarusStuff()
+end
+function createStationBorlan()
+    stationBorlan = SpaceStation():setTemplate("Medium Station"):setFaction("Independent"):setCallSign("Borlan 2"):setPosition(68808, 39300):setDescription("Mining and Supply"):setCommsScript(""):setCommsFunction(commsStation)
+
+    if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
+    if random(1,100) <= 40 then empAvail = true else empAvail = false end
+    if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
+    if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
+    tradeChanceMedicine = 13
+
+    stationBorlan.comms_data = {
+    	friendlyness = 75,
+        weapons = 			{Homing = "neutral",HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
+        weapon_cost =		{Homing = 3, 		HVLI = math.random(1,2),Mine = math.random(2,5),Nuke = math.random(12,18),	EMP = math.random(9,21) },
+        weapon_available = 	{Homing = true,		HVLI = hvliAvail,		Mine = mineAvail,		Nuke = nukeAvail,			EMP = empAvail},
+        service_cost = 		{
+        	supplydrop = math.random(80,120), 
+        	reinforcements = math.random(125,175),
+			shield_overcharge = math.random(1,5)*5,
+        },
+        system_repair = {
+        	["reactor"] =		{cost = math.random(0,9),	max = random(.8, .99),	avail = true},
+        	["beamweapons"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<40},
+        	["missilesystem"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<40},
+        	["maneuver"] =		{cost = math.random(0,9),	max = random(.9, .99),	avail = random(1,100)<50},
+        	["impulse"] =		{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<85},
+        	["warp"] =			{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<80},
+        	["jumpdrive"] =		{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<70},
+        	["frontshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<65},
+        	["rearshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<65},
+        },
+        shield_overcharge =		true,
+        probe_launch_repair =	true,
+        hack_repair =			true,
+        scan_repair =			true,
+        combat_maneuver_repair=	true,
+        self_destruct_repair =	true,
+        tube_slow_down_repair =	true,
+        fast_probes = {name = "Mark 3", cost = math.random(3,8), quantity = math.random(1,5), speed = 2000},
+        remote_warp_jammer = {name = "Mire", cost = math.random(9,20), quantity = math.random(1,5), speed = 2000, warp_jam_range = 15000},
+        sensor_boost = {value = 10000, cost = 5},
+        sensor_boost_probes = {name = "Scope", cost = math.random(59,75), quantity = math.random(1,3), speed = 1000, boost = 30, range = 50},
+        reputation_cost_multipliers = {friend = 1.0, neutral = 3.0},
+        max_weapon_refill_amount = {friend = 1.0, neutral = 1.0 },
+        goods = {	gold = 	{quantity = math.random(1,10),	cost = math.random(60,70)},	
+        			cobalt ={quantity = math.random(6,12),	cost = math.random(75,95)},
+        			luxury ={quantity = math.random(2,8),	cost = math.random(55,95)} },
+        trade = {	food = false, medicine = tradeMedicine, luxury = false },
+        tradeChances = {	food = 0, medicine = tradeChanceMedicine, luxury = 0 },
+        buy = {		circuit =	math.random(95,140),
+        			warp =		math.random(125,150)},
+        public_relations = true,
+        general_information = "Mining and resupply, New and improved",
+    	history = "Station success based on location and ingenuity of original builder to provide supplies for all the miners wanting to strike it rich",
+    	idle_defense_fleet = {
+			DF1 = "MT52 Hornet",
+			DF2 = "MT52 Hornet",
+			DF3 = "MU52 Hornet",
+			DF4 = "MU52 Hornet",
+			DF5 = "Adder MK5",
+			DF6 = "Adder MK5",
+			DF7 = "Adder MK6",
+			DF8 = "Adder MK6",
+			DF9 = "Phobos T3",
+			DF10 = "Phobos T3",
+    	},
+	}
+	if random(1,100) <= 42 then stationBorlan:setRestocksScanProbes(false) end
+	if random(1,100) <= 21 then stationBorlan:setRepairDocked(false) end
+	if random(1,100) <= 13 then stationBorlan:setSharesEnergyWithDocked(false) end
+	station_names[stationBorlan:getCallSign()] = {stationBorlan:getSectorName(), stationBorlan}
+	table.insert(icarusStations,stationBorlan)
+
+	createdIcarusStations["Borlan"] = true
+	createIcarusStuff()
+end
+function toggleZoneCindy()
+	local deleted = false
+	for idx, zone in ipairs(zone_list) do
+		if zone.name == "Cindy's Folly 4 E9" then
+			deleted = true
+			table.remove(zone_list, idx)
+			zone:destroy()
+			break
+		end
+	end
+	if not deleted then
+		squareZone(81075, -1304, "Cindy's Folly 4 E9"):setColor(51,153,255)
+	end
+	createIcarusStuff()
+end
+function createStationCindy()
+    stationCindyFolly = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Cindy's Folly 4"):setPosition(81075, -1304):setDescription("Mining"):setCommsScript(""):setCommsFunction(commsStation)
+
+    if random(1,100) <= 37 then homeAvail = true else homeAvail = false end
+    if random(1,100) <= 44 then hvliAvail = true else hvliAvail = false end
+    if random(1,100) <= 23 then mineAvail = true else mineAvail = false end
+    tradeChanceLuxury = 13
+
+    tradeChanceMedicine = 27
+
+    stationCindyFolly.comms_data = {
+    	friendlyness = 64,
+        weapons = 			{Homing = "neutral",HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
+        weapon_cost =		{Homing = 3, 		HVLI = math.random(1,4),Mine = math.random(2,7),Nuke = 30,					EMP = 20 },
+        weapon_available = 	{Homing = homeAvail,HVLI = hvliAvail,		Mine = mineAvail,		Nuke = false,				EMP = false},
+        service_cost = 		{
+        	supplydrop = math.random(80,120), 
+        	reinforcements = math.random(125,175),
+        },
+        system_repair = {
+        	["reactor"] =		{cost = math.random(0,9),	max = random(.8, .99),	avail = random(1,100)<40},
+        	["beamweapons"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = true},
+        	["missilesystem"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["maneuver"] =		{cost = math.random(0,9),	max = random(.9, .99),	avail = random(1,100)<40},
+        	["impulse"] =		{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<80},
+        	["warp"] =			{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<70},
+        	["jumpdrive"] =		{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<60},
+        	["frontshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        	["rearshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        },
+        probe_launch_repair =	true,
+        scan_repair =			true,
+        fast_probes = {name = "Mark 3", cost = math.random(3,8), quantity = math.random(1,5), speed = 2000},
+        tube_slow_down_repair = random(1,100)<30,
+        reputation_cost_multipliers = {friend = 1.0, neutral = 2.0},
+        max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
+        goods = {	dilithium = {quantity = math.random(4,8),	cost = math.random(50,80)},
+        			tritanium =	{quantity = math.random(6,12),	cost = math.random(45,65)},
+        			platinum =	{quantity = math.random(6,12),	cost = math.random(45,65)}	},
+        trade = {	food = false, medicine = tradeMedicine, luxury = tradeLuxury },
+        tradeChances = {	food = 0, medicine = tradeChanceMedicine, luxury = tradeChanceLuxury },
+        public_relations = true,
+        general_information = "Mine nearby asteroids",
+    	history = "A mining operation often on the brink of failure due to the loss of spacecraft in the nearby black holes",
+	}
+	if random(1,100) <= 89 then stationCindyFolly:setRestocksScanProbes(false) end
+	if random(1,100) <= 72 then stationCindyFolly:setRepairDocked(false) end
+	if random(1,100) <= 13 then stationCindyFolly:setSharesEnergyWithDocked(false) end
+	station_names[stationCindyFolly:getCallSign()] = {stationCindyFolly:getSectorName(), stationCindyFolly}
+	table.insert(icarusStations,stationCindyFolly)
+
+	createdIcarusStations["Cindy"] = true
+	createIcarusStuff()
+end
+function toggleZoneElysium()
+	local deleted = false
+	for idx, zone in ipairs(zone_list) do
+		if zone.name == "Elysium 5 F4.3" then
+			deleted = true
+			table.remove(zone_list, idx)
+			zone:destroy()
+			break
+		end
+	end
+	if not deleted then
+		squareZone(-7504, 1384, "Elysium 5 F4.3"):setColor(51,153,255)
+	end
+	createIcarusStuff()
+end
+function createStationElysium()
+    stationElysium = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Elysium 5"):setPosition(-7504, 1384):setDescription("Commerce and luxury accomodations"):setCommsScript(""):setCommsFunction(commsStation)
+
+    if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
+    if random(1,100) <= 40 then empAvail = true else empAvail = false end
+    if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
+    tradeChanceLuxury = 13
+
+    stationElysium.comms_data = {
+    	friendlyness = 29,
+        weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "neutral"},
+        weapon_cost =		{Homing = math.random(3,7),	HVLI = math.random(2,5),Mine = math.random(3,7),Nuke = math.random(12,18),	EMP = math.random(9,13) },
+        weapon_available = 	{Homing = true,				HVLI = true,			Mine = mineAvail,		Nuke = nukeAvail,			EMP = empAvail},
+        service_cost = 		{supplydrop = math.random(80,120), reinforcements = math.random(123,175)},
+        system_repair = {
+        	["reactor"] =		{cost = math.random(0,9),	max = random(.8, .99),	avail = random(1,100)<40},
+        	["beamweapons"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["missilesystem"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = true},
+        	["maneuver"] =		{cost = math.random(0,9),	max = random(.9, .99),	avail = random(1,100)<40},
+        	["impulse"] =		{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<80},
+        	["warp"] =			{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<70},
+        	["jumpdrive"] =		{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<60},
+        	["frontshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        	["rearshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        },
+        hack_repair =			true,
+        scan_repair =			true,
+        combat_maneuver_repair=	true,
+        tube_slow_down_repair = random(1,100)<30,
+        remote_warp_jammer = {name = "Mire", cost = math.random(9,20), quantity = math.random(1,5), speed = 2000, warp_jam_range = 15000},
+        reputation_cost_multipliers = {friend = 1.0, neutral = 2.0},
+        max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
+        goods = {	warp =		{quantity = math.random(2,4),	cost = math.random(80,120)},
+        			cobalt =	{quantity = math.random(2,4),	cost = math.random(30,70)},	},
+        trade = {	food = false, medicine = false, luxury = tradeLuxury },
+        tradeChances = {	food = 0, medicine = 0, luxury = tradeChanceLuxury },
+        public_relations = true,
+        general_information = "This is where all the wealthy species shop and stay when traveling",
+    	history = "Named after a fictional station from early 21st century literature as a reminder of what can happen if people don't pay attention to what goes on in all levels of the society in which they live",
+    	idle_defense_fleet = {
+			DF1 = "MT52 Hornet",
+			DF2 = "Ktlitan Drone",
+			DF3 = "MU52 Hornet",
+			DF4 = "Adder MK5",
+			DF5 = "Adder MK6",
+    	},
+	}
+	if random(1,100) <= 86 then stationElysium:setRestocksScanProbes(false) end
+	if random(1,100) <= 35 then stationElysium:setRepairDocked(false) end
+	if random(1,100) <= 27 then stationElysium:setSharesEnergyWithDocked(false) end
+	station_names[stationElysium:getCallSign()] = {stationElysium:getSectorName(), stationElysium}
+	table.insert(icarusStations,stationElysium)
+
+	createdIcarusStations["Elysium"] = true
+	createIcarusStuff()
+end
+function toggleZoneFinnegan()
+	local deleted = false
+	for idx, zone in ipairs(zone_list) do
+		if zone.name == "Finnegan 2 J10" then
+			deleted = true
+			table.remove(zone_list, idx)
+			zone:destroy()
+			break
+		end
+	end
+	if not deleted then
+		squareZone(114460, 95868, "Finnegan 2 J10"):setColor(51,153,255)
+	end
+	createIcarusStuff()
+end
+function createStationFinnegan()
+	stationFinnegan = SpaceStation():setTemplate("Medium Station"):setFaction("Independent"):setCallSign("Finnegan 2"):setPosition(114460, 95868):setDescription("Trading, mining and manufacturing"):setCommsScript(""):setCommsFunction(commsStation)
+
+    if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
+    if random(1,100) <= 40 then empAvail = true else empAvail = false end
+    if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
+    tradeChanceMedicine = 63
+
+    stationFinnegan.comms_data = {
+    	friendlyness = 52,
+        weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
+        weapon_cost =		{Homing = math.random(3,6),	HVLI = math.random(1,4),Mine = math.random(5,9),Nuke = math.random(12,18),	EMP = math.random(9,13) },
+        weapon_available = 	{Homing = true,				HVLI = hvliAvail,		Mine = true,			Nuke = nukeAvail,			EMP = empAvail},
+        service_cost = 		{
+        	supplydrop = math.random(80,120), 
+        	reinforcements = math.random(123,175),
+        },
+        system_repair = {
+        	["reactor"] =		{cost = math.random(0,9),	max = random(.8, .99),	avail = random(1,100)<50},
+        	["beamweapons"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<40},
+        	["missilesystem"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<40},
+        	["maneuver"] =		{cost = math.random(0,9),	max = random(.9, .99),	avail = true},
+        	["impulse"] =		{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<85},
+        	["warp"] =			{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<80},
+        	["jumpdrive"] =		{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<70},
+        	["frontshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<65},
+        	["rearshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<65},
+        },
+        hack_repair =			true,
+        scan_repair =			true,
+        tube_slow_down_repair =	true,
+        fast_probes = {name = "Gogo", cost = math.random(6,11), quantity = math.random(1,5), speed = 3000},
+        sensor_boost_probes = {name = "Binoc", cost = math.random(39,50), quantity = math.random(1,3), speed = 1000, boost = 20, range = 40},
+        sensor_boost = {value = 10000, cost = 10},
+        reputation_cost_multipliers = {friend = 1.0, neutral = 2.0},
+        max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
+        goods = {	circuit = 	{quantity = math.random(4,8),	cost = math.random(40,80)},
+        			nickel =	{quantity = math.random(6,12),	cost = math.random(45,65)}	},
+        trade = {	food = true, medicine = tradeMedicine, luxury = false },
+        tradeChances = {	food = 0, medicine = tradeChanceMedicine, luxury = 0 },
+        public_relations = true,
+        general_information = "We mine the asteroids and the nebula and use these to manufacture various specialized circuits",
+    	history = "The Finnegan family set up this station here to take advantage of the readily available resources",
+    	idle_defense_fleet = {
+			DF1 = "MT52 Hornet",
+			DF2 = "Ktlitan Drone",
+			DF3 = "MU52 Hornet",
+			DF4 = "Adder MK5",
+			DF5 = "Adder MK6",
+			DF6 = "Phobos T3",
+			DF7 = "Stalker Q7",
+			DF8 = "Nirvana R5A",
+			DF9 = "WX-Lindworm",
+    	},
+	}
+	if random(1,100) <= 63 then stationFinnegan:setRestocksScanProbes(false) end
+	if random(1,100) <= 46 then stationFinnegan:setRepairDocked(false) end
+	if random(1,100) <= 25 then stationFinnegan:setSharesEnergyWithDocked(false) end
+	station_names[stationFinnegan:getCallSign()] = {stationFinnegan:getSectorName(), stationFinnegan}
+	table.insert(icarusStations,stationFinnegan)
+
+	createdIcarusStations["Finnegan"] = true
+	createIcarusStuff()
+end
+function toggleZoneGagarin()
+	local deleted = false
+	for idx, zone in ipairs(zone_list) do
+		if zone.name == "Gagarin I2" then
+			deleted = true
+			table.remove(zone_list, idx)
+			zone:destroy()
+			break
+		end
+	end
+	if not deleted then
+		squareZone(-60000, 62193, "Gagarin I2"):setColor(0,128,0)
+	end
+	createIcarusStuff()
+end
+function createStationGagarin()
+	stationGagarin = SpaceStation():setTemplate("Small Station"):setFaction("Human Navy"):setCallSign("Gagarin"):setPosition(-60000, 62193):setDescription("Mining and exploring"):setCommsScript(""):setCommsFunction(commsStation)
+    stationGagarin:setShortRangeRadarRange(9000)
+
+    if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
+    if random(1,100) <= 40 then empAvail = true else empAvail = false end
+    if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
+    if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
+    if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
+    tradeChanceMedicine = 23
+
+    stationGagarin.comms_data = {
+    	friendlyness = 82,
+        weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "friend",		Nuke = "friend", 			EMP = "friend"},
+        weapon_cost =		{Homing = math.random(2,6),	HVLI = math.random(2,5),Mine = math.random(3,7),Nuke = math.random(12,18),	EMP = math.random(9,13) },
+        weapon_available = 	{Homing = true,				HVLI = hvliAvail,		Mine = mineAvail,		Nuke = nukeAvail,			EMP = true},
+        service_cost = 		{
+        	supplydrop = math.random(80,120), 
+        	reinforcements = math.random(123,175),
+			shield_overcharge = math.random(1,5)*5,
+        },
+        system_repair = {
+        	["reactor"] =		{cost = math.random(0,9),	max = random(.8, .99),	avail = random(1,100)<40},
+        	["beamweapons"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["missilesystem"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["maneuver"] =		{cost = math.random(0,9),	max = random(.9, .99),	avail = random(1,100)<40},
+        	["impulse"] =		{cost = math.random(0,9),	max = random(.7, .99),	avail = true},
+        	["warp"] =			{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<70},
+        	["jumpdrive"] =		{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<60},
+        	["frontshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        	["rearshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        },
+        shield_overcharge =		true,
+        scan_repair =			true,
+        tube_slow_down_repair = random(1,100)<60,
+        sensor_boost = {value = 10000, cost = 10},
+        remote_warp_jammer = {name = "Mire", cost = math.random(9,20), quantity = math.random(1,5), speed = 2000, warp_jam_range = 15000},
+        reputation_cost_multipliers = {friend = 1.0, neutral = 2.0},
+        max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
+        goods = {	platinum = 	{quantity = math.random(4,8),	cost = math.random(50,80)},
+        			nickel =	{quantity = math.random(6,12),	cost = math.random(45,65)}	},
+        trade = {	food = true, medicine = tradeMedicine, luxury = false },
+        tradeChances = {	food = 0, medicine = tradeChanceMedicine, luxury = 0 },
+        public_relations = true,
+        general_information = "Facilitate mining the nearby asteroids",
+    	history = "Station named after the Cosmonaut from 20th century Earth"
+	}
+	if random(1,100) <= 16 then stationGagarin:setRestocksScanProbes(false) end
+	if random(1,100) <= 25 then stationGagarin:setRepairDocked(false) end
+	if random(1,100) <= 11 then stationGagarin:setSharesEnergyWithDocked(false) end
+	station_names[stationGagarin:getCallSign()] = {stationGagarin:getSectorName(), stationGagarin}
+	table.insert(icarusStations,stationGagarin)
+
+	createdIcarusStations["Gagarin"] = true
+	createIcarusStuff()
+end
+function toggleZoneMacassa()
+	local deleted = false
+	for idx, zone in ipairs(zone_list) do
+		if zone.name == "Macassa 11 E5" then
+			deleted = true
+			table.remove(zone_list, idx)
+			zone:destroy()
+			break
+		end
+	end
+	if not deleted then
+		squareZone(16335, -18034, "Macassa 11 E5"):setColor(0,128,0):setLabel("10")
+	end
+	createIcarusStuff()
+end
+function createStationMacassa()
+    stationMacassa = SpaceStation():setTemplate("Small Station"):setFaction("Human Navy"):setPosition(16335, -18034):setCallSign("Macassa 11"):setDescription("Mining"):setCommsScript(""):setCommsFunction(commsStation)
+    stationMacassa:setShortRangeRadarRange(8000)
+
+    if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
+    if random(1,100) <= 40 then empAvail = true else empAvail = false end
+    if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
+    if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
+    tradeChanceLuxury = 37
+
+    tradeChanceFood = 12
+
+    stationMacassa.comms_data = {
+    	friendlyness = 55,
+        weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "friend",		Nuke = "friend", 			EMP = "friend"},
+        weapon_cost =		{Homing = math.random(2,5), HVLI = math.random(1,3),Mine = math.random(2,3),Nuke = math.random(13,18),	EMP = math.random(9,13) },
+        weapon_available = 	{Homing = homeAvail,		HVLI = hvliAvail,		Mine = true,			Nuke = nukeAvail,			EMP = empAvail},
+        service_cost = 		{supplydrop = math.random(95,120), reinforcements = math.random(145,175)},
+        system_repair = {
+        	["reactor"] =		{cost = math.random(0,9),	max = random(.8, .99),	avail = random(1,100)<40},
+        	["beamweapons"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["missilesystem"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["maneuver"] =		{cost = math.random(0,9),	max = random(.9, .99),	avail = random(1,100)<40},
+        	["impulse"] =		{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<80},
+        	["warp"] =			{cost = math.random(0,9),	max = random(.6, .99),	avail = true},
+        	["jumpdrive"] =		{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<60},
+        	["frontshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        	["rearshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        },
+        scan_repair =			true,
+        tube_slow_down_repair = random(1,100)<30,
+        sensor_boost = {value = 5000, cost = 5},
+        reputation_cost_multipliers = {friend = 1.0, neutral = 2.0},
+        max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
+        goods = {	gold = 	{quantity = math.random(4,8),	cost = math.random(60,70)},
+        			dilithium = {quantity = math.random(2,11),	cost = math.random(55,85)}	},
+        trade = {	food = tradeFood, medicine = false, luxury = tradeLuxury },
+        tradeChances = {	food = tradeChanceFood, medicine = 0, luxury = tradeChanceLuxury },
+        public_relations = true,
+        general_information = "Station location facilitates mining the nearby asteroids. This is the 8th time the staion has been rebuilt",
+    	history = "The station was named in the hopes that the asteroids will be as productive as the Macassa mine was on Earth in the mid to late 1900s"
+	}
+	if random(1,100) <= 16 then stationMacassa:setRestocksScanProbes(false) end
+	if random(1,100) <= 12 then stationMacassa:setRepairDocked(false) end
+	if random(1,100) <= 9  then stationMacassa:setSharesEnergyWithDocked(false) end
+	station_names[stationMacassa:getCallSign()] = {stationMacassa:getSectorName(), stationMacassa}
+	table.insert(icarusStations,stationMacassa)
+
+	createdIcarusStations["Macassa"] = true
+	createIcarusStuff()
+end
+function toggleZoneMaximilian()
+	local deleted = false
+	for idx, zone in ipairs(zone_list) do
+		if zone.name == "Maximilian Mark 6 E4" then
+			deleted = true
+			table.remove(zone_list, idx)
+			zone:destroy()
+			break
+		end
+	end
+	if not deleted then
+		squareZone(-16565, -16446, "Maximilian Mark 6 E4"):setColor(51,153,255)
+	end
+	createIcarusStuff()
+end
+function createStationMaximilian()
+    stationMaximilian = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Maximilian Mark 6"):setPosition(-16565, -16446):setDescription("Black Hole Research"):setCommsScript(""):setCommsFunction(commsStation)
+
+    if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
+    if random(1,100) <= 40 then empAvail = true else empAvail = false end
+    if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
+    if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
+    tradeChanceMedicine = 39
+
+    tradeChanceFood = 62
+
+    stationMaximilian.comms_data = {
+    	friendlyness = 43,
+        weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "friend",		Nuke = "friend", 			EMP = "friend"},
+        weapon_cost =		{Homing = 2,				HVLI = math.random(2,3),Mine = math.random(2,3),Nuke = math.random(14,18),	EMP = math.random(9,13) },
+        weapon_available = 	{Homing = true,				HVLI = hvliAvail,		Mine = mineAvail,		Nuke = nukeAvail,			EMP = empAvail},
+        service_cost = 		{supplydrop = math.random(95,120), reinforcements = math.random(145,175)},
+        system_repair = {
+        	["reactor"] =		{cost = math.random(0,9),	max = random(.8, .99),	avail = random(1,100)<50},
+        	["beamweapons"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<40},
+        	["missilesystem"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<40},
+        	["maneuver"] =		{cost = math.random(0,9),	max = random(.9, .99),	avail = random(1,100)<50},
+        	["impulse"] =		{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<85},
+        	["warp"] =			{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<80},
+        	["jumpdrive"] =		{cost = math.random(0,9),	max = random(.6, .99),	avail = true},
+        	["frontshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<65},
+        	["rearshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<65},
+        },
+        probe_launch_repair =	true,
+        scan_repair =			true,
+        fast_probes = {name = "Gogo", cost = math.random(6,11), quantity = math.random(1,5), speed = 3000},
+        sensor_boost = {value = 10000, cost = 10},
+        reputation_cost_multipliers = {friend = 1.0, neutral = 2.0},
+        max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
+        goods = {	filament = 	{quantity = math.random(4,8),	cost = math.random(50,80)}	},
+        trade = {	food = tradeFood, medicine = tradeMedicine, luxury = true },
+        tradeChances = {	food = tradeChanceFood, medicine = tradeChanceMedicine, luxury = 0 },
+        public_relations = true,
+        general_information = "Observe and measure black hole for scientific understanding purposes",
+    	history = "One of the researchers also develops software and watches ancient films. He was put in charge of naming the station so he named it after a mute evil robot depicted in an old movie about a black hole from the late 1970s",
+    	idle_defense_fleet = {
+			DF1 = "MT52 Hornet",
+			DF2 = "MU52 Hornet",
+			DF3 = "MT52 Hornet",
+			DF4 = "MU52 Hornet",
+    	},
+	}
+	if random(1,100) <= 81 then stationMaximilian:setRestocksScanProbes(false) end
+	if random(1,100) <= 68 then stationMaximilian:setRepairDocked(false) end
+	if random(1,100) <= 16 then stationMaximilian:setSharesEnergyWithDocked(false) end
+	station_names[stationMaximilian:getCallSign()] = {stationMaximilian:getSectorName(), stationMaximilian}
+	table.insert(icarusStations,stationMaximilian)
+
+	createdIcarusStations["Maximilian"] = true
+	createIcarusStuff()
+end
+function toggleZoneMermaid()
+	local deleted = false
+	for idx, zone in ipairs(zone_list) do
+		if zone.name == "Mermaid 7 E6" then
+			deleted = true
+			table.remove(zone_list, idx)
+			zone:destroy()
+			break
+		end
+	end
+	if not deleted then
+		squareZone(28889, -4417, "Mermaid 7 E6"):setColor(51,153,255):setLabel("7")
+	end
+	createIcarusStuff()
+end
+function createStationMermaid()
+    stationMermaid = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setPosition(28889, -4417):setCallSign("Mermaid 7"):setDescription("Tavern and hotel"):setCommsScript(""):setCommsFunction(commsStation)
+
+    if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
+    if random(1,100) <= 40 then empAvail = true else empAvail = false end
+    if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
+    if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
+    if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
+    tradeChanceLuxury = 17
+
+    stationMermaid.comms_data = {
+    	friendlyness = 75,
+        weapons = 			{Homing = "neutral",HVLI = "neutral", 		Mine = "friend",		Nuke = "friend", 			EMP = "friend"},
+        weapon_cost =		{Homing = 3, 		HVLI = math.random(1,2),Mine = math.random(2,5),Nuke = math.random(12,18),	EMP = 10 },
+        weapon_available = 	{Homing = homeAvail,HVLI = hvliAvail,		Mine = mineAvail,		Nuke = nukeAvail,			EMP = empAvail},
+        service_cost = 		{supplydrop = math.random(80,120), reinforcements = math.random(125,175)},
+        system_repair = {
+        	["reactor"] =		{cost = math.random(0,9),	max = random(.8, .99),	avail = random(1,100)<40},
+        	["beamweapons"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["missilesystem"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["maneuver"] =		{cost = math.random(0,9),	max = random(.9, .99),	avail = random(1,100)<40},
+        	["impulse"] =		{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<80},
+        	["warp"] =			{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<70},
+        	["jumpdrive"] =		{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<60},
+        	["frontshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = true},
+        	["rearshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        },
+        hack_repair =			true,
+        scan_repair =			true,
+        reputation_cost_multipliers = {friend = 1.0, neutral = 2.0},
+        max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
+        goods = {	luxury = 	{quantity = math.random(5,10),	cost = math.random(60,70)},
+        			gold = 		{quantity = 5,					cost = math.random(75,90)}	},
+        trade = {	food = true, medicine = false, luxury = tradeLuxury },
+        tradeChances = {	food = 0, medicine = 0, luxury = tradeChanceLuxury },
+        public_relations = true,
+        general_information = "Rest stop, refueling and convenience shopping",
+    	history = "In the tradition of taverns at crossroads on olde Earth in Kingston where the Millstone river and the Assunpink trail crossed and The Sign of the Mermaid tavern was built in the 1600s, the builders of this station speculated that this would be a good spot for space travelers to stop\n\nFree drinks for the crew of the freighter Gamma Hydra",
+    	idle_defense_fleet = {
+			DF1 = "MT52 Hornet",
+			DF2 = "Ktlitan Drone",
+			DF3 = "MU52 Hornet",
+			DF4 = "Adder MK5",
+			DF5 = "Adder MK6",
+			DF6 = "Nirvana R5A",
+			DF7 = "WX-Lindworm",
+    	},
+	}
+	if random(1,100) <= 36 then stationMermaid:setRestocksScanProbes(false) end
+	if random(1,100) <= 22 then stationMermaid:setRepairDocked(false) end
+	if random(1,100) <= 5  then stationMermaid:setSharesEnergyWithDocked(false) end
+	station_names[stationMermaid:getCallSign()] = {stationMermaid:getSectorName(), stationMermaid}
+	table.insert(icarusStations,stationMermaid)
+
+	createdIcarusStations["Mermaid"] = true
+	createIcarusStuff()
+end
+function toggleZoneMosEspa()
+	local deleted = false
+	for idx, zone in ipairs(zone_list) do
+		if zone.name == "Mos Espa A10" then
+			deleted = true
+			table.remove(zone_list, idx)
+			zone:destroy()
+			break
+		end
+	end
+	if not deleted then
+		squareZone(113941, -85822, "Mos Espa A10"):setColor(51,153,255)
+	end
+	createIcarusStuff()
+end
+function createStationMosEspa()
+	stationMosEspa = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setPosition(113941, -85822):setCallSign("Mos Espa"):setDescription("Resupply and Entertainment"):setCommsScript(""):setCommsFunction(commsStation)
+
+    if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
+    if random(1,100) <= 40 then empAvail = true else empAvail = false end
+    if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
+    if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
+    if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
+    tradeChanceFood = 26
+
+    stationMosEspa.comms_data = {
+    	friendlyness = 93,
+        weapons = 			{Homing = "neutral",HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
+        weapon_cost =		{Homing = 3, 		HVLI = math.random(1,2),Mine = math.random(2,5),Nuke = math.random(12,18),	EMP = 10 },
+        weapon_available = 	{Homing = homeAvail,HVLI = hvliAvail,		Mine = mineAvail,		Nuke = nukeAvail,			EMP = empAvail},
+        service_cost = 		{
+        	supplydrop = math.random(80,120), 
+        	reinforcements = math.random(125,175),
+        },
+        system_repair = {
+        	["reactor"] =		{cost = math.random(0,9),	max = random(.8, .99),	avail = random(1,100)<40},
+        	["beamweapons"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["missilesystem"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["maneuver"] =		{cost = math.random(0,9),	max = random(.9, .99),	avail = random(1,100)<40},
+        	["impulse"] =		{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<80},
+        	["warp"] =			{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<70},
+        	["jumpdrive"] =		{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<60},
+        	["frontshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        	["rearshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = true},
+        },
+        probe_launch_repair =	true,
+        scan_repair =			true,
+        combat_maneuver_repair=	true,
+        fast_probes = {name = "Gogo", cost = math.random(6,11), quantity = math.random(1,5), speed = 3000},
+        sensor_boost_probes = {name = "Binoc", cost = math.random(39,55), quantity = math.random(1,3), speed = 1000, boost = 20, range = 40},
+        remote_warp_jammer = {name = "Mire", cost = math.random(9,20), quantity = math.random(1,5), speed = 2000, warp_jam_range = 15000},
+        tube_slow_down_repair = random(1,100)<30,
+        reputation_cost_multipliers = {friend = 1.0, neutral = 2.0},
+        max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
+        goods = {	impulse = 	{quantity = math.random(5,10),	cost = math.random(80,100)},
+        			lifter = 	{quantity = 5,					cost = math.random(75,90)}	},
+        trade = {	food = tradeFood, medicine = true, luxury = false },
+        tradeChances = {	food = tradeChanceFood, medicine = 0, luxury = 0 },
+        public_relations = true,
+        general_information = "Relax, maybe observe a scheduled race",
+    	history = "You will never find a more wretched hive of scum and villainy... except in Mos Eisley space port. Mos Espa is a much better place",
+    	idle_defense_fleet = {
+			DF1 = "MT52 Hornet",
+			DF2 = "Ktlitan Drone",
+			DF3 = "MU52 Hornet",
+			DF4 = "Adder MK5",
+			DF5 = "Adder MK6",
+			DF6 = "Nirvana R5A",
+			DF7 = "WX-Lindworm",
+    	},
+	}
+	if random(1,100) <= 28 then stationMosEspa:setRestocksScanProbes(false) end
+	if random(1,100) <= 15 then stationMosEspa:setRepairDocked(false) end
+	if random(1,100) <= 12 then stationMosEspa:setSharesEnergyWithDocked(false) end
+	station_names[stationMosEspa:getCallSign()] = {stationMosEspa:getSectorName(), stationMosEspa}
+	table.insert(icarusStations,stationMosEspa)
+
+	createdIcarusStations["MosEspa"] = true
+	createIcarusStuff()
+end
+function toggleZoneNerva()
+	local deleted = false
+	for idx, zone in ipairs(zone_list) do
+		if zone.name == "Nerva 9 E4" then
+			deleted = true
+			table.remove(zone_list, idx)
+			zone:destroy()
+			break
+		end
+	end
+	if not deleted then
+		squareZone(-9203, -2077, "Nerva 9 E4"):setColor(51,153,255)
+	end
+	createIcarusStuff()
+end
+function createStationNerva()
+    stationNerva = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Nerva 9"):setPosition(-9203, -2077):setDescription("Observatory"):setCommsScript(""):setCommsFunction(commsStation)
+
+    if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
+    if random(1,100) <= 40 then empAvail = true else empAvail = false end
+    if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
+    if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
+    if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
+    tradeChanceLuxury = 17
+
+    tradeChanceMedicine = 69
+
+    stationNerva.comms_data = {
+    	friendlyness = 75,
+        weapons = 			{Homing = "neutral",HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
+        weapon_cost =		{Homing = 3, 		HVLI = math.random(1,2),Mine = math.random(2,5),Nuke = math.random(12,18),	EMP = 10 },
+        weapon_available = 	{Homing = homeAvail,HVLI = hvliAvail,		Mine = mineAvail,		Nuke = nukeAvail,			EMP = empAvail},
+        service_cost = 		{supplydrop = math.random(80,120), reinforcements = math.random(125,175)},
+        system_repair = {
+        	["reactor"] =		{cost = math.random(0,9),	max = random(.8, .99),	avail = true},
+        	["beamweapons"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["missilesystem"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["maneuver"] =		{cost = math.random(0,9),	max = random(.9, .99),	avail = random(1,100)<40},
+        	["impulse"] =		{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<80},
+        	["warp"] =			{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<70},
+        	["jumpdrive"] =		{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<60},
+        	["frontshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        	["rearshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        },
+        reputation_cost_multipliers = {friend = 1.0, neutral = 2.0},
+        max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
+        goods = {	optic = 	{quantity = math.random(5,10),	cost = math.random(60,70)}	},
+        trade = {	food = false, medicine = tradeMedicine, luxury = tradeLuxury },
+        tradeChances = {	food = 0, medicine = tradeChanceMedicine, luxury = tradeChanceLuxury },
+        public_relations = true,
+        general_information = "Observatory of stellar phenomena and space ship traffic",
+    	history = "A combination of science and military staff share the various delicate instruments on this station. Originally designed to watch for incoming Kraylor and Exuari ships, other stations now share the early warning military purpose and these sensors double as research resources",
+    	idle_defense_fleet = {
+			DF1 = "MT52 Hornet",
+			DF2 = "Ktlitan Drone",
+			DF3 = "MU52 Hornet",
+			DF4 = "WX-Lindworm",
+			DF5 = "MT52 Hornet",
+			DF6 = "Ktlitan Drone",
+			DF7 = "MU52 Hornet",
+			DF8 = "WX-Lindworm",
+    	},
+	}
+	if random(1,100) <= 13 then stationNerva:setRestocksScanProbes(false) end
+	if random(1,100) <= 42 then stationNerva:setRepairDocked(false) end
+	if random(1,100) <= 23 then stationNerva:setSharesEnergyWithDocked(false) end
+	station_names[stationNerva:getCallSign()] = {stationNerva:getSectorName(), stationNerva}
+	table.insert(icarusStations,stationNerva)
+
+	createdIcarusStations["Nerva"] = true
+	createIcarusStuff()
+end
+function toggleZonePistil()
+	local deleted = false
+	for idx, zone in ipairs(zone_list) do
+		if zone.name == "Pistil 8 G6" then
+			deleted = true
+			table.remove(zone_list, idx)
+			zone:destroy()
+			break
+		end
+	end
+	if not deleted then
+		squareZone(24834, 20416, "Pistil 8 G6"):setColor(0,128,0):setLabel("P")
+	end
+	createIcarusStuff()
+end
+function createStationPistil()
+    stationPistil = SpaceStation():setTemplate("Small Station"):setFaction("Human Navy"):setPosition(24834, 20416):setCallSign("Pistil 8"):setDescription("Fleur nebula research"):setCommsScript(""):setCommsFunction(commsStation)
+    stationPistil:setShortRangeRadarRange(10000)
+
+    if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
+    if random(1,100) <= 40 then empAvail = true else empAvail = false end
+    if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
+    tradeChanceLuxury = 37
+
+    stationPistil.comms_data = {
+    	friendlyness = 55,
+        weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "friend",		Nuke = "friend", 			EMP = "friend"},
+        weapon_cost =		{Homing = math.random(2,5), HVLI = math.random(1,3),Mine = math.random(2,3),Nuke = math.random(14,18),	EMP = math.random(9,13) },
+        weapon_available = 	{Homing = homeAvail,		HVLI = true,			Mine = true,			Nuke = nukeAvail,			EMP = empAvail},
+        service_cost = 		{supplydrop = math.random(95,120), reinforcements = math.random(145,175)},
+        system_repair = {
+        	["reactor"] =		{cost = math.random(0,9),	max = random(.8, .99),	avail = random(1,100)<40},
+        	["beamweapons"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = true},
+        	["missilesystem"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["maneuver"] =		{cost = math.random(0,9),	max = random(.9, .99),	avail = random(1,100)<40},
+        	["impulse"] =		{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<80},
+        	["warp"] =			{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<70},
+        	["jumpdrive"] =		{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<60},
+        	["frontshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        	["rearshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        },
+        probe_launch_repair =	true,
+        scan_repair =			true,
+        fast_probes = {name = "Screamer", cost = math.random(8,15), quantity = math.random(1,5), speed = 4000},
+        tube_slow_down_repair = random(1,100)<30,
+        reputation_cost_multipliers = {friend = 1.0, neutral = 2.0},
+        max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
+        goods = {	sensor = 	{quantity = math.random(4,8),	cost = math.random(60,70)}	},
+        trade = {	food = false, medicine = true, luxury = tradeLuxury },
+        tradeChances = {	food = 0, medicine = 0, luxury = tradeChanceLuxury },
+        buy =	{	robotic = math.random(40,200),
+        			dilithium = math.random(40,200)	},
+        public_relations = true,
+        general_information = "Studying, observing, measuring the Fleur nebula",
+    	history = "The station naming continued in the vein of the nebula which we study. Station personnel have started paying closer attention to readings indicating enemy vessels in the area after some stray Exuari got past the defensive patrols and destroyed the station.",
+    	idle_defense_fleet = {
+			DF1 = "MT52 Hornet",
+			DF2 = "Ktlitan Drone",
+			DF3 = "MU52 Hornet",
+			DF4 = "WX-Lindworm",
+			DF5 = "Phobos T3",
+			DF6 = "Nirvana R5A",
+			DF7 = "Phobos T3",
+			DF8 = "WX-Lindworm",
+    	},
+	}
+	if random(1,100) <= 4  then stationPistil:setRestocksScanProbes(false) end
+	if random(1,100) <= 11 then stationPistil:setRepairDocked(false) end
+	if random(1,100) <= 8  then stationPistil:setSharesEnergyWithDocked(false) end
+	station_names[stationPistil:getCallSign()] = {stationPistil:getSectorName(), stationPistil}
+	table.insert(icarusStations,stationPistil)
+
+	createdIcarusStations["Pistil"] = true
+	createIcarusStuff()
+end
+function toggleZoneRelay13()
+	local deleted = false
+	for idx, zone in ipairs(zone_list) do
+		if zone.name == "Relay-13 F G8" then
+			deleted = true
+			table.remove(zone_list, idx)
+			zone:destroy()
+			break
+		end
+	end
+	if not deleted then
+		squareZone(77918, 23876, "Relay-13 F G8"):setColor(0,255,0)
+	end
+	createIcarusStuff()
+end
+function createStationRelay13()
+    stationRelay13 = SpaceStation():setTemplate("Small Station"):setFaction("Human Navy"):setCallSign("Relay-13 F"):setPosition(77918, 23876):setDescription("Communications Relay"):setCommsScript(""):setCommsFunction(commsStation)
+    stationRelay13:setShortRangeRadarRange(12000)
+
+    tradeChanceMedicine = 69
+
+    stationRelay13.comms_data = {
+    	friendlyness = 75,
+        weapons = 			{Homing = "neutral",HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
+        weapon_cost =		{Homing = 3, 		HVLI = math.random(1,5),Mine = math.random(2,5),Nuke = math.random(12,18),	EMP = 10 },
+        weapon_available = 	{Homing = false,	HVLI = true,		Mine = false,			Nuke = false,				EMP = false},
+        service_cost = 		{
+        	supplydrop = math.random(80,120), 
+        	reinforcements = math.random(125,175),
+			shield_overcharge = math.random(1,5)*5,
+        },
+        system_repair = {
+        	["reactor"] =		{cost = math.random(0,9),	max = random(.8, .99),	avail = random(1,100)<40},
+        	["beamweapons"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["missilesystem"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = true},
+        	["maneuver"] =		{cost = math.random(0,9),	max = random(.9, .99),	avail = random(1,100)<40},
+        	["impulse"] =		{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<80},
+        	["warp"] =			{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<70},
+        	["jumpdrive"] =		{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<60},
+        	["frontshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        	["rearshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        },
+        shield_overcharge =		true,
+        probe_launch_repair =	true,
+        scan_repair =			true,
+        combat_maneuver_repair=	true,
+        tube_slow_down_repair = random(1,100)<30,
+        sensor_boost = {value = 5000, cost = 5},
+        reputation_cost_multipliers = {friend = 1.0, neutral = 2.0},
+        max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
+        goods = {	communication = {quantity = math.random(5,10),	cost = math.random(40,70)}	},
+        trade = {	food = false, medicine = tradeMedicine, luxury = false },
+        tradeChances = {	food = 0, medicine = tradeChanceMedicine, luxury = 0 },
+        public_relations = true,
+        general_information = "Communication traffic relay and coordination",
+    	idle_defense_fleet = {
+			DF1 = "MT52 Hornet",
+			DF2 = "MU52 Hornet",
+			DF3 = "WX-Lindworm",
+			DF4 = "Phobos T3",
+			DF5 = "Nirvana R5A",
+			DF6 = "Phobos T3",
+			DF7 = "WX-Lindworm",
+    	},
+	}
+	if random(1,100) <= 22 then stationRelay13:setRestocksScanProbes(false) end
+	if random(1,100) <= 11 then stationRelay13:setRepairDocked(false) end
+	if random(1,100) <= 3  then stationRelay13:setSharesEnergyWithDocked(false) end
+	station_names[stationRelay13:getCallSign()] = {stationRelay13:getSectorName(), stationRelay13}
+	table.insert(icarusStations,stationRelay13)
+
+	createdIcarusStations["Relay13"] = true
+	createIcarusStuff()
+end
+function toggleZoneSlurry()
+	local deleted = false
+	for idx, zone in ipairs(zone_list) do
+		if zone.name == "Slurry V G10" then
+			deleted = true
+			table.remove(zone_list, idx)
+			zone:destroy()
+			break
+		end
+	end
+	if not deleted then
+		squareZone(100342, 27871, "Slurry V G10"):setColor(51,153,255)
+	end
+	createIcarusStuff()
+end
+function createStationSlurry()
+    stationSlurry = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Slurry V"):setPosition(100342, 27871):setDescription("Mining Research"):setCommsScript(""):setCommsFunction(commsStation)
+
+    if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
+    if random(1,100) <= 40 then empAvail = true else empAvail = false end
+    if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
+    if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
+    if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
+    tradeChanceLuxury = 17
+
+    tradeChanceMedicine = 57
+
+    stationSlurry.comms_data = {
+    	friendlyness = 75,
+        weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
+        weapon_cost =		{Homing = math.random(1,5),	HVLI = math.random(1,2),Mine = math.random(2,5),Nuke = math.random(12,18),	EMP = math.random(11,17) },
+        weapon_available = 	{Homing = homeAvail,		HVLI = hvliAvail,		Mine = mineAvail,		Nuke = nukeAvail,			EMP = empAvail},
+        service_cost = 		{supplydrop = math.random(80,120), reinforcements = math.random(125,175)},
+        system_repair = {
+        	["reactor"] =		{cost = math.random(0,9),	max = random(.8, .99),	avail = random(1,100)<40},
+        	["beamweapons"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["missilesystem"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["maneuver"] =		{cost = math.random(0,9),	max = random(.9, .99),	avail = true},
+        	["impulse"] =		{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<80},
+        	["warp"] =			{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<70},
+        	["jumpdrive"] =		{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<60},
+        	["frontshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        	["rearshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        },
+        scan_repair =			true,
+        reputation_cost_multipliers = {friend = 1.0, neutral = 2.0},
+        max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
+        goods = {	tractor = 	{quantity = math.random(5,10),	cost = math.random(60,70)}	},
+        trade = {	food = false, medicine = tradeMedicine, luxury = tradeLuxury },
+        tradeChances = {	food = 0, medicine = tradeChanceMedicine, luxury = tradeChanceLuxury },
+        public_relations = true,
+        general_information = "Mining and research of nearby stellar phenomena",
+    	history = "Joint effort between miners and scientists to establish station to research and to provide resources to support research",
+    	idle_defense_fleet = {
+			DF1 = "MT52 Hornet",
+			DF2 = "MU52 Hornet",
+			DF3 = "WX-Lindworm",
+			DF4 = "Phobos T3",
+			DF5 = "Nirvana R5A",
+			DF6 = "Piranha F8",
+			DF7 = "Stalker R7",
+    	},
+	}
+	if random(1,100) <= 43 then stationSlurry:setRestocksScanProbes(false) end
+	if random(1,100) <= 34 then stationSlurry:setRepairDocked(false) end
+	if random(1,100) <= 26 then stationSlurry:setSharesEnergyWithDocked(false) end
+	station_names[stationSlurry:getCallSign()] = {stationSlurry:getSectorName(), stationSlurry}
+	table.insert(icarusStations,stationSlurry)
+
+	createdIcarusStations["Slurry"] = true
+	createIcarusStuff()
+end
+function toggleZoneSovinec()
+	local deleted = false
+	for idx, zone in ipairs(zone_list) do
+		if zone.name == "Sovinec Two K11" then
+			deleted = true
+			table.remove(zone_list, idx)
+			zone:destroy()
+			break
+		end
+	end
+	if not deleted then
+		squareZone(134167, 104690, "Sovinec Two K11"):setColor(51,153,255)
+	end
+	createIcarusStuff()
+end
+function createStationSovinec()
+	stationSovinec = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Sovinec Two"):setPosition(134167, 104690):setDescription("Beam component research and manufacturing"):setCommsScript(""):setCommsFunction(commsStation)
+
+    if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
+    if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
+    if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
+    if random(1,100) <= 40 then empAvail = true else empAvail = false end
+    tradeChanceMedicine = 37
+
+    tradeChanceLuxury = 37
+
+    stationSovinec.comms_data = {
+    	friendlyness = 62,
+        weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "friend",		Nuke = "friend", 			EMP = "friend"},
+        weapon_cost =		{Homing = math.random(2,6),	HVLI = math.random(1,4),Mine = math.random(2,7),Nuke = math.random(12,18),	EMP = math.random(9,13) },
+        weapon_available = 	{Homing = homeAvail,		HVLI = true,			Mine = mineAvail,		Nuke = nukeAvail,			EMP = empAvail},
+        service_cost = 		{
+        	supplydrop = math.random(80,120), 
+        	reinforcements = math.random(123,175),
+			shield_overcharge = math.random(1,5)*5,
+        },
+        system_repair = {
+        	["reactor"] =		{cost = math.random(0,9),	max = random(.8, .99),	avail = random(1,100)<40},
+        	["beamweapons"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["missilesystem"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["maneuver"] =		{cost = math.random(0,9),	max = random(.9, .99),	avail = random(1,100)<40},
+        	["impulse"] =		{cost = math.random(0,9),	max = random(.7, .99),	avail = true},
+        	["warp"] =			{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<70},
+        	["jumpdrive"] =		{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<60},
+        	["frontshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        	["rearshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        },
+        jump_overcharge =		true,
+        shield_overcharge =		true,
+        scan_repair =			true,
+        combat_maneuver_repair=	true,
+        self_destruct_repair =	true,
+        tube_slow_down_repair = random(1,100)<30,
+        remote_warp_jammer = {name = "Snag", cost = math.random(9,20), quantity = math.random(1,5), speed = 2500, warp_jam_range = 10000},
+        reputation_cost_multipliers = {friend = 1.0, neutral = 2.0},
+        max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
+        goods = {	beam =	 	{quantity = math.random(4,8),	cost = math.random(40,80)},
+        			tritanium =	{quantity = math.random(6,12),	cost = math.random(45,65)}	},
+        trade = {	food = false, medicine = tradeMedicine, luxury = tradeLuxury },
+        tradeChances = {	food = 0, medicine = tradeChanceMedicine, luxury = tradeChanceLuxury },
+        buy = {		filament = math.random(90,120),
+        			impulse = math.random(105,130)	},
+        public_relations = true,
+        general_information = "We manufacture beam components from the resources gathered from the nearby asteroids. We specialize in plasma based beam systems",
+    	history = "Our station recognizes Sovinec, an early computer simulation researcher in plasma based weaponry in the late 20th century on Earth",
+    	idle_defense_fleet = {
+			DF1 = "MT52 Hornet",
+			DF2 = "MU52 Hornet",
+			DF3 = "WX-Lindworm",
+			DF4 = "Phobos T3",
+			DF5 = "Nirvana R5A",
+			DF6 = "Piranha F8",
+			DF7 = "Stalker R7",
+			DF8 = "Atlantis X23",
+    	},
+	}
+	if random(1,100) <= 63 then stationSovinec:setRestocksScanProbes(false) end
+	if random(1,100) <= 34 then stationSovinec:setRepairDocked(false) end
+	if random(1,100) <= 11 then stationSovinec:setSharesEnergyWithDocked(false) end
+	station_names[stationSovinec:getCallSign()] = {stationSovinec:getSectorName(), stationSovinec}
+	table.insert(icarusStations,stationSovinec)	
+
+	createdIcarusStations["Sovinec"] = true
+	createIcarusStuff()
+end
+function toggleZoneSpeculator()
+	local deleted = false
+	for idx, zone in ipairs(zone_list) do
+		if zone.name == "Speculator 3 K7" then
+			deleted = true
+			table.remove(zone_list, idx)
+			zone:destroy()
+			break
+		end
+	end
+	if not deleted then
+		squareZone(55000,108000, "Speculator 3 K7"):setColor(0,255,0)
+	end
+	createIcarusStuff()
+end
+function createStationSpeculator()
+    stationSpeculator = SpaceStation():setTemplate("Small Station"):setFaction("Human Navy"):setCallSign("Speculator 3"):setPosition(55000,108000):setDescription("Mining and mobile nebula research"):setCommsScript(""):setCommsFunction(commsStation)
+    stationSpeculator:setShortRangeRadarRange(13000)
+
+    if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
+    if random(1,100) <= 40 then empAvail = true else empAvail = false end
+    if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
+    tradeChanceMedicine = 13
+
+    stationSpeculator.comms_data = {
+    	friendlyness = 82,
+        weapons = 			{Homing = "neutral",HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
+        weapon_cost =		{Homing = 2, 		HVLI = math.random(1,4),Mine = math.random(2,7),Nuke = math.random(10,18),	EMP = math.random(7,15) },
+        weapon_available = 	{Homing = true,		HVLI = true,			Mine = mineAvail,		Nuke = nukeAvail,			EMP = empAvail},
+        service_cost = 		{supplydrop = math.random(80,120), reinforcements = math.random(125,175)},
+        system_repair = {
+        	["reactor"] =		{cost = math.random(0,9),	max = random(.8, .99),	avail = random(1,100)<40},
+        	["beamweapons"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["missilesystem"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["maneuver"] =		{cost = math.random(0,9),	max = random(.9, .99),	avail = random(1,100)<40},
+        	["impulse"] =		{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<80},
+        	["warp"] =			{cost = math.random(0,9),	max = random(.6, .99),	avail = true},
+        	["jumpdrive"] =		{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<60},
+        	["frontshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        	["rearshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        },
+        hack_repair =			true,
+        scan_repair =			true,
+        tube_slow_down_repair = random(1,100)<30,
+        sensor_boost = {value = 10000, cost = 20},
+        remote_warp_jammer = {name = "Snag", cost = math.random(9,20), quantity = math.random(1,5), speed = 2500, warp_jam_range = 10000},
+        reputation_cost_multipliers = {friend = 1.0, neutral = 3.0},
+        max_weapon_refill_amount = {friend = 1.0, neutral = 1.0 },
+        goods = {	nickel = 	{quantity = math.random(1,10),	cost = math.random(60,70)},	
+        			dilithium =	{quantity = math.random(6,12),	cost = math.random(75,95)},
+        			tritanium =	{quantity = math.random(2,8),	cost = math.random(45,85)} },
+        trade = {	food = false, medicine = tradeMedicine, luxury = true },
+        tradeChances = {	food = 0, medicine = tradeChanceMedicine, luxury = 0 },
+        public_relations = true,
+        general_information = "Mining operations are the primary purpose, but there are scientists here conducting research on the mobile nebula in the area",
+    	history = "A consorium of mining interests and scientists banded together to create this station. It was considered a risk for both groups, but they undertook it anyway.",
+    	idle_defense_fleet = {
+			DF1 = "MT52 Hornet",
+			DF2 = "MU52 Hornet",
+			DF3 = "WX-Lindworm",
+			DF4 = "Phobos T3",
+			DF5 = "Nirvana R5A",
+			DF6 = "Piranha F8",
+			DF7 = "Stalker R7",
+    	},
+	}
+	if random(1,100) <= 13 then stationSpeculator:setRestocksScanProbes(false) end
+	if random(1,100) <= 24 then stationSpeculator:setRepairDocked(false) end
+	if random(1,100) <= 11 then stationSpeculator:setSharesEnergyWithDocked(false) end
+	station_names[stationSpeculator:getCallSign()] = {stationSpeculator:getSectorName(), stationSpeculator}
+	table.insert(icarusStations,stationSpeculator)
+
+	createdIcarusStations["Speculator"] = true
+	createIcarusStuff()
+end
+function toggleZoneStromboli()
+	local deleted = false
+	for idx, zone in ipairs(zone_list) do
+		if zone.name == "Stromboli 3 F10" then
+			deleted = true
+			table.remove(zone_list, idx)
+			zone:destroy()
+			break
+		end
+	end
+	if not deleted then
+		squareZone(109555, 12685, "Stromboli 3 F10"):setColor(51,153,255)
+	end
+	createIcarusStuff()
+end
+function createStationStromboli()
+    stationStromboli = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Stromboli 3"):setPosition(109555, 12685):setDescription("Vacation getaway for Stromboli family"):setCommsScript(""):setCommsFunction(commsStation)
+
+    if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
+    if random(1,100) <= 40 then empAvail = true else empAvail = false end
+    if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
+    if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
+    if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
+    tradeChanceMedicine = 23
+
+    stationStromboli.comms_data = {
+    	friendlyness = 35,
+        weapons = 			{Homing = "neutral",HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
+        weapon_cost =		{Homing = 3, 		HVLI = math.random(1,2),Mine = math.random(2,5),Nuke = math.random(12,18),	EMP = 10 },
+        weapon_available = 	{Homing = homeAvail,HVLI = hvliAvail,		Mine = mineAvail,		Nuke = nukeAvail,			EMP = empAvail},
+        service_cost = 		{
+        	supplydrop = math.random(80,120), 
+        	reinforcements = math.random(125,175),
+			shield_overcharge = math.random(1,5)*5,
+        },
+        system_repair = {
+        	["reactor"] =		{cost = math.random(0,9),	max = random(.8, .99),	avail = random(1,100)<40},
+        	["beamweapons"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["missilesystem"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["maneuver"] =		{cost = math.random(0,9),	max = random(.9, .99),	avail = random(1,100)<40},
+        	["impulse"] =		{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<80},
+        	["warp"] =			{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<70},
+        	["jumpdrive"] =		{cost = math.random(0,9),	max = random(.6, .99),	avail = true},
+        	["frontshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        	["rearshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        },
+        shield_overcharge =		true,
+        hack_repair =			true,
+        sensor_boost = {value = 5000, cost = 5},
+        reputation_cost_multipliers = {friend = 2.0, neutral = 4.0},
+        remote_warp_jammer = {name = "Swamp", cost = math.random(9,20), quantity = math.random(1,5), speed = 1500, warp_jam_range = 20000},
+        max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
+        goods = {	luxury = 	{quantity = math.random(5,10),	cost = math.random(60,70)}	},
+        trade = {	food = false, medicine = tradeMedicine, luxury = false },
+        tradeChances = {	food = 0, medicine = tradeChanceMedicine, luxury = 0 },
+        public_relations = true,
+        general_information = "A remote station location for the Stromboli family and gusts to get away from the pressures of modern life",
+    	history = "The Stromboli family picked this station up cheap from the Human Navy when this sector was practically empty. Now it serves as a nice place for the family to escape to when they are stressed out",
+    	idle_defense_fleet = {
+			DF1 = "MT52 Hornet",
+			DF2 = "MU52 Hornet",
+			DF3 = "MT52 Hornet",
+			DF4 = "MU52 Hornet",
+			DF5 = "WX-Lindworm",
+			DF6 = "Phobos T3",
+			DF7 = "Nirvana R5A",
+			DF8 = "Piranha F8",
+			DF9 = "Piranha F12",
+    	},
+	}
+	if random(1,100) <= 53 then stationStromboli:setRestocksScanProbes(false) end
+	if random(1,100) <= 17 then stationStromboli:setRepairDocked(false) end
+	if random(1,100) <= 11 then stationStromboli:setSharesEnergyWithDocked(false) end
+	station_names[stationStromboli:getCallSign()] = {stationStromboli:getSectorName(), stationStromboli}
+	table.insert(icarusStations,stationStromboli)
+
+	createdIcarusStations["Stromboli"] = true
+	createIcarusStuff()
+end
+function toggleZoneTransylvania()
+	local deleted = false
+	for idx, zone in ipairs(zone_list) do
+		if zone.name == "Transylvania K0" then
+			deleted = true
+			table.remove(zone_list, idx)
+			zone:destroy()
+			break
+		end
+	end
+	if not deleted then
+		squareZone(-95000, 111000, "Transylvania K0"):setColor(51,153,255)
+	end
+	createIcarusStuff()
+end
+function createStationTransylvania()
+    stationTransylvania = SpaceStation():setTemplate("Medium Station"):setFaction("Independent"):setCallSign("Transylvania"):setPosition(-95000, 111000):setDescription("Abandoned science station turned haven"):setCommsScript(""):setCommsFunction(commsStation)
+
+    if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
+    if random(1,100) <= 40 then empAvail = true else empAvail = false end
+    if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
+    if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
+    if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
+    tradeChanceFood = 23
+
+    stationTransylvania.comms_data = {
+    	friendlyness = 35,
+        weapons = 			{Homing = "neutral",HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
+        weapon_cost =		{Homing = 3, 		HVLI = math.random(1,2),Mine = math.random(2,5),Nuke = math.random(12,18),	EMP = 10 },
+        weapon_available = 	{Homing = homeAvail,HVLI = hvliAvail,		Mine = mineAvail,		Nuke = nukeAvail,			EMP = empAvail},
+        service_cost = 		{
+        	supplydrop = math.random(80,120), 
+        	reinforcements = math.random(125,175),
+			shield_overcharge = math.random(1,5)*5,
+        },
+        system_repair = {
+        	["reactor"] =		{cost = math.random(0,9),	max = random(.8, .99),	avail = random(1,100)<50},
+        	["beamweapons"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<40},
+        	["missilesystem"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<40},
+        	["maneuver"] =		{cost = math.random(0,9),	max = random(.9, .99),	avail = random(1,100)<50},
+        	["impulse"] =		{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<85},
+        	["warp"] =			{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<80},
+        	["jumpdrive"] =		{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<70},
+        	["frontshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = true},
+        	["rearshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<65},
+        },
+        shield_overcharge =		true,
+        hack_repair =			true,
+        probe_launch_repair =	true,
+        scan_repair =			true,
+        tube_slow_down_repair = random(1,100)<30,
+        sensor_boost = {value = 5000, cost = 5},
+        sensor_boost_probes = {name = "Scope", cost = math.random(57,75), quantity = math.random(1,3), speed = 1000, boost = 30, range = 50},
+        remote_warp_jammer = {name = "Swamp", cost = math.random(9,20), quantity = math.random(1,5), speed = 1500, warp_jam_range = 20000},
+        reputation_cost_multipliers = {friend = 2.0, neutral = 4.0},
+        max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
+        goods = {	luxury = 	{quantity = math.random(5,10),	cost = math.random(60,70)},
+        			medicine =	{quantity = math.random(5,10),	cost = math.random(5,10)}	},
+        trade = {	food = tradeFood, medicine = false, luxury = false },
+        tradeChances = {	food = tradeChanceFood, medicine = 0, luxury = 0 },
+        public_relations = true,
+        general_information = "Transylvania is a refuge from those who would prejudge our cultural practices",
+    	history = "Originally a science station, now it caters to a group of persecuted beings whose cultural practices offend a number of other species",
+    	idle_defense_fleet = {
+			DF1 = "MT52 Hornet",
+			DF2 = "MU52 Hornet",
+			DF3 = "MT52 Hornet",
+			DF4 = "MU52 Hornet",
+    	},
+	}
+	--local leechAZone = squareZone(-93000,109000, "Leech A K0")
+	--leechAZone:setColor(51,153,255)
+	--local leechABZone = squareZone(-97000,109000, "Leech AB K0")
+	--leechABZone:setColor(51,153,255)
+	--local leechBZone = squareZone(-93000,113000, "Leech B K0")
+	--leechBZone:setColor(51,153,255)
+	--local leechOZone = squareZone(-97000,113000, "Leech O K0")
+	--leechOZone:setColor(51,153,255)
+	leechA = leech("Independent")
+	leechA:setPosition(-93000,109000):setScannedByFaction("Human Navy",true):setCallSign("A"):setDescription("Leech satellite A")
+	leechAB = leech("Independent")
+	leechAB:setPosition(-97000,109000):setScannedByFaction("Human Navy",true):setCallSign("AB"):setDescription("Leech satellite AB")
+	leechB = leech("Independent")
+	leechB:setPosition(-93000,113000):setScannedByFaction("Human Navy",true):setCallSign("B"):setDescription("Leech satellite B")
+	leechO = leech("Independent")
+	leechO:setPosition(-97000,113000):setScannedByFaction("Human Navy",true):setCallSign("O"):setDescription("Leech satellite O")
+	table.insert(icarusStations,leechA)
+	table.insert(icarusStations,leechAB)
+	table.insert(icarusStations,leechB)
+	table.insert(icarusStations,leechO)
+	if random(1,100) <= 43 then stationTransylvania:setRestocksScanProbes(false) end
+	if random(1,100) <= 27 then stationTransylvania:setRepairDocked(false) end
+	if random(1,100) <= 21 then stationTransylvania:setSharesEnergyWithDocked(false) end
+	station_names[stationTransylvania:getCallSign()] = {stationTransylvania:getSectorName(), stationTransylvania}
+	table.insert(icarusStations,stationTransylvania)
+
+	createdIcarusStations["Transylvania"] = true
+	createIcarusStuff()
+end
+function toggleZoneWookie()
+	local deleted = false
+	for idx, zone in ipairs(zone_list) do
+		if zone.name == "Wookie-ock F4" then
+			deleted = true
+			table.remove(zone_list, idx)
+			zone:destroy()
+			break
+		end
+	end
+	if not deleted then
+		squareZone(-11280, 7425, "Wookie-ock F4"):setColor(51,153,255)
+	end
+	createIcarusStuff()
+end
+function createStationWookie()
+    stationWookie = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Wookie-ock"):setPosition(-11280, 7425):setDescription("Esoteric Xenolinguistic Research"):setCommsScript(""):setCommsFunction(commsStation)
+
+    if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
+    if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
+    if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
+    if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
+    tradeChanceMedicine = 39
+
+    stationWookie.comms_data = {
+    	friendlyness = 76,
+        weapons = 			{Homing = "neutral",		HVLI = "neutral", 		Mine = "neutral",		Nuke = "friend", 			EMP = "friend"},
+        weapon_cost =		{Homing = math.random(3,7),	HVLI = math.random(2,5),Mine = math.random(3,7),Nuke = math.random(12,18),	EMP = math.random(9,13) },
+        weapon_available = 	{Homing = true,				HVLI = hvliAvail,		Mine = mineAvail,		Nuke = nukeAvail,			EMP = true},
+        service_cost = 		{supplydrop = math.random(80,120), reinforcements = math.random(123,175)},
+        system_repair = {
+        	["reactor"] =		{cost = math.random(0,9),	max = random(.8, .99),	avail = random(1,100)<40},
+        	["beamweapons"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["missilesystem"] =	{cost = math.random(0,9),	max = random(.5, .99),	avail = random(1,100)<30},
+        	["maneuver"] =		{cost = math.random(0,9),	max = random(.9, .99),	avail = random(1,100)<40},
+        	["impulse"] =		{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<80},
+        	["warp"] =			{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<70},
+        	["jumpdrive"] =		{cost = math.random(0,9),	max = random(.6, .99),	avail = random(1,100)<60},
+        	["frontshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = random(1,100)<45},
+        	["rearshield"] =	{cost = math.random(0,9),	max = random(.7, .99),	avail = true},
+        },
+        scan_repair =			true,
+        tube_slow_down_repair = random(1,100)<30,
+        reputation_cost_multipliers = {friend = 1.0, neutral = 2.0},
+        max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
+        goods = {	software = 	{quantity = math.random(4,8),	cost = math.random(80,90)}	},
+        trade = {	food = false, medicine = tradeMedicine, luxury = false },
+        tradeChances = {	food = 0, medicine = tradeChanceMedicine, luxury = 0 },
+        public_relations = true,
+        general_information = "Researchers here study the Wookie language as well as several other languages of intelligent species. -Oka is a Wookie language suffix meaning 4",
+    	history = "The first language studied when the station was founded was Wookie. Wookie language and culture is still a major focus of study",
+    	idle_defense_fleet = {
+			DF1 = "MT52 Hornet",
+			DF2 = "MU52 Hornet",
+			DF3 = "MT52 Hornet",
+			DF4 = "MU52 Hornet",
+			DF5 = "WX-Lindworm",
+    	},
+	}
+	if random(1,100) <= 83 then stationWookie:setRestocksScanProbes(false) end
+	if random(1,100) <= 47 then stationWookie:setRepairDocked(false) end
+	if random(1,100) <= 28 then stationWookie:setSharesEnergyWithDocked(false) end
+	station_names[stationWookie:getCallSign()] = {stationWookie:getSectorName(), stationWookie}
+	table.insert(icarusStations,stationWookie)
+
+	createdIcarusStations["Wookie"] = true
+	createIcarusStuff()
+end
+function createIcarusStuff()
+	if createdIcarusStations == nil then
+		createdIcarusStations = {}
+	end
+	clearGMFunctions()
+	addGMFunction("-Main from Pithlit", initialGMFunctions)
+	addGMFunction("-Custom", customButtons)
+	addGMFunction("-One-Offs", oneOffs)
+	addGMFunction("-Pithlit", pithlitOneOff)
+	addGMFunction("Zone Aquarius (F4.9)", toggleZoneAquarius)
+	if createdIcarusStations["Aquarius"] == nil then
+		addGMFunction("Stn. Aquarius (F4.9)", createStationAquarius)
+	end
+	addGMFunction("Zone Borlan (G8)", toggleZoneBorlan)
+	if createdIcarusStations["Borlan"] == nil then
+		addGMFunction("Stn. Borlan (G8)", createStationBorlan)
+	end
+	addGMFunction("Zone Cindy (E9)", toggleZoneCindy)
+	if createdIcarusStations["Cindy"] == nil then
+		addGMFunction("Stn. Cindy (E9)", createStationCindy)
+	end
+	addGMFunction("Zone Elysium (F4.3)", toggleZoneElysium)
+	if createdIcarusStations["Elysium"] == nil then
+		addGMFunction("Stn. Elysium (F4.3)", createStationElysium)
+	end
+	addGMFunction("Zone Finnegan (J10)", toggleZoneFinnegan)
+	if createdIcarusStations["Finnegan"] == nil then
+		addGMFunction("Stn. Finnegan (J10)", createStationFinnegan)
+	end
+	addGMFunction("Zone Gagarin (I2)", toggleZoneGagarin)
+	if createdIcarusStations["Gagarin"] == nil then
+		addGMFunction("Stn. Gagarin (I2)", createStationGagarin)
+	end
+	addGMFunction("Zone Macassa (E5)", toggleZoneMacassa)
+	if createdIcarusStations["Macassa"] == nil then
+		addGMFunction("Stn. Macassa (E5)", createStationMacassa)
+	end
+	addGMFunction("Zone Maximilian (E4)", toggleZoneMaximilian)
+	if createdIcarusStations["Maximilian"] == nil then
+		addGMFunction("Stn. Maximilian (E4)", createStationMaximilian)
+	end
+	addGMFunction("Zone Mermaid (E6)", toggleZoneMermaid)
+	if createdIcarusStations["Mermaid"] == nil then
+		addGMFunction("Stn. Mermaid (E6)", createStationMermaid)
+	end
+	addGMFunction("Zone MosEspa (A10)", toggleZoneMosEspa)
+	if createdIcarusStations["MosEspa"] == nil then
+		addGMFunction("Stn. MosEspa (A10)", createStationMosEspa)
+	end
+	addGMFunction("Zone Nerva (E4)", toggleZoneNerva)
+	if createdIcarusStations["Nerva"] == nil then
+		addGMFunction("Stn. Nerva (E4)", createStationNerva)
+	end
+	addGMFunction("Zone Pistil (G6)", toggleZonePistil)
+	if createdIcarusStations["Pistil"] == nil then
+		addGMFunction("Stn. Pistil (G6)", createStationPistil)
+	end
+	addGMFunction("Zone Relay13 (G8)", toggleZoneRelay13)
+	if createdIcarusStations["Relay13"] == nil then
+		addGMFunction("Stn. Relay13 (G8)", createStationRelay13)
+	end
+	addGMFunction("Zone Slurry (G10)", toggleZoneSlurry)
+	if createdIcarusStations["Slurry"] == nil then
+		addGMFunction("Stn. Slurry (G10)", createStationSlurry)
+	end
+	addGMFunction("Zone Sovinec (K11)", toggleZoneSovinec)
+	if createdIcarusStations["Sovinec"] == nil then
+		addGMFunction("Stn. Sovinec (K11)", createStationSovinec)
+	end
+	addGMFunction("Zone Speculator (K7)", toggleZoneSpeculator)
+	if createdIcarusStations["Speculator"] == nil then
+		addGMFunction("Stn. Speculator (K7)", createStationSpeculator)
+	end
+	addGMFunction("Zone Stromboli (F10)", toggleZoneStromboli)
+	if createdIcarusStations["Stromboli"] == nil then
+		addGMFunction("Stn. Stromboli (F10)", createStationStromboli)
+	end
+	addGMFunction("Zone Transylvania (K0)", toggleZoneTransylvania)
+	if createdIcarusStations["Transylvania"] == nil then
+		addGMFunction("Stn. Transylvania (K0)", createStationTransylvania)
+	end
+	addGMFunction("Zone Wookie (F4)", toggleZoneWookie)
+	if createdIcarusStations["Wookie"] == nil then
+		addGMFunction("Stn. Wookie (F4)", createStationWookie)
+	end
+end
 ----------------------------------
 --	Custom > One-Offs > Kosai  --
 ----------------------------------
