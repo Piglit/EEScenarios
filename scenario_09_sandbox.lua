@@ -6220,35 +6220,35 @@ function createIcarusColor()
 	if stationIcarus ~= nil then
 		table.insert(regionStations,stationIcarus)
 	end
-	local icx, icy = stationIcarus:getPosition()
-	local startAngle = 23
-	for i=1,6 do
-		local dpx, dpy = vectorFromAngle(startAngle,8000)
-		if i == 6 then
-			dp6Zone = squareZone(icx+dpx,icy+dpy,"idp6")
-			dp6Zone:setColor(0,128,0):setLabel("6")
-		elseif i == 1 then
-			dp1Zone = squareZone(icx+dpx,icy+dpy,"idp1")
-			dp1Zone:setColor(0,128,0):setLabel("1")
-		elseif i == 2 then
-			dp2Zone = squareZone(icx+dpx,icy+dpy,"idp2")
-			dp2Zone:setColor(0,128,0):setLabel("2")
-		elseif i == 3 then
-			dp3Zone = squareZone(icx+dpx,icy+dpy,"idp3")
-			dp3Zone:setColor(0,128,0):setLabel("3")
-		else		
-			local dp = CpuShip():setTemplate("Defense platform"):setFaction("Human Navy"):setPosition(icx+dpx,icy+dpy):setScannedByFaction("Human Navy",true):setCallSign(string.format("IDP%i",i)):setDescription(string.format("Icarus defense platform %i",i)):orderRoaming()
-			station_names[dp:getCallSign()] = {dp:getSectorName(), dp}
-			dp:setLongRangeRadarRange(20000):setCommsScript(""):setCommsFunction(commsStation)
-			table.insert(icarusDefensePlatforms,dp)
-		end
-		for j=1,5 do
-			dpx, dpy = vectorFromAngle(startAngle+17+j*4,8000)
-			local dm = Mine():setPosition(icx+dpx,icy+dpy)
-			table.insert(icarusMines,dm)
-		end
-		startAngle = startAngle + 60
-	end
+--	local icx, icy = stationIcarus:getPosition()
+--	local startAngle = 23
+--	for i=1,6 do
+--		local dpx, dpy = vectorFromAngle(startAngle,8000)
+--		if i == 6 then
+--			dp6Zone = squareZone(icx+dpx,icy+dpy,"idp6")
+--			dp6Zone:setColor(0,128,0):setLabel("6")
+--		elseif i == 1 then
+--			dp1Zone = squareZone(icx+dpx,icy+dpy,"idp1")
+--			dp1Zone:setColor(0,128,0):setLabel("1")
+--		elseif i == 2 then
+--			dp2Zone = squareZone(icx+dpx,icy+dpy,"idp2")
+--			dp2Zone:setColor(0,128,0):setLabel("2")
+--		elseif i == 3 then
+--			dp3Zone = squareZone(icx+dpx,icy+dpy,"idp3")
+--			dp3Zone:setColor(0,128,0):setLabel("3")
+--		else		
+--			local dp = CpuShip():setTemplate("Defense platform"):setFaction("Human Navy"):setPosition(icx+dpx,icy+dpy):setScannedByFaction("Human Navy",true):setCallSign(string.format("IDP%i",i)):setDescription(string.format("Icarus defense platform %i",i)):orderRoaming()
+--			station_names[dp:getCallSign()] = {dp:getSectorName(), dp}
+--			dp:setLongRangeRadarRange(20000):setCommsScript(""):setCommsFunction(commsStation)
+--			table.insert(icarusDefensePlatforms,dp)
+--		end
+--		for j=1,5 do
+--			dpx, dpy = vectorFromAngle(startAngle+17+j*4,8000)
+--			local dm = Mine():setPosition(icx+dpx,icy+dpy)
+--			table.insert(icarusMines,dm)
+--		end
+--		startAngle = startAngle + 60
+--	end
 	--planetBespin = Planet():setPosition(40000,5000):setPlanetRadius(3000):setDistanceFromMovementPlane(-2000):setCallSign("Donflist")
 	--planetBespin:setPlanetSurfaceTexture("planets/gas-1.png"):setAxialRotationTime(300):setDescription("Mining and Gambling")
 end
@@ -39602,6 +39602,120 @@ function pithlitOneOff()
 	addGMFunction("-Custom",customButtons)
 	addGMFunction("-One-Offs",oneOffs)
 	addGMFunction("+Create Icarus Stuff",createIcarusStuff)
+	addGMFunction("+Icarus Defense",createIcarusDefense)
+	addGMFunction("+Create Ktlitans",createKtlitans)
+end
+----------------------------------
+--	Custom > One-Offs > Pithlit > Icarus Defense
+----------------------------------
+-- Button Text		   FD*	Related Function(s)
+-- -MAIN FROM KOSAI	F	initialGMFunctions
+-- -CUSTOM				F	customButtons
+-- -ONE-OFFS			F	oneOffs
+-- -PITHLIT			F	pithlitOneOff
+function createIcarusDefense()
+	clearGMFunctions()
+	addGMFunction("-Main From Enemies",initialGMFunctions)
+	addGMFunction("-Custom",customButtons)
+	addGMFunction("-One-Offs",oneOffs)
+	addGMFunction("-Pithlit",pithlitOneOff)
+
+--	local icx, icy = stationIcarus:getPosition()
+--	local startAngle = 23
+--	for i=1,6 do
+--		local dpx, dpy = vectorFromAngle(startAngle,8000)
+--		if i == 6 then
+--			dp6Zone = squareZone(icx+dpx,icy+dpy,"idp6")
+--			dp6Zone:setColor(0,128,0):setLabel("6")
+--		elseif i == 1 then
+--			dp1Zone = squareZone(icx+dpx,icy+dpy,"idp1")
+--			dp1Zone:setColor(0,128,0):setLabel("1")
+--		elseif i == 2 then
+--			dp2Zone = squareZone(icx+dpx,icy+dpy,"idp2")
+--			dp2Zone:setColor(0,128,0):setLabel("2")
+--		elseif i == 3 then
+--			dp3Zone = squareZone(icx+dpx,icy+dpy,"idp3")
+--			dp3Zone:setColor(0,128,0):setLabel("3")
+--		else		
+--			local dp = CpuShip():setTemplate("Defense platform"):setFaction("Human Navy"):setPosition(icx+dpx,icy+dpy):setScannedByFaction("Human Navy",true):setCallSign(string.format("IDP%i",i)):setDescription(string.format("Icarus defense platform %i",i)):orderRoaming()
+--			station_names[dp:getCallSign()] = {dp:getSectorName(), dp}
+--			dp:setLongRangeRadarRange(20000):setCommsScript(""):setCommsFunction(commsStation)
+--			table.insert(icarusDefensePlatforms,dp)
+--		end
+--		for j=1,5 do
+--			dpx, dpy = vectorFromAngle(startAngle+17+j*4,8000)
+--			local dm = Mine():setPosition(icx+dpx,icy+dpy)
+--			table.insert(icarusMines,dm)
+--		end
+--		startAngle = startAngle + 60
+--	end
+end
+----------------------------------
+--	Custom > One-Offs > Pithlit > Create Ktlitans
+----------------------------------
+-- Button Text		   FD*	Related Function(s)
+-- -MAIN FROM KOSAI	F	initialGMFunctions
+-- -CUSTOM				F	customButtons
+-- -ONE-OFFS			F	oneOffs
+-- -PITHLIT			F	pithlitOneOff
+function createKtlitans()
+	clearGMFunctions()
+	addGMFunction("-Main From Enemies",initialGMFunctions)
+	addGMFunction("-Custom",customButtons)
+	addGMFunction("-One-Offs",oneOffs)
+	addGMFunction("-Pithlit",pithlitOneOff)
+	if pkinitialisedDrones == nil then
+		addGMFunction("init Drones",PKinitDrones)
+	end
+	if pkinitialisedWorkers == nil then
+		addGMFunction("init Aster. Workers",PKinitWorkers)
+	end
+end
+function PKinitDrones()
+	individual_ship = "Ktlitan Drone"
+	local pos = {
+		{-16565, -16446},
+		{100342, 27871},
+		{109555, 12685},
+		{113941, -85822},
+		{114460, 95868},
+		{24834, 20416},
+		{28889, -4417},
+		{55000,108000},
+		{68808, 39300},
+		{77918, 23876},
+		{81075, -1304},
+	}
+	for _,p in ipairs(pos) do
+		local x = p[1]
+		local y = p[2]
+		local ship = ship_template[individual_ship].create("Ktlitans",individual_ship)
+		ship:setCallSign(generateCallSign(nil, "Ktlitans"))
+		ship:setPosition(x,y)
+		ship:orderDefendLocation(x,y)
+	end
+	pkinitialisedDrones = true
+	createKtlitans()
+end
+function PKinitWorkers()
+	individual_ship = "Ktlitan Worker"
+	local pos = {
+		{-11280, 7425},
+		{-60000, 62193},
+		{-95000, 111000},
+		{134167, 104690},
+		{16335, -18034},
+	}
+	for _,p in ipairs(pos) do
+		local x = p[1]
+		local y = p[2]
+		local ship = ship_template[individual_ship].create("Ktlitans",individual_ship)
+		ship:setCallSign(generateCallSign(nil, "Ktlitans"))
+		ship:setPosition(x,y)
+		ship:orderStandGround()
+	end
+	pkinitialisedWorkers = true
+	createKtlitans()
 end
 function toggleZoneAquarius()
 	local deleted = false
@@ -39693,7 +39807,7 @@ function toggleZoneBorlan()
 		end
 	end
 	if not deleted then
-		squareZone(68808, 39300, "Borlan 2 G8"):setColor(51,153,255)
+		squareZone(68808, 39300, "Borlan 2 G8"):setColor(51,153,255):setLabel("B")
 	end
 	createIcarusStuff()
 end
@@ -39783,7 +39897,7 @@ function toggleZoneCindy()
 		end
 	end
 	if not deleted then
-		squareZone(81075, -1304, "Cindy's Folly 4 E9"):setColor(51,153,255)
+		squareZone(81075, -1304, "Cindy's Folly 4 E9"):setColor(51,153,255):setLabel("C")
 	end
 	createIcarusStuff()
 end
@@ -39852,7 +39966,7 @@ function toggleZoneElysium()
 		end
 	end
 	if not deleted then
-		squareZone(-7504, 1384, "Elysium 5 F4.3"):setColor(51,153,255)
+		squareZone(-7504, 1384, "Elysium 5 F4.3"):setColor(51,153,255):setLabel("E")
 	end
 	createIcarusStuff()
 end
@@ -39923,7 +40037,7 @@ function toggleZoneFinnegan()
 		end
 	end
 	if not deleted then
-		squareZone(114460, 95868, "Finnegan 2 J10"):setColor(51,153,255)
+		squareZone(114460, 95868, "Finnegan 2 J10"):setColor(51,153,255):setLabel("F")
 	end
 	createIcarusStuff()
 end
@@ -40002,12 +40116,12 @@ function toggleZoneGagarin()
 		end
 	end
 	if not deleted then
-		squareZone(-60000, 62193, "Gagarin I2"):setColor(0,128,0)
+		squareZone(-60000, 62193, "Gagarin I2"):setColor(51,153,255):setLabel("G")
 	end
 	createIcarusStuff()
 end
 function createStationGagarin()
-	stationGagarin = SpaceStation():setTemplate("Small Station"):setFaction("Human Navy"):setCallSign("Gagarin"):setPosition(-60000, 62193):setDescription("Mining and exploring"):setCommsScript(""):setCommsFunction(commsStation)
+	stationGagarin = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Gagarin"):setPosition(-60000, 62193):setDescription("Mining and exploring"):setCommsScript(""):setCommsFunction(commsStation)
     stationGagarin:setShortRangeRadarRange(9000)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
@@ -40073,12 +40187,12 @@ function toggleZoneMacassa()
 		end
 	end
 	if not deleted then
-		squareZone(16335, -18034, "Macassa 11 E5"):setColor(0,128,0):setLabel("10")
+		squareZone(16335, -18034, "Macassa 11 E5"):setColor(51,153,255):setLabel("M")
 	end
 	createIcarusStuff()
 end
 function createStationMacassa()
-    stationMacassa = SpaceStation():setTemplate("Small Station"):setFaction("Human Navy"):setPosition(16335, -18034):setCallSign("Macassa 11"):setDescription("Mining"):setCommsScript(""):setCommsFunction(commsStation)
+    stationMacassa = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setPosition(16335, -18034):setCallSign("Macassa 11"):setDescription("Mining"):setCommsScript(""):setCommsFunction(commsStation)
     stationMacassa:setShortRangeRadarRange(8000)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
@@ -40139,7 +40253,7 @@ function toggleZoneMaximilian()
 		end
 	end
 	if not deleted then
-		squareZone(-16565, -16446, "Maximilian Mark 6 E4"):setColor(51,153,255)
+		squareZone(-16565, -16446, "Maximilian Mark 6 E4"):setColor(51,153,255):setLabel("M")
 	end
 	createIcarusStuff()
 end
@@ -40210,7 +40324,7 @@ function toggleZoneMermaid()
 		end
 	end
 	if not deleted then
-		squareZone(28889, -4417, "Mermaid 7 E6"):setColor(51,153,255):setLabel("7")
+		squareZone(28889, -4417, "Mermaid 7 E6"):setColor(51,153,255):setLabel("7"):setLabel("M")
 	end
 	createIcarusStuff()
 end
@@ -40282,7 +40396,7 @@ function toggleZoneMosEspa()
 		end
 	end
 	if not deleted then
-		squareZone(113941, -85822, "Mos Espa A10"):setColor(51,153,255)
+		squareZone(113941, -85822, "Mos Espa A10"):setColor(51,153,255):setLabel("M")
 	end
 	createIcarusStuff()
 end
@@ -40362,7 +40476,7 @@ function toggleZoneNerva()
 		end
 	end
 	if not deleted then
-		squareZone(-9203, -2077, "Nerva 9 E4"):setColor(51,153,255)
+		squareZone(-9203, -2077, "Nerva 9 E4"):setColor(51,153,255):setLabel("N")
 	end
 	createIcarusStuff()
 end
@@ -40434,12 +40548,12 @@ function toggleZonePistil()
 		end
 	end
 	if not deleted then
-		squareZone(24834, 20416, "Pistil 8 G6"):setColor(0,128,0):setLabel("P")
+		squareZone(24834, 20416, "Pistil 8 G6"):setColor(51,153,255):setLabel("P")
 	end
 	createIcarusStuff()
 end
 function createStationPistil()
-    stationPistil = SpaceStation():setTemplate("Small Station"):setFaction("Human Navy"):setPosition(24834, 20416):setCallSign("Pistil 8"):setDescription("Fleur nebula research"):setCommsScript(""):setCommsFunction(commsStation)
+    stationPistil = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setPosition(24834, 20416):setCallSign("Pistil 8"):setDescription("Fleur nebula research"):setCommsScript(""):setCommsFunction(commsStation)
     stationPistil:setShortRangeRadarRange(10000)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
@@ -40509,12 +40623,12 @@ function toggleZoneRelay13()
 		end
 	end
 	if not deleted then
-		squareZone(77918, 23876, "Relay-13 F G8"):setColor(0,255,0)
+		squareZone(77918, 23876, "Relay-13 F G8"):setColor(51,153,255):setLabel("R")
 	end
 	createIcarusStuff()
 end
 function createStationRelay13()
-    stationRelay13 = SpaceStation():setTemplate("Small Station"):setFaction("Human Navy"):setCallSign("Relay-13 F"):setPosition(77918, 23876):setDescription("Communications Relay"):setCommsScript(""):setCommsFunction(commsStation)
+    stationRelay13 = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Relay-13 F"):setPosition(77918, 23876):setDescription("Communications Relay"):setCommsScript(""):setCommsFunction(commsStation)
     stationRelay13:setShortRangeRadarRange(12000)
 
     tradeChanceMedicine = 69
@@ -40583,7 +40697,7 @@ function toggleZoneSlurry()
 		end
 	end
 	if not deleted then
-		squareZone(100342, 27871, "Slurry V G10"):setColor(51,153,255)
+		squareZone(100342, 27871, "Slurry V G10"):setColor(51,153,255):setLabel("S")
 	end
 	createIcarusStuff()
 end
@@ -40655,7 +40769,7 @@ function toggleZoneSovinec()
 		end
 	end
 	if not deleted then
-		squareZone(134167, 104690, "Sovinec Two K11"):setColor(51,153,255)
+		squareZone(134167, 104690, "Sovinec Two K11"):setColor(51,153,255):setLabel("S")
 	end
 	createIcarusStuff()
 end
@@ -40740,12 +40854,12 @@ function toggleZoneSpeculator()
 		end
 	end
 	if not deleted then
-		squareZone(55000,108000, "Speculator 3 K7"):setColor(0,255,0)
+		squareZone(55000,108000, "Speculator 3 K7"):setColor(51,153,255):setLabel("S")
 	end
 	createIcarusStuff()
 end
 function createStationSpeculator()
-    stationSpeculator = SpaceStation():setTemplate("Small Station"):setFaction("Human Navy"):setCallSign("Speculator 3"):setPosition(55000,108000):setDescription("Mining and mobile nebula research"):setCommsScript(""):setCommsFunction(commsStation)
+    stationSpeculator = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Speculator 3"):setPosition(55000,108000):setDescription("Mining and mobile nebula research"):setCommsScript(""):setCommsFunction(commsStation)
     stationSpeculator:setShortRangeRadarRange(13000)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
@@ -40815,7 +40929,7 @@ function toggleZoneStromboli()
 		end
 	end
 	if not deleted then
-		squareZone(109555, 12685, "Stromboli 3 F10"):setColor(51,153,255)
+		squareZone(109555, 12685, "Stromboli 3 F10"):setColor(51,153,255):setLabel("S")
 	end
 	createIcarusStuff()
 end
@@ -40894,7 +41008,7 @@ function toggleZoneTransylvania()
 		end
 	end
 	if not deleted then
-		squareZone(-95000, 111000, "Transylvania K0"):setColor(51,153,255)
+		squareZone(-95000, 111000, "Transylvania K0"):setColor(51,153,255):setLabel("T")
 	end
 	createIcarusStuff()
 end
@@ -40993,7 +41107,7 @@ function toggleZoneWookie()
 		end
 	end
 	if not deleted then
-		squareZone(-11280, 7425, "Wookie-ock F4"):setColor(51,153,255)
+		squareZone(-11280, 7425, "Wookie-ock F4"):setColor(51,153,255):setLabel("W")
 	end
 	createIcarusStuff()
 end
@@ -41055,7 +41169,7 @@ function createIcarusStuff()
 		createdIcarusStations = {}
 	end
 	clearGMFunctions()
-	addGMFunction("-Main from Pithlit", initialGMFunctions)
+	addGMFunction("-Main from Icarus", initialGMFunctions)
 	addGMFunction("-Custom", customButtons)
 	addGMFunction("-One-Offs", oneOffs)
 	addGMFunction("-Pithlit", pithlitOneOff)
