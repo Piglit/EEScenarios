@@ -198,6 +198,8 @@ function setConstants()
 	update_system=updateSystem:create()
 	playerFleet=fleetCustom:create()
 	update_edit_object=nil
+	is_slowed_down = nil
+	lastScanningComplexity = "normal"
 	universe:addAvailableRegion("Icarus (F5)",icarusSector,0,0)
 	universe:addAvailableRegion("Riptide Binary (G67)", riptideBinarySector,-780000, 20000)
 	universe:addAvailableRegion("Kentar (R17)",kentarSector,250000,250000)
@@ -39598,6 +39600,9 @@ end
 -- -ONE-OFFS			F	oneOffs
 function pithlitOneOff()
 	clearGMFunctions()
+	if zone_list == nil then
+		zone_list = {}
+	end
 	addGMFunction("-Main From Pithlit",initialGMFunctions)
 	addGMFunction("-Custom",customButtons)
 	addGMFunction("-One-Offs",oneOffs)
@@ -47094,9 +47099,15 @@ function updateInner(delta)
 	end
 	if updateDiagnostic then print("update: universe update") end
 	update_system:update(delta)
+	local all_docked = true
 	local players = getActivePlayerShips()
-	for pidx, p in ipairs(players) do
+    for pidx, p in ipairs(players) do
 		if p ~= nil and p:isValid() then
+			if stationIcarus ~= nil and stationIcarus:isValid() then
+				if not p:isDocked(stationIcarus) then
+					all_docked = false
+				end
+			end
 			if updateDiagnostic then print("update: valid player: adjust spawn point") end
 			-- if the template has been update pull data from the soft template
 			-- even if templates arent changed this can happen during inital creation
@@ -47185,6 +47196,20 @@ function updateInner(delta)
 			updatePlayerSystemHealthRepair(delta,p)
 			if updateDiagnostic then print("update: end of player loop") end
 		end	--player loop
+	end
+	if all_docked then
+		if not is_slowed_down then
+			slowGame()
+			lastScanningComplexity = getScanningComplexity()
+			setScanningComplexity("none")
+			is_slowed_down = true
+		end
+	else
+		if is_slowed_down then
+			unslowGame()
+			setScanningComplexity(lastScanningComplexity)
+			is_slowed_down = false
+		end
 	end
 	if updateDiagnostic then print("update: outside player loop") end
 	if planet_colburn ~= nil and planet_colburn:isValid() then
