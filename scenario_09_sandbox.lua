@@ -40016,10 +40016,9 @@ function createStationElysium()
     	history = "Named after a fictional station from early 21st century literature as a reminder of what can happen if people don't pay attention to what goes on in all levels of the society in which they live",
     	idle_defense_fleet = {
 			DF1 = "MT52 Hornet",
-			DF2 = "Ktlitan Drone",
-			DF3 = "MU52 Hornet",
-			DF4 = "Adder MK5",
-			DF5 = "Adder MK6",
+			DF2 = "MU52 Hornet",
+			DF3 = "Adder MK5",
+			DF4 = "Adder MK6",
     	},
 	}
 	if random(1,100) <= 86 then stationElysium:setRestocksScanProbes(false) end
@@ -40091,14 +40090,13 @@ function createStationFinnegan()
     	history = "The Finnegan family set up this station here to take advantage of the readily available resources",
     	idle_defense_fleet = {
 			DF1 = "MT52 Hornet",
-			DF2 = "Ktlitan Drone",
-			DF3 = "MU52 Hornet",
-			DF4 = "Adder MK5",
-			DF5 = "Adder MK6",
-			DF6 = "Phobos T3",
-			DF7 = "Stalker Q7",
-			DF8 = "Nirvana R5A",
-			DF9 = "WX-Lindworm",
+			DF2 = "MU52 Hornet",
+			DF3 = "Adder MK5",
+			DF4 = "Adder MK6",
+			DF5 = "Phobos T3",
+			DF6 = "Stalker Q7",
+			DF7 = "Nirvana R5A",
+			DF8 = "WX-Lindworm",
     	},
 	}
 	if random(1,100) <= 63 then stationFinnegan:setRestocksScanProbes(false) end
@@ -40235,7 +40233,7 @@ function createStationMacassa()
         trade = {	food = tradeFood, medicine = false, luxury = tradeLuxury },
         tradeChances = {	food = tradeChanceFood, medicine = 0, luxury = tradeChanceLuxury },
         public_relations = true,
-        general_information = "Station location facilitates mining the nearby asteroids. This is the 8th time the staion has been rebuilt",
+        general_information = "Station location facilitates mining the nearby asteroids.",
     	history = "The station was named in the hopes that the asteroids will be as productive as the Macassa mine was on Earth in the mid to late 1900s"
 	}
 	if random(1,100) <= 16 then stationMacassa:setRestocksScanProbes(false) end
@@ -40373,12 +40371,11 @@ function createStationMermaid()
     	history = "In the tradition of taverns at crossroads on olde Earth in Kingston where the Millstone river and the Assunpink trail crossed and The Sign of the Mermaid tavern was built in the 1600s, the builders of this station speculated that this would be a good spot for space travelers to stop\n\nFree drinks for the crew of the freighter Gamma Hydra",
     	idle_defense_fleet = {
 			DF1 = "MT52 Hornet",
-			DF2 = "Ktlitan Drone",
-			DF3 = "MU52 Hornet",
-			DF4 = "Adder MK5",
-			DF5 = "Adder MK6",
-			DF6 = "Nirvana R5A",
-			DF7 = "WX-Lindworm",
+			DF2 = "MU52 Hornet",
+			DF3 = "Adder MK5",
+			DF4 = "Adder MK6",
+			DF5 = "Nirvana R5A",
+			DF6 = "WX-Lindworm",
     	},
 	}
 	if random(1,100) <= 36 then stationMermaid:setRestocksScanProbes(false) end
@@ -40453,12 +40450,11 @@ function createStationMosEspa()
     	history = "You will never find a more wretched hive of scum and villainy... except in Mos Eisley space port. Mos Espa is a much better place",
     	idle_defense_fleet = {
 			DF1 = "MT52 Hornet",
-			DF2 = "Ktlitan Drone",
-			DF3 = "MU52 Hornet",
-			DF4 = "Adder MK5",
-			DF5 = "Adder MK6",
-			DF6 = "Nirvana R5A",
-			DF7 = "WX-Lindworm",
+			DF2 = "MU52 Hornet",
+			DF3 = "Adder MK5",
+			DF4 = "Adder MK6",
+			DF5 = "Nirvana R5A",
+			DF6 = "WX-Lindworm",
     	},
 	}
 	if random(1,100) <= 28 then stationMosEspa:setRestocksScanProbes(false) end
@@ -40521,16 +40517,14 @@ function createStationNerva()
         tradeChances = {	food = 0, medicine = tradeChanceMedicine, luxury = tradeChanceLuxury },
         public_relations = true,
         general_information = "Observatory of stellar phenomena and space ship traffic",
-    	history = "A combination of science and military staff share the various delicate instruments on this station. Originally designed to watch for incoming Kraylor and Exuari ships, other stations now share the early warning military purpose and these sensors double as research resources",
+    	history = "A combination of science and military staff share the various delicate instruments on this station.",
     	idle_defense_fleet = {
 			DF1 = "MT52 Hornet",
-			DF2 = "Ktlitan Drone",
-			DF3 = "MU52 Hornet",
-			DF4 = "WX-Lindworm",
-			DF5 = "MT52 Hornet",
-			DF6 = "Ktlitan Drone",
-			DF7 = "MU52 Hornet",
-			DF8 = "WX-Lindworm",
+			DF2 = "MU52 Hornet",
+			DF3 = "WX-Lindworm",
+			DF4 = "MT52 Hornet",
+			DF5 = "MU52 Hornet",
+			DF6 = "WX-Lindworm",
     	},
 	}
 	if random(1,100) <= 13 then stationNerva:setRestocksScanProbes(false) end
@@ -40596,16 +40590,15 @@ function createStationPistil()
         			dilithium = math.random(40,200)	},
         public_relations = true,
         general_information = "Studying, observing, measuring the Fleur nebula",
-    	history = "The station naming continued in the vein of the nebula which we study. Station personnel have started paying closer attention to readings indicating enemy vessels in the area after some stray Exuari got past the defensive patrols and destroyed the station.",
+    	history = "The station naming continued in the vein of the nebula which we study.",
     	idle_defense_fleet = {
 			DF1 = "MT52 Hornet",
-			DF2 = "Ktlitan Drone",
-			DF3 = "MU52 Hornet",
-			DF4 = "WX-Lindworm",
-			DF5 = "Phobos T3",
-			DF6 = "Nirvana R5A",
-			DF7 = "Phobos T3",
-			DF8 = "WX-Lindworm",
+			DF2 = "MU52 Hornet",
+			DF3 = "WX-Lindworm",
+			DF4 = "Phobos T3",
+			DF5 = "Nirvana R5A",
+			DF6 = "Phobos T3",
+			DF7 = "WX-Lindworm",
     	},
 	}
 	if random(1,100) <= 4  then stationPistil:setRestocksScanProbes(false) end
