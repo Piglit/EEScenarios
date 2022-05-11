@@ -1543,7 +1543,7 @@ function createSkeletonUniverse()
 	station_names = {}
 	regionStations = {}
 	--Icarus
-	stationIcarus = SpaceStation():setTemplate("Large Station"):setFaction("Human Navy"):setPosition(icx,icy):setCallSign("Icarus"):setDescription("Shipyard, Naval Regional Headquarters"):setCommsScript(""):setCommsFunction(commsStation)
+	stationIcarus = SpaceStation():setTemplate("Large Station"):setFaction("Interplanetary Union"):setPosition(icx,icy):setCallSign("Icarus"):setDescription("Shipyard, Naval Regional Headquarters"):setCommsScript(""):setCommsFunction(commsStation)
     stationIcarus:setShortRangeRadarRange(20000)
     stationIcarus.comms_data = {
     	friendlyness = 75,
@@ -39758,7 +39758,7 @@ function toggleZoneAquarius()
 end
 function createStationAquarius()
 	-- first colonist station, need food,
-    stationAquarius = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Aquarius IX"):setPosition(-4295, 14159):setDescription("Mining"):setCommsScript(""):setCommsFunction(commsStation)
+    stationAquarius = SpaceStation():setTemplate("Small Station"):setFaction("Colonists"):setCallSign("Aquarius IX"):setPosition(-4295, 14159):setDescription("Mining"):setCommsScript(""):setCommsFunction(commsStation)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
@@ -39834,7 +39834,7 @@ function toggleZoneBorlan()
 	createIcarusStuff()
 end
 function createStationBorlan()
-    stationBorlan = SpaceStation():setTemplate("Medium Station"):setFaction("Independent"):setCallSign("Borlan 2"):setPosition(68808, 39300):setDescription("Mining and Supply"):setCommsScript(""):setCommsFunction(commsStation)
+    stationBorlan = SpaceStation():setTemplate("Medium Station"):setFaction("Colonists"):setCallSign("Borlan 2"):setPosition(68808, 39300):setDescription("Mining and Supply"):setCommsScript(""):setCommsFunction(commsStation)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
     if random(1,100) <= 40 then empAvail = true else empAvail = false end
@@ -39925,7 +39925,7 @@ function toggleZoneCindy()
 	createIcarusStuff()
 end
 function createStationCindy()
-    stationCindyFolly = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Cindy's Folly 4"):setPosition(81075, -1304):setDescription("Mining"):setCommsScript(""):setCommsFunction(commsStation)
+    stationCindyFolly = SpaceStation():setTemplate("Small Station"):setFaction("Colonists"):setCallSign("Cindy's Folly 4"):setPosition(81075, -1304):setDescription("Mining"):setCommsScript(""):setCommsFunction(commsStation)
 
     if random(1,100) <= 37 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 44 then hvliAvail = true else hvliAvail = false end
@@ -39997,7 +39997,7 @@ function toggleZoneElysium()
 end
 function createStationElysium()
 	-- third wave, together with Nerva, buys platinum from Aquarius
-    stationElysium = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Elysium 5"):setPosition(-7504, 1384):setDescription("Commerce and luxury accomodations"):setCommsScript(""):setCommsFunction(commsStation)
+    stationElysium = SpaceStation():setTemplate("Small Station"):setFaction("Colonists"):setCallSign("Elysium 5"):setPosition(-7504, 1384):setDescription("Commerce and luxury accomodations"):setCommsScript(""):setCommsFunction(commsStation)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
     if random(1,100) <= 40 then empAvail = true else empAvail = false end
@@ -40071,7 +40071,7 @@ function toggleZoneFinnegan()
 	createIcarusStuff()
 end
 function createStationFinnegan()
-	stationFinnegan = SpaceStation():setTemplate("Medium Station"):setFaction("Independent"):setCallSign("Finnegan 2"):setPosition(114460, 95868):setDescription("Trading, mining and manufacturing"):setCommsScript(""):setCommsFunction(commsStation)
+	stationFinnegan = SpaceStation():setTemplate("Medium Station"):setFaction("Colonists"):setCallSign("Finnegan 2"):setPosition(114460, 95868):setDescription("Trading, mining and manufacturing"):setCommsScript(""):setCommsFunction(commsStation)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
     if random(1,100) <= 40 then empAvail = true else empAvail = false end
@@ -40150,7 +40150,7 @@ function toggleZoneGagarin()
 	createIcarusStuff()
 end
 function createStationGagarin()
-	stationGagarin = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Gagarin"):setPosition(-60000, 62193):setDescription("Mining and exploring"):setCommsScript(""):setCommsFunction(commsStation)
+	stationGagarin = SpaceStation():setTemplate("Small Station"):setFaction("Colonists"):setCallSign("Gagarin"):setPosition(-60000, 62193):setDescription("Mining and exploring"):setCommsScript(""):setCommsFunction(commsStation)
     stationGagarin:setShortRangeRadarRange(9000)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
@@ -40223,7 +40223,7 @@ function toggleZoneMacassa()
 end
 function createStationMacassa()
 	-- fourth wave together with Pistil
-    stationMacassa = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setPosition(16335, -18034):setCallSign("Macassa 11"):setDescription("Mining"):setCommsScript(""):setCommsFunction(commsStation)
+    stationMacassa = SpaceStation():setTemplate("Small Station"):setFaction("Colonists"):setPosition(16335, -18034):setCallSign("Macassa 11"):setDescription("Mining"):setCommsScript(""):setCommsFunction(commsStation)
     stationMacassa:setShortRangeRadarRange(8000)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
@@ -40293,7 +40293,7 @@ function toggleZoneMaximilian()
 end
 function createStationMaximilian()
 	-- second station, after Aquarius; buys nickel from Aq.
-    stationMaximilian = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Maximilian Mark 6"):setPosition(-16565, -16446):setDescription("Black Hole Research"):setCommsScript(""):setCommsFunction(commsStation)
+    stationMaximilian = SpaceStation():setTemplate("Small Station"):setFaction("Colonists"):setCallSign("Maximilian Mark 6"):setPosition(-16565, -16446):setDescription("Black Hole Research"):setCommsScript(""):setCommsFunction(commsStation)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
     if random(1,100) <= 40 then empAvail = true else empAvail = false end
@@ -40368,7 +40368,7 @@ function toggleZoneMermaid()
 end
 function createStationMermaid()
 	-- fifth/last wave, together with Wookie
-    stationMermaid = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setPosition(28889, -4417):setCallSign("Mermaid 7"):setDescription("Tavern and hotel"):setCommsScript(""):setCommsFunction(commsStation)
+    stationMermaid = SpaceStation():setTemplate("Small Station"):setFaction("Colonists"):setPosition(28889, -4417):setCallSign("Mermaid 7"):setDescription("Tavern and hotel"):setCommsScript(""):setCommsFunction(commsStation)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
     if random(1,100) <= 40 then empAvail = true else empAvail = false end
@@ -40439,7 +40439,7 @@ function toggleZoneMosEspa()
 	createIcarusStuff()
 end
 function createStationMosEspa()
-	stationMosEspa = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setPosition(113941, -85822):setCallSign("Mos Espa"):setDescription("Resupply and Entertainment"):setCommsScript(""):setCommsFunction(commsStation)
+	stationMosEspa = SpaceStation():setTemplate("Small Station"):setFaction("Colonists"):setPosition(113941, -85822):setCallSign("Mos Espa"):setDescription("Resupply and Entertainment"):setCommsScript(""):setCommsFunction(commsStation)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
     if random(1,100) <= 40 then empAvail = true else empAvail = false end
@@ -40520,7 +40520,7 @@ function toggleZoneNerva()
 end
 function createStationNerva()
 	-- third wave, together with Elysium, buys filament from Maximilian
-    stationNerva = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Nerva 9"):setPosition(-9203, -2077):setDescription("Observatory"):setCommsScript(""):setCommsFunction(commsStation)
+    stationNerva = SpaceStation():setTemplate("Small Station"):setFaction("Colonists"):setCallSign("Nerva 9"):setPosition(-9203, -2077):setDescription("Observatory"):setCommsScript(""):setCommsFunction(commsStation)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
     if random(1,100) <= 40 then empAvail = true else empAvail = false end
@@ -40593,7 +40593,7 @@ function toggleZonePistil()
 end
 function createStationPistil()
 	-- fourth wave, together with Macassa
-    stationPistil = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setPosition(24834, 20416):setCallSign("Pistil 8"):setDescription("Fleur nebula research"):setCommsScript(""):setCommsFunction(commsStation)
+    stationPistil = SpaceStation():setTemplate("Small Station"):setFaction("Colonists"):setPosition(24834, 20416):setCallSign("Pistil 8"):setDescription("Fleur nebula research"):setCommsScript(""):setCommsFunction(commsStation)
     stationPistil:setShortRangeRadarRange(10000)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
@@ -40666,7 +40666,7 @@ function toggleZoneRelay13()
 	createIcarusStuff()
 end
 function createStationRelay13()
-    stationRelay13 = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Relay-13 F"):setPosition(77918, 23876):setDescription("Communications Relay"):setCommsScript(""):setCommsFunction(commsStation)
+    stationRelay13 = SpaceStation():setTemplate("Small Station"):setFaction("Colonists"):setCallSign("Relay-13 F"):setPosition(77918, 23876):setDescription("Communications Relay"):setCommsScript(""):setCommsFunction(commsStation)
     stationRelay13:setShortRangeRadarRange(12000)
 
     tradeChanceMedicine = 69
@@ -40741,7 +40741,7 @@ function toggleZoneSlurry()
 	createIcarusStuff()
 end
 function createStationSlurry()
-    stationSlurry = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Slurry V"):setPosition(100342, 27871):setDescription("Mining Research"):setCommsScript(""):setCommsFunction(commsStation)
+    stationSlurry = SpaceStation():setTemplate("Small Station"):setFaction("Colonists"):setCallSign("Slurry V"):setPosition(100342, 27871):setDescription("Mining Research"):setCommsScript(""):setCommsFunction(commsStation)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
     if random(1,100) <= 40 then empAvail = true else empAvail = false end
@@ -40815,7 +40815,7 @@ function toggleZoneSovinec()
 	createIcarusStuff()
 end
 function createStationSovinec()
-	stationSovinec = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Sovinec Two"):setPosition(134167, 104690):setDescription("Beam component research and manufacturing"):setCommsScript(""):setCommsFunction(commsStation)
+	stationSovinec = SpaceStation():setTemplate("Small Station"):setFaction("Colonists"):setCallSign("Sovinec Two"):setPosition(134167, 104690):setDescription("Beam component research and manufacturing"):setCommsScript(""):setCommsFunction(commsStation)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
@@ -40902,7 +40902,7 @@ function toggleZoneSpeculator()
 	createIcarusStuff()
 end
 function createStationSpeculator()
-    stationSpeculator = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Speculator 3"):setPosition(55000,108000):setDescription("Mining and mobile nebula research"):setCommsScript(""):setCommsFunction(commsStation)
+    stationSpeculator = SpaceStation():setTemplate("Small Station"):setFaction("Colonists"):setCallSign("Speculator 3"):setPosition(55000,108000):setDescription("Mining and mobile nebula research"):setCommsScript(""):setCommsFunction(commsStation)
     stationSpeculator:setShortRangeRadarRange(13000)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
@@ -40978,7 +40978,7 @@ function toggleZoneStromboli()
 	createIcarusStuff()
 end
 function createStationStromboli()
-    stationStromboli = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Stromboli 3"):setPosition(109555, 12685):setDescription("Vacation getaway for Stromboli family"):setCommsScript(""):setCommsFunction(commsStation)
+    stationStromboli = SpaceStation():setTemplate("Small Station"):setFaction("Colonists"):setCallSign("Stromboli 3"):setPosition(109555, 12685):setDescription("Vacation getaway for Stromboli family"):setCommsScript(""):setCommsFunction(commsStation)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
     if random(1,100) <= 40 then empAvail = true else empAvail = false end
@@ -41058,7 +41058,7 @@ function toggleZoneTransylvania()
 	createIcarusStuff()
 end
 function createStationTransylvania()
-    stationTransylvania = SpaceStation():setTemplate("Medium Station"):setFaction("Independent"):setCallSign("Transylvania"):setPosition(-95000, 111000):setDescription("Abandoned science station turned haven"):setCommsScript(""):setCommsFunction(commsStation)
+    stationTransylvania = SpaceStation():setTemplate("Medium Station"):setFaction("Colonists"):setCallSign("Transylvania"):setPosition(-95000, 111000):setDescription("Abandoned science station turned haven"):setCommsScript(""):setCommsFunction(commsStation)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
     if random(1,100) <= 40 then empAvail = true else empAvail = false end
@@ -41121,13 +41121,13 @@ function createStationTransylvania()
 	--leechBZone:setColor(51,153,255)
 	--local leechOZone = squareZone(-97000,113000, "Leech O K0")
 	--leechOZone:setColor(51,153,255)
-	leechA = leech("Independent")
+	leechA = leech("Colonists")
 	leechA:setPosition(-93000,109000):setScannedByFaction("Human Navy",true):setCallSign("A"):setDescription("Leech satellite A")
-	leechAB = leech("Independent")
+	leechAB = leech("Colonists")
 	leechAB:setPosition(-97000,109000):setScannedByFaction("Human Navy",true):setCallSign("AB"):setDescription("Leech satellite AB")
-	leechB = leech("Independent")
+	leechB = leech("Colonists")
 	leechB:setPosition(-93000,113000):setScannedByFaction("Human Navy",true):setCallSign("B"):setDescription("Leech satellite B")
-	leechO = leech("Independent")
+	leechO = leech("Colonists")
 	leechO:setPosition(-97000,113000):setScannedByFaction("Human Navy",true):setCallSign("O"):setDescription("Leech satellite O")
 	table.insert(icarusStations,leechA)
 	table.insert(icarusStations,leechAB)
@@ -41159,7 +41159,7 @@ function toggleZoneWookie()
 end
 function createStationWookie()
 	-- fifth/last wave, together with Mermaid
-    stationWookie = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Wookie-ock"):setPosition(-11280, 7425):setDescription("Esoteric Xenolinguistic Research"):setCommsScript(""):setCommsFunction(commsStation)
+    stationWookie = SpaceStation():setTemplate("Small Station"):setFaction("Colonists"):setCallSign("Wookie-ock"):setPosition(-11280, 7425):setDescription("Esoteric Xenolinguistic Research"):setCommsScript(""):setCommsFunction(commsStation)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
