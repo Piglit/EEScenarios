@@ -39723,13 +39723,14 @@ function toggleZoneAquarius()
 	createIcarusStuff()
 end
 function createStationAquarius()
-	-- first colonist station, will need food
+	-- first colonist station, need food,
     stationAquarius = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Aquarius IX"):setPosition(-4295, 14159):setDescription("Mining"):setCommsScript(""):setCommsFunction(commsStation)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     tradeChanceMedicine = 39
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
 
     stationAquarius.comms_data = {
     	friendlyness = 67,
@@ -39760,20 +39761,18 @@ function createStationAquarius()
         sensor_boost_probes = {name = "Binoc", cost = math.random(39,55), quantity = math.random(1,3), speed = 1000, boost = 20, range = 40},
         reputation_cost_multipliers = {friend = 1.0, neutral = 2.0},
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
-        goods = {	platinum = 	{quantity = math.random(4,8),	cost = math.random(50,80)},
-        			nickel =	{quantity = math.random(6,12),	cost = math.random(45,65)}	},
+        goods = {	platinum = 	{quantity = math.random(2,4),	cost = math.random(50,80)},
+        			nickel =	{quantity = math.random(3,6),	cost = math.random(45,65)}	},
         trade = {	food = true, medicine = tradeMedicine, luxury = false },
+        buy = {		optic =	math.random(120,140),	},
         tradeChances = {	food = 0, medicine = tradeChanceMedicine, luxury = 0 },
         public_relations = true,
         general_information = "Facilitate mining the nearby asteroids",
     	history = "Station named after the platinum mine on ancient Earth on the African continent",
     	idle_defense_fleet = {
 			DF1 = "MT52 Hornet",
-			DF2 = "MT52 Hornet",
-			DF3 = "Adder MK5",
-			DF4 = "Adder MK5",
-			DF5 = "Phobos T3",
-			DF6 = "Phobos T3",
+			DF2 = "Adder MK5",
+			DF3 = "Phobos T3",
     	},
 	}
 	if random(1,100) <= 72 then stationAquarius:setRestocksScanProbes(false) end
@@ -39808,6 +39807,7 @@ function createStationBorlan()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
     tradeChanceMedicine = 13
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
 
     stationBorlan.comms_data = {
     	friendlyness = 75,
@@ -39897,8 +39897,10 @@ function createStationCindy()
     if random(1,100) <= 44 then hvliAvail = true else hvliAvail = false end
     if random(1,100) <= 23 then mineAvail = true else mineAvail = false end
     tradeChanceLuxury = 13
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
 
     tradeChanceMedicine = 27
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
 
     stationCindyFolly.comms_data = {
     	friendlyness = 64,
@@ -39960,12 +39962,14 @@ function toggleZoneElysium()
 	createIcarusStuff()
 end
 function createStationElysium()
+	-- third wave, together with Nerva, buys platinum from Aquarius
     stationElysium = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Elysium 5"):setPosition(-7504, 1384):setDescription("Commerce and luxury accomodations"):setCommsScript(""):setCommsFunction(commsStation)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
     if random(1,100) <= 40 then empAvail = true else empAvail = false end
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     tradeChanceLuxury = 13
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
 
     stationElysium.comms_data = {
     	friendlyness = 29,
@@ -39994,6 +39998,9 @@ function createStationElysium()
         goods = {	warp =		{quantity = math.random(2,4),	cost = math.random(80,120)},
         			cobalt =	{quantity = math.random(2,4),	cost = math.random(30,70)},	},
         trade = {	food = false, medicine = false, luxury = tradeLuxury },
+        buy = {		platinum =	math.random(100,160),
+					gold =	math.random(120,160),
+		},
         tradeChances = {	food = 0, medicine = 0, luxury = tradeChanceLuxury },
         public_relations = true,
         general_information = "This is where all the wealthy species shop and stay when traveling",
@@ -40036,6 +40043,7 @@ function createStationFinnegan()
     if random(1,100) <= 40 then empAvail = true else empAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
     tradeChanceMedicine = 63
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
 
     stationFinnegan.comms_data = {
     	friendlyness = 52,
@@ -40117,6 +40125,7 @@ function createStationGagarin()
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
     tradeChanceMedicine = 23
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
 
     stationGagarin.comms_data = {
     	friendlyness = 82,
@@ -40179,6 +40188,7 @@ function toggleZoneMacassa()
 	createIcarusStuff()
 end
 function createStationMacassa()
+	-- fourth wave together with Pistil
     stationMacassa = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setPosition(16335, -18034):setCallSign("Macassa 11"):setDescription("Mining"):setCommsScript(""):setCommsFunction(commsStation)
     stationMacassa:setShortRangeRadarRange(8000)
 
@@ -40187,8 +40197,10 @@ function createStationMacassa()
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
     tradeChanceLuxury = 37
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
 
     tradeChanceFood = 12
+	if random(1,100) <= tradeChanceFood then tradeFood = true else tradeFood = false end
 
     stationMacassa.comms_data = {
     	friendlyness = 55,
@@ -40212,10 +40224,11 @@ function createStationMacassa()
         sensor_boost = {value = 5000, cost = 5},
         reputation_cost_multipliers = {friend = 1.0, neutral = 2.0},
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
-        goods = {	gold = 	{quantity = math.random(4,8),	cost = math.random(60,70)},
-        			dilithium = {quantity = math.random(2,11),	cost = math.random(55,85)}	},
+        goods = {	gold = 	{quantity = math.random(2,4),	cost = math.random(60,70)},
+        			dilithium = {quantity = math.random(1,6),	cost = math.random(55,85)}	},
         trade = {	food = tradeFood, medicine = false, luxury = tradeLuxury },
         tradeChances = {	food = tradeChanceFood, medicine = 0, luxury = tradeChanceLuxury },
+        buy = {		sensor =	math.random(120,140),	},
         public_relations = true,
         general_information = "Station location facilitates mining the nearby asteroids.",
     	history = "The station was named in the hopes that the asteroids will be as productive as the Macassa mine was on Earth in the mid to late 1900s"
@@ -40245,6 +40258,7 @@ function toggleZoneMaximilian()
 	createIcarusStuff()
 end
 function createStationMaximilian()
+	-- second station, after Aquarius; buys nickel from Aq.
     stationMaximilian = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Maximilian Mark 6"):setPosition(-16565, -16446):setDescription("Black Hole Research"):setCommsScript(""):setCommsFunction(commsStation)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
@@ -40252,8 +40266,10 @@ function createStationMaximilian()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
     tradeChanceMedicine = 39
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
 
     tradeChanceFood = 62
+	if random(1,100) <= tradeChanceFood then tradeFood = true else tradeFood = false end
 
     stationMaximilian.comms_data = {
     	friendlyness = 43,
@@ -40281,14 +40297,15 @@ function createStationMaximilian()
         goods = {	filament = 	{quantity = math.random(4,8),	cost = math.random(50,80)}	},
         trade = {	food = tradeFood, medicine = tradeMedicine, luxury = true },
         tradeChances = {	food = tradeChanceFood, medicine = tradeChanceMedicine, luxury = 0 },
+        buy = {		nickel =	math.random(90,130),
+					cobalt =	math.random(60,140),
+		},
         public_relations = true,
         general_information = "Observe and measure black hole for scientific understanding purposes",
     	history = "One of the researchers also develops software and watches ancient films. He was put in charge of naming the station so he named it after a mute evil robot depicted in an old movie about a black hole from the late 1970s",
     	idle_defense_fleet = {
 			DF1 = "MT52 Hornet",
 			DF2 = "MU52 Hornet",
-			DF3 = "MT52 Hornet",
-			DF4 = "MU52 Hornet",
     	},
 	}
 	if random(1,100) <= 81 then stationMaximilian:setRestocksScanProbes(false) end
@@ -40316,6 +40333,7 @@ function toggleZoneMermaid()
 	createIcarusStuff()
 end
 function createStationMermaid()
+	-- fifth/last wave, together with Wookie
     stationMermaid = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setPosition(28889, -4417):setCallSign("Mermaid 7"):setDescription("Tavern and hotel"):setCommsScript(""):setCommsFunction(commsStation)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
@@ -40323,7 +40341,8 @@ function createStationMermaid()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
-    tradeChanceLuxury = 17
+    tradeChanceFood = 17
+	if random(1,100) <= tradeChanceFood then tradeFood = true else tradeFood = false end
 
     stationMermaid.comms_data = {
     	friendlyness = 75,
@@ -40348,18 +40367,17 @@ function createStationMermaid()
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
         goods = {	luxury = 	{quantity = math.random(5,10),	cost = math.random(60,70)},
         			gold = 		{quantity = 5,					cost = math.random(75,90)}	},
-        trade = {	food = true, medicine = false, luxury = tradeLuxury },
-        tradeChances = {	food = 0, medicine = 0, luxury = tradeChanceLuxury },
+        trade = {	food = tradeFood, medicine = false, luxury = false},
+        tradeChances = {	food = tradeChanceFood, medicine = 0, luxury = 0},
+        buy = {		warp =	math.random(160,240),	},
         public_relations = true,
         general_information = "Rest stop, refueling and convenience shopping",
     	history = "In the tradition of taverns at crossroads on olde Earth in Kingston where the Millstone river and the Assunpink trail crossed and The Sign of the Mermaid tavern was built in the 1600s, the builders of this station speculated that this would be a good spot for space travelers to stop\n\nFree drinks for the crew of the freighter Gamma Hydra",
     	idle_defense_fleet = {
 			DF1 = "MT52 Hornet",
-			DF2 = "MU52 Hornet",
-			DF3 = "Adder MK5",
-			DF4 = "Adder MK6",
-			DF5 = "Nirvana R5A",
-			DF6 = "WX-Lindworm",
+			DF2 = "Adder MK5",
+			DF3 = "Nirvana R5A",
+			DF4 = "WX-Lindworm",
     	},
 	}
 	if random(1,100) <= 36 then stationMermaid:setRestocksScanProbes(false) end
@@ -40395,6 +40413,7 @@ function createStationMosEspa()
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
     tradeChanceFood = 26
+	if random(1,100) <= tradeChanceFood then tradeFood = true else tradeFood = false end
 
     stationMosEspa.comms_data = {
     	friendlyness = 93,
@@ -40466,6 +40485,7 @@ function toggleZoneNerva()
 	createIcarusStuff()
 end
 function createStationNerva()
+	-- third wave, together with Elysium, buys filament from Maximilian
     stationNerva = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Nerva 9"):setPosition(-9203, -2077):setDescription("Observatory"):setCommsScript(""):setCommsFunction(commsStation)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
@@ -40474,8 +40494,10 @@ function createStationNerva()
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
     tradeChanceLuxury = 17
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
 
     tradeChanceMedicine = 69
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
 
     stationNerva.comms_data = {
     	friendlyness = 75,
@@ -40496,19 +40518,19 @@ function createStationNerva()
         },
         reputation_cost_multipliers = {friend = 1.0, neutral = 2.0},
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
-        goods = {	optic = 	{quantity = math.random(5,10),	cost = math.random(60,70)}	},
+        goods = {	optic = 	{quantity = math.random(3,6),	cost = math.random(60,70)}	},
         trade = {	food = false, medicine = tradeMedicine, luxury = tradeLuxury },
         tradeChances = {	food = 0, medicine = tradeChanceMedicine, luxury = tradeChanceLuxury },
+        buy = {		filament =	math.random(100,160),
+					software =	math.random(160,200),
+		},
         public_relations = true,
         general_information = "Observatory of stellar phenomena and space ship traffic",
     	history = "A combination of science and military staff share the various delicate instruments on this station.",
     	idle_defense_fleet = {
 			DF1 = "MT52 Hornet",
-			DF2 = "MU52 Hornet",
-			DF3 = "WX-Lindworm",
-			DF4 = "MT52 Hornet",
-			DF5 = "MU52 Hornet",
-			DF6 = "WX-Lindworm",
+			DF2 = "WX-Lindworm",
+			DF3 = "MT52 Hornet",
     	},
 	}
 	if random(1,100) <= 13 then stationNerva:setRestocksScanProbes(false) end
@@ -40536,6 +40558,7 @@ function toggleZonePistil()
 	createIcarusStuff()
 end
 function createStationPistil()
+	-- fourth wave, together with Macassa
     stationPistil = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setPosition(24834, 20416):setCallSign("Pistil 8"):setDescription("Fleur nebula research"):setCommsScript(""):setCommsFunction(commsStation)
     stationPistil:setShortRangeRadarRange(10000)
 
@@ -40543,6 +40566,7 @@ function createStationPistil()
     if random(1,100) <= 40 then empAvail = true else empAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     tradeChanceLuxury = 37
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
 
     stationPistil.comms_data = {
     	friendlyness = 55,
@@ -40567,22 +40591,20 @@ function createStationPistil()
         tube_slow_down_repair = random(1,100)<30,
         reputation_cost_multipliers = {friend = 1.0, neutral = 2.0},
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
-        goods = {	sensor = 	{quantity = math.random(4,8),	cost = math.random(60,70)}	},
+        goods = {	sensor = 	{quantity = math.random(3,6),	cost = math.random(60,70)}	},
         trade = {	food = false, medicine = true, luxury = tradeLuxury },
         tradeChances = {	food = 0, medicine = 0, luxury = tradeChanceLuxury },
         buy =	{	robotic = math.random(40,200),
-        			dilithium = math.random(40,200)	},
+        			dilithium = math.random(100,200)	},
         public_relations = true,
         general_information = "Studying, observing, measuring the Fleur nebula",
     	history = "The station naming continued in the vein of the nebula which we study.",
     	idle_defense_fleet = {
 			DF1 = "MT52 Hornet",
-			DF2 = "MU52 Hornet",
-			DF3 = "WX-Lindworm",
-			DF4 = "Phobos T3",
-			DF5 = "Nirvana R5A",
-			DF6 = "Phobos T3",
-			DF7 = "WX-Lindworm",
+			DF2 = "WX-Lindworm",
+			DF3 = "Phobos T3",
+			DF4 = "Nirvana R5A",
+			DF5 = "Phobos T3",
     	},
 	}
 	if random(1,100) <= 4  then stationPistil:setRestocksScanProbes(false) end
@@ -40614,6 +40636,7 @@ function createStationRelay13()
     stationRelay13:setShortRangeRadarRange(12000)
 
     tradeChanceMedicine = 69
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
 
     stationRelay13.comms_data = {
     	friendlyness = 75,
@@ -40692,8 +40715,10 @@ function createStationSlurry()
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
     tradeChanceLuxury = 17
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
 
     tradeChanceMedicine = 57
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
 
     stationSlurry.comms_data = {
     	friendlyness = 75,
@@ -40763,8 +40788,10 @@ function createStationSovinec()
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 40 then empAvail = true else empAvail = false end
     tradeChanceMedicine = 37
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
 
     tradeChanceLuxury = 37
+	if random(1,100) <= tradeChanceLuxury then tradeLuxury = true else tradeLuxury = false end
 
     stationSovinec.comms_data = {
     	friendlyness = 62,
@@ -40848,6 +40875,7 @@ function createStationSpeculator()
     if random(1,100) <= 40 then empAvail = true else empAvail = false end
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     tradeChanceMedicine = 13
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
 
     stationSpeculator.comms_data = {
     	friendlyness = 82,
@@ -40924,6 +40952,7 @@ function createStationStromboli()
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
     tradeChanceMedicine = 23
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
 
     stationStromboli.comms_data = {
     	friendlyness = 35,
@@ -41003,6 +41032,7 @@ function createStationTransylvania()
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
     tradeChanceFood = 23
+	if random(1,100) <= tradeChanceFood then tradeFood = true else tradeFood = false end
 
     stationTransylvania.comms_data = {
     	friendlyness = 35,
@@ -41094,6 +41124,7 @@ function toggleZoneWookie()
 	createIcarusStuff()
 end
 function createStationWookie()
+	-- fifth/last wave, together with Mermaid
     stationWookie = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Wookie-ock"):setPosition(-11280, 7425):setDescription("Esoteric Xenolinguistic Research"):setCommsScript(""):setCommsFunction(commsStation)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
@@ -41101,6 +41132,7 @@ function createStationWookie()
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     if random(1,100) <= 80 then hvliAvail = true else hvliAvail = false end
     tradeChanceMedicine = 39
+	if random(1,100) <= tradeChanceMedicine then tradeMedicine = true else tradeMedicine = false end
 
     stationWookie.comms_data = {
     	friendlyness = 76,
@@ -41123,7 +41155,7 @@ function createStationWookie()
         tube_slow_down_repair = random(1,100)<30,
         reputation_cost_multipliers = {friend = 1.0, neutral = 2.0},
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
-        goods = {	software = 	{quantity = math.random(4,8),	cost = math.random(80,90)}	},
+        goods = {	software = 	{quantity = math.random(3,6),	cost = math.random(80,90)}	},
         trade = {	food = false, medicine = tradeMedicine, luxury = false },
         tradeChances = {	food = 0, medicine = tradeChanceMedicine, luxury = 0 },
         public_relations = true,
@@ -41133,8 +41165,7 @@ function createStationWookie()
 			DF1 = "MT52 Hornet",
 			DF2 = "MU52 Hornet",
 			DF3 = "MT52 Hornet",
-			DF4 = "MU52 Hornet",
-			DF5 = "WX-Lindworm",
+			DF4 = "WX-Lindworm",
     	},
 	}
 	if random(1,100) <= 83 then stationWookie:setRestocksScanProbes(false) end
@@ -41159,6 +41190,35 @@ function createIcarusStuff()
 	if createdIcarusStations["Aquarius"] == nil then
 		addGMFunction("Stn. Aquarius (F4.9)", createStationAquarius)
 	end
+	addGMFunction("Zone Maximilian (E4)", toggleZoneMaximilian)
+	if createdIcarusStations["Maximilian"] == nil then
+		addGMFunction("Stn. Maximilian (E4)", createStationMaximilian)
+	end
+	addGMFunction("Zone Elysium (F4.3)", toggleZoneElysium)
+	if createdIcarusStations["Elysium"] == nil then
+		addGMFunction("Stn. Elysium (F4.3)", createStationElysium)
+	end
+	addGMFunction("Zone Nerva (E4)", toggleZoneNerva)
+	if createdIcarusStations["Nerva"] == nil then
+		addGMFunction("Stn. Nerva (E4)", createStationNerva)
+	end
+	addGMFunction("Zone Macassa (E5)", toggleZoneMacassa)
+	if createdIcarusStations["Macassa"] == nil then
+		addGMFunction("Stn. Macassa (E5)", createStationMacassa)
+	end
+	addGMFunction("Zone Pistil (G6)", toggleZonePistil)
+	if createdIcarusStations["Pistil"] == nil then
+		addGMFunction("Stn. Pistil (G6)", createStationPistil)
+	end
+	addGMFunction("Zone Mermaid (E6)", toggleZoneMermaid)
+	if createdIcarusStations["Mermaid"] == nil then
+		addGMFunction("Stn. Mermaid (E6)", createStationMermaid)
+	end
+	addGMFunction("Zone Wookie (F4)", toggleZoneWookie)
+	if createdIcarusStations["Wookie"] == nil then
+		addGMFunction("Stn. Wookie (F4)", createStationWookie)
+	end
+
 	addGMFunction("Zone Borlan (G8)", toggleZoneBorlan)
 	if createdIcarusStations["Borlan"] == nil then
 		addGMFunction("Stn. Borlan (G8)", createStationBorlan)
@@ -41167,10 +41227,19 @@ function createIcarusStuff()
 	if createdIcarusStations["Cindy"] == nil then
 		addGMFunction("Stn. Cindy (E9)", createStationCindy)
 	end
-	addGMFunction("Zone Elysium (F4.3)", toggleZoneElysium)
-	if createdIcarusStations["Elysium"] == nil then
-		addGMFunction("Stn. Elysium (F4.3)", createStationElysium)
+	addGMFunction("Zone Relay13 (G8)", toggleZoneRelay13)
+	if createdIcarusStations["Relay13"] == nil then
+		addGMFunction("Stn. Relay13 (G8)", createStationRelay13)
 	end
+	addGMFunction("Zone Stromboli (F10)", toggleZoneStromboli)
+	if createdIcarusStations["Stromboli"] == nil then
+		addGMFunction("Stn. Stromboli (F10)", createStationStromboli)
+	end
+	addGMFunction("Zone Slurry (G10)", toggleZoneSlurry)
+	if createdIcarusStations["Slurry"] == nil then
+		addGMFunction("Stn. Slurry (G10)", createStationSlurry)
+	end
+
 	addGMFunction("Zone Finnegan (J10)", toggleZoneFinnegan)
 	if createdIcarusStations["Finnegan"] == nil then
 		addGMFunction("Stn. Finnegan (J10)", createStationFinnegan)
@@ -41179,37 +41248,9 @@ function createIcarusStuff()
 	if createdIcarusStations["Gagarin"] == nil then
 		addGMFunction("Stn. Gagarin (I2)", createStationGagarin)
 	end
-	addGMFunction("Zone Macassa (E5)", toggleZoneMacassa)
-	if createdIcarusStations["Macassa"] == nil then
-		addGMFunction("Stn. Macassa (E5)", createStationMacassa)
-	end
-	addGMFunction("Zone Maximilian (E4)", toggleZoneMaximilian)
-	if createdIcarusStations["Maximilian"] == nil then
-		addGMFunction("Stn. Maximilian (E4)", createStationMaximilian)
-	end
-	addGMFunction("Zone Mermaid (E6)", toggleZoneMermaid)
-	if createdIcarusStations["Mermaid"] == nil then
-		addGMFunction("Stn. Mermaid (E6)", createStationMermaid)
-	end
 	addGMFunction("Zone MosEspa (A10)", toggleZoneMosEspa)
 	if createdIcarusStations["MosEspa"] == nil then
 		addGMFunction("Stn. MosEspa (A10)", createStationMosEspa)
-	end
-	addGMFunction("Zone Nerva (E4)", toggleZoneNerva)
-	if createdIcarusStations["Nerva"] == nil then
-		addGMFunction("Stn. Nerva (E4)", createStationNerva)
-	end
-	addGMFunction("Zone Pistil (G6)", toggleZonePistil)
-	if createdIcarusStations["Pistil"] == nil then
-		addGMFunction("Stn. Pistil (G6)", createStationPistil)
-	end
-	addGMFunction("Zone Relay13 (G8)", toggleZoneRelay13)
-	if createdIcarusStations["Relay13"] == nil then
-		addGMFunction("Stn. Relay13 (G8)", createStationRelay13)
-	end
-	addGMFunction("Zone Slurry (G10)", toggleZoneSlurry)
-	if createdIcarusStations["Slurry"] == nil then
-		addGMFunction("Stn. Slurry (G10)", createStationSlurry)
 	end
 	addGMFunction("Zone Sovinec (K11)", toggleZoneSovinec)
 	if createdIcarusStations["Sovinec"] == nil then
@@ -41219,18 +41260,11 @@ function createIcarusStuff()
 	if createdIcarusStations["Speculator"] == nil then
 		addGMFunction("Stn. Speculator (K7)", createStationSpeculator)
 	end
-	addGMFunction("Zone Stromboli (F10)", toggleZoneStromboli)
-	if createdIcarusStations["Stromboli"] == nil then
-		addGMFunction("Stn. Stromboli (F10)", createStationStromboli)
-	end
 	addGMFunction("Zone Transylvania (K0)", toggleZoneTransylvania)
 	if createdIcarusStations["Transylvania"] == nil then
 		addGMFunction("Stn. Transylvania (K0)", createStationTransylvania)
 	end
-	addGMFunction("Zone Wookie (F4)", toggleZoneWookie)
-	if createdIcarusStations["Wookie"] == nil then
-		addGMFunction("Stn. Wookie (F4)", createStationWookie)
-	end
+
 end
 ----------------------------------
 --	Custom > One-Offs > Kosai  --
