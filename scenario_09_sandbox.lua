@@ -860,7 +860,7 @@ function setConstants()
 	-- likewise the creation functions are no longer in alphabetical order
 	-- this probably wants to be fixed after the upcomming merge conflict has been dealt with
 	playerShipInfo = {}
-	addPlayerShip("Ambition",	"Phobos T2",	createPlayerShipAmbition	,"J")
+	addPlayerShip("Ambition",	"Phobos T2",	createPlayerShipAmbition	,"B")
 	addPlayerShip("Argonaut",	"Nusret",		createPlayerShipArgonaut	,"J")
 	addPlayerShip("Arwine",		"Pacu",			createPlayerShipArwine		,"J")
 	addPlayerShip("Barracuda",	"Redhook",		createPlayerShipBarracuda	,"J")
@@ -941,37 +941,31 @@ function setConstants()
 	--makePlayerShipActive("Sparrow")		--W
 	--makePlayerShipActive("Narsil")		--W
 
-	makePlayerShipActive("George")	-- start with George
-	makePlayerShipActive("Ambition")
-	makePlayerShipActive("Argonaut")
-	makePlayerShipActive("Arwine")
-	makePlayerShipActive("Barracuda")
-	makePlayerShipActive("Eagle")
-	makePlayerShipActive("Endeavor")
-	makePlayerShipActive("Falcon")
-	makePlayerShipActive("Florentine")
-	makePlayerShipActive("Gabble")
-	makePlayerShipActive("Gorn")
-	makePlayerShipActive("Halberd")
-	makePlayerShipActive("Headhunter")
-	makePlayerShipActive("Hearken")
-	makePlayerShipActive("Hrothgar")
-	makePlayerShipActive("Hummer")
-	makePlayerShipActive("Ink")
-	makePlayerShipActive("Mixer")
-	makePlayerShipActive("Manxman")
-	makePlayerShipActive("Narsil")
-	makePlayerShipActive("Nimbus")
-	makePlayerShipActive("Osprey")
-	makePlayerShipActive("Outcast")
-	makePlayerShipActive("Quill")
-	makePlayerShipActive("Rattler")
-	makePlayerShipActive("Rip")
-	makePlayerShipActive("Rocinante")
-	makePlayerShipActive("Slingshot")
-	makePlayerShipActive("Tango")
-	makePlayerShipActive("Terror")
-	makePlayerShipActive("Wesson")
+
+	-- Allround/Phobos/Flavias
+	makePlayerShipActive("Ambition")	-- Phob, quite nice as starter
+	makePlayerShipActive("Nimbus")		-- Phob, fewr missile tubes
+
+	makePlayerShipActive("Falcon")		-- Side-Turr, Front Miss
+	makePlayerShipActive("Quill")		-- Left Miss, Right Beam - fun
+
+	makePlayerShipActive("Florentine")	-- Qute :)	-- not in chapter 1 (lrs)
+	makePlayerShipActive("Osprey")		-- Small, but	-- not in chapter 1 (lrs)
+
+      	-- Jammer and Criminals
+	makePlayerShipActive("Argonaut")	-- EMP-Jam
+	makePlayerShipActive("Rocinante")	-- Surround, Smuggler
+
+	-- Missile ships
+	makePlayerShipActive("Arwine")		-- Missiles
+
+	makePlayerShipActive("Slingshot")	-- Miss, souround Turrets
+	makePlayerShipActive("Tango")		-- Heavy Miss
+
+	-- Atlanis based
+	makePlayerShipActive("Endeavor")	-- Atlantis
+	makePlayerShipActive("Halberd")		-- Atlantis
+	makePlayerShipActive("Narsil")		-- Atlantis
 
 	active_player_ship = true
 	--goodsList = {	{"food",0}, {"medicine",0},	{"nickel",0}, {"platinum",0}, {"gold",0}, {"dilithium",0}, {"tritanium",0}, {"luxury",0}, {"cobalt",0}, {"impulse",0}, {"warp",0}, {"shield",0}, {"tractor",0}, {"repulsor",0}, {"beam",0}, {"optic",0}, {"robotic",0}, {"filament",0}, {"transporter",0}, {"sensor",0}, {"communication",0}, {"autodoc",0}, {"lifter",0}, {"android",0}, {"nanites",0}, {"software",0}, {"circuit",0}, {"battery",0}	}
@@ -18759,12 +18753,14 @@ end
 --			1 tube (centered, positive z)
 function createPlayerShipAmbition()
 	--first version destroyed 1Feb2020, version 2 reduced hull strength
-	playerAmbition = PlayerSpaceship():setTemplate("Phobos M3P"):setFaction("Human Navy"):setCallSign("Ambition")
+	playerAmbition = PlayerSpaceship():setTemplate("Phobos M3P"):setFaction("Cultists"):setCallSign("Ambition")
 	playerAmbition:setTypeName("Phobos T2")
 	playerAmbition:setRepairCrewCount(5)					--more repair crew (vs 3)
 	playerAmbition:setHullMax(150)							--weaker hull (vs 200)
 	playerAmbition:setHull(150)
 	playerAmbition:setJumpDrive(true)						--jump drive (vs none)
+	playerAmbition:setWarpDrive(true)						--warp drive (vs none)
+	playerAmbition:setWarpSpeed(300)						
 	playerAmbition.max_jump_range = 25000					--shorter than typical (vs 50)
 	playerAmbition.min_jump_range = 2000					--shorter than typical (vs 5)
 	playerAmbition:setJumpDriveRange(playerAmbition.min_jump_range,playerAmbition.max_jump_range)
@@ -18810,7 +18806,7 @@ function createPlayerShipAmbition()
 	return playerAmbition
 end
 function createPlayerShipArgonaut()
-	playerArgonaut = PlayerSpaceship():setTemplate("Nautilus"):setFaction("Human Navy"):setCallSign("Argonaut")
+	playerArgonaut = PlayerSpaceship():setTemplate("Nautilus"):setFaction("Cultists"):setCallSign("Argonaut")
 	playerArgonaut:setTypeName("Nusret")
 	playerArgonaut.max_jump_range = 25000					--shorter than typical (vs 50)
 	playerArgonaut.min_jump_range = 2500					--shorter than typical (vs 5)
@@ -18832,7 +18828,7 @@ function createPlayerShipArgonaut()
 end
 function createPlayerShipArwine()
 	--destroyed 14Dec2019
-	playerArwine = PlayerSpaceship():setTemplate("Piranha"):setFaction("Human Navy"):setCallSign("Arwine")
+	playerArwine = PlayerSpaceship():setTemplate("Piranha"):setFaction("Cultists"):setCallSign("Arwine")
 	playerArwine:setTypeName("Pacu")
 	playerArwine:setRepairCrewCount(5)						--more repair crew (vs 2)
 	playerArwine.max_jump_range = 25000						--shorter than typical (vs 50)
@@ -18889,7 +18885,7 @@ end
 function createPlayerShipBarracuda()
 	--destroyed 8feb2020
 	--clone of Headhunter
-	playerBarracuda = PlayerSpaceship():setTemplate("Piranha"):setFaction("Human Navy"):setCallSign("Barracuda")
+	playerBarracuda = PlayerSpaceship():setTemplate("Piranha"):setFaction("Cultists"):setCallSign("Barracuda")
 	playerBarracuda:setTypeName("Redhook")
 	playerBarracuda:setRepairCrewCount(4)						--more repair crew (vs 2)
 	playerBarracuda.max_jump_range = 30000						--shorter than typical (vs 50)
@@ -18935,7 +18931,7 @@ function createPlayerShipBarracuda()
 	return playerBarracuda
 end
 function createPlayerShipBlaire()
-	playerBlaire = PlayerSpaceship():setTemplate("Maverick"):setFaction("Human Navy"):setCallSign("Blaire")
+	playerBlaire = PlayerSpaceship():setTemplate("Maverick"):setFaction("Cultists"):setCallSign("Blaire")
 	playerBlaire:setTypeName("Kludge")
 	playerBlaire:setMaxEnergy(1130)						--more maximum energy (vs 1000)
 	playerBlaire:setEnergy(1130)							
@@ -18975,7 +18971,7 @@ function createPlayerShipBlaire()
 end
 function createPlayerShipBlazon()
 	--ship destroyed 24Aug2019
-	playerBlazon = PlayerSpaceship():setTemplate("Striker"):setFaction("Human Navy"):setCallSign("Blazon")
+	playerBlazon = PlayerSpaceship():setTemplate("Striker"):setFaction("Cultists"):setCallSign("Blazon")
 	playerBlazon:setTypeName("Stricken")
 	playerBlazon:setRepairCrewCount(2)
 	playerBlazon:setImpulseMaxSpeed(105)					-- up from default of 45
@@ -19008,7 +19004,7 @@ function createPlayerShipBlazon()
 	return playerBlazon
 end
 function createPlayerShipBling()
-	playerGadfly = PlayerSpaceship():setTemplate("Player Fighter"):setFaction("Human Navy"):setCallSign("Bling")
+	playerGadfly = PlayerSpaceship():setTemplate("Player Fighter"):setFaction("Cultists"):setCallSign("Bling")
 	playerGadfly:setTypeName("Gadfly")
 	playerGadfly:setHullMax(100)						--stronger (vs 60)
 	playerGadfly:setHull(100)
@@ -19046,7 +19042,7 @@ function createPlayerShipBling()
 	return playerGadfly
 end
 function createPlayerShipClaw()
-	playerRaven = PlayerSpaceship():setTemplate("Player Cruiser"):setFaction("Human Navy"):setCallSign("Claw")
+	playerRaven = PlayerSpaceship():setTemplate("Player Cruiser"):setFaction("Cultists"):setCallSign("Claw")
 	playerRaven:setTypeName("Raven")
 	playerRaven:setJumpDrive(false)						
 	playerRaven:setWarpDrive(true)						--warp drive (vs jump)
@@ -19091,7 +19087,7 @@ function createPlayerShipClaw()
 	return playerRaven
 end
 function createPlayerShipCobra()
-	playerCobra = PlayerSpaceship():setTemplate("Striker"):setFaction("Human Navy"):setCallSign("Cobra")
+	playerCobra = PlayerSpaceship():setTemplate("Striker"):setFaction("Cultists"):setCallSign("Cobra")
 	playerCobra:setTypeName("Striker LX")
 	playerCobra:setRepairCrewCount(3)						--more (vs 2)
 	playerCobra:setShieldsMax(100,100)						--stronger shields (vs 50, 30)
@@ -19133,7 +19129,7 @@ function createPlayerShipCobra()
 	return playerCobra
 end
 function createPlayerShipCrux()
-	playerMantis = PlayerSpaceship():setTemplate("Player Missile Cr."):setFaction("Human Navy"):setCallSign("Crux")
+	playerMantis = PlayerSpaceship():setTemplate("Player Missile Cr."):setFaction("Cultists"):setCallSign("Crux")
 	playerMantis:setTypeName("Mantis")
 --                  			  Arc, Dir,  Range, CycleTime, Dmg
 	playerMantis:setBeamWeapon(0,  60, -15,	1000.0,			6, 4)	--two beams (vs none)
@@ -19186,7 +19182,7 @@ function createPlayerShipCrux()
 	return playerMantis
 end
 function createPlayerShipDarkstar()
-	playerDarkstar = PlayerSpaceship():setTemplate("Player Cruiser"):setFaction("Human Navy"):setCallSign("Darkstar")
+	playerDarkstar = PlayerSpaceship():setTemplate("Player Cruiser"):setFaction("Cultists"):setCallSign("Darkstar")
 	playerDarkstar:setTypeName("Destroyer IV")
 	playerDarkstar.max_jump_range = 28000					--shorter (vs 50)
 	playerDarkstar.min_jump_range = 3000					--shorter (vs 5)
@@ -19215,7 +19211,7 @@ function createPlayerShipDarkstar()
 	return playerDarkstar
 end
 function createPlayerShipDevon()
-	playerWombat = PlayerSpaceship():setTemplate("ZX-Lindworm"):setFaction("Human Navy"):setCallSign("Farrah")
+	playerWombat = PlayerSpaceship():setTemplate("ZX-Lindworm"):setFaction("Cultists"):setCallSign("Farrah")
 	--aka Devon or Farrah or Shannon
 	playerWombat:setTypeName("Wombat")
 	playerWombat:setHullMax(100)							--stronger hull (vs 75)
@@ -19263,7 +19259,7 @@ function createPlayerShipDevon()
 	return playerWombat
 end
 function createPlayerShipEagle()
-	playerEagle = PlayerSpaceship():setTemplate("Flavia P.Falcon"):setFaction("Human Navy"):setCallSign("Eagle")
+	playerEagle = PlayerSpaceship():setTemplate("Flavia P.Falcon"):setFaction("Cultists"):setCallSign("Eagle")
 	playerEagle:setTypeName("Era")
 	playerEagle:setRotationMaxSpeed(15)									--faster spin (vs 10)
 --                 				 Arc, Dir, Range, CycleTime, Damage
@@ -19280,7 +19276,7 @@ function createPlayerShipEagle()
 	return playerEagle
 end
 function createPlayerShipEndeavor()
-	playerEndeavor = PlayerSpaceship():setTemplate("Atlantis"):setFaction("Human Navy"):setCallSign("Endeavor")
+	playerEndeavor = PlayerSpaceship():setTemplate("Atlantis"):setFaction("Cultists"):setCallSign("Endeavor")
 	playerEndeavor:setTypeName("Bermuda")
 	playerEndeavor:setRepairCrewCount(5)					--more repair crew (vs 3)
 	playerEndeavor:setImpulseMaxSpeed(70)					--slower impulse max (vs 90)
@@ -19307,7 +19303,7 @@ function createPlayerShipEndeavor()
 	return playerEndeavor
 end
 function createPlayerShipEnola()
-	playerEnola = PlayerSpaceship():setTemplate("Crucible"):setFaction("Human Navy"):setCallSign("Enola")
+	playerEnola = PlayerSpaceship():setTemplate("Crucible"):setFaction("Cultists"):setCallSign("Enola")
 	playerEnola:setTypeName("Fray")
 	playerEnola:setWarpDrive(false)						--no warp drive (vs warp)
 	playerEnola:setShieldsMax(100, 200)					--stronger rear shields (vs 160, 160)
@@ -19349,7 +19345,7 @@ function createPlayerShipEnola()
 	return playerEnola
 end
 function createPlayerShipEspadon()
-	playerOrca = PlayerSpaceship():setTemplate("Phobos M3P"):setFaction("Human Navy"):setCallSign("Espadon")
+	playerOrca = PlayerSpaceship():setTemplate("Phobos M3P"):setFaction("Cultists"):setCallSign("Espadon")
 	playerOrca:setTypeName("Orca")
 	playerOrca:setBeamWeapon(0, 0,  0,	 0,		 0, 0)
 	playerOrca:setBeamWeapon(1, 0,  0,	 0,		 0, 0)
@@ -19358,7 +19354,7 @@ function createPlayerShipEspadon()
 	return playerOrca	
 end
 function createPlayerShipFalcon()
-	playerFalcon = PlayerSpaceship():setTemplate("Nautilus"):setFaction("Human Navy"):setCallSign("Falcon")
+	playerFalcon = PlayerSpaceship():setTemplate("Nautilus"):setFaction("Cultists"):setCallSign("Falcon")
 	playerFalcon:setTypeName("Eldridge")
 	playerFalcon:setShieldsMax(100, 100)				--stronger shields (vs 60, 60)
 	playerFalcon:setShields(100, 100)
@@ -19385,7 +19381,7 @@ function createPlayerShipFalcon()
 	return playerFalcon
 end
 function createPlayerShipFist()
-	playerInterlock = PlayerSpaceship():setTemplate("Repulse"):setFaction("Human Navy"):setCallSign("Fist")
+	playerInterlock = PlayerSpaceship():setTemplate("Repulse"):setFaction("Cultists"):setCallSign("Fist")
 	playerInterlock:setTypeName("Interlock")
 	playerInterlock:setHullMax(250)							--stronger hull (vs 120)
 	playerInterlock:setHull(250)
@@ -19421,7 +19417,7 @@ function createPlayerShipFist()
 	return playerInterlock
 end
 function createPlayerShipFlaire()
-	playerPeacock = PlayerSpaceship():setTemplate("Player Cruiser"):setFaction("Human Navy"):setCallSign("Flaire")
+	playerPeacock = PlayerSpaceship():setTemplate("Player Cruiser"):setFaction("Cultists"):setCallSign("Flaire")
 	playerPeacock:setTypeName("Peacock")
 	playerPeacock:setRepairCrewCount(4)					--more repair crew (vs 3)
 	playerPeacock:setImpulseMaxSpeed(75)				--slower impulse max (vs 90)
@@ -19483,7 +19479,7 @@ function createPlayerShipFlaire()
 	return playerPeacock
 end
 function createPlayerShipFlipper()
-	playerFlipper = PlayerSpaceship():setTemplate("Player Missile Cr."):setFaction("Human Navy"):setCallSign("Flipper")
+	playerFlipper = PlayerSpaceship():setTemplate("Player Missile Cr."):setFaction("Cultists"):setCallSign("Flipper")
 	playerFlipper:setTypeName("Midian")
 	playerFlipper:setRadarTrace(getFilenameCompatible("cruiser.png"))	--different radar trace
 	playerFlipper:setWarpSpeed(320)
@@ -19528,7 +19524,7 @@ function createPlayerShipFlipper()
 	return playerFlipper
 end
 function createPlayerShipFlorentine()
-	playerSafari = PlayerSpaceship():setTemplate("Flavia P.Falcon"):setFaction("Human Navy"):setCallSign("Florentine")
+	playerSafari = PlayerSpaceship():setTemplate("Flavia P.Falcon"):setFaction("Cultists"):setCallSign("Florentine")
 	playerSafari:setTypeName("Safari")
 	playerSafari:setShieldsMax(100, 60)					--stronger front, weaker rear (vs 70, 70)
 	playerSafari:setShields(100, 60)
@@ -19561,7 +19557,7 @@ function createPlayerShipFlorentine()
 	return playerSafari
 end
 function createPlayerShipGabble()
-	playerGabble = PlayerSpaceship():setTemplate("Piranha"):setFaction("Human Navy"):setCallSign("Gabble")
+	playerGabble = PlayerSpaceship():setTemplate("Piranha"):setFaction("Cultists"):setCallSign("Gabble")
 	playerGabble:setTypeName("Squid")
 	playerGabble:setRepairCrewCount(5)					--more repair crew (vs 2)
 	playerGabble:setShieldsMax(100, 100)				--stronger shields (vs 70, 70)
@@ -19599,7 +19595,7 @@ function createPlayerShipGabble()
 	return playerGabble
 end
 function createPlayerShipGeorge()
-	playerRodent = PlayerSpaceship():setTemplate("Phobos M3P"):setFaction("Human Navy"):setCallSign("George")
+	playerRodent = PlayerSpaceship():setTemplate("Phobos M3P"):setFaction("Cultists"):setCallSign("George")
 	playerRodent:setTypeName("Rodent")
 	playerRodent:setRepairCrewCount(5)					--more repair crew (vs 3)
 	playerRodent:setWarpSpeed(250)						--vs none
@@ -19663,7 +19659,7 @@ function createPlayerShipGeorge()
 	return playerRodent
 end
 function createPlayerShipGorn()
-	playerGorn = PlayerSpaceship():setTemplate("Atlantis"):setFaction("Human Navy"):setCallSign("Gorn")
+	playerGorn = PlayerSpaceship():setTemplate("Atlantis"):setFaction("Cultists"):setCallSign("Gorn")
 	playerGorn:setTypeName("Proto-Atlantis")
 	playerGorn:setRepairCrewCount(5)					--more repair crew (vs 3)
 	playerGorn.max_jump_range = 30000					--shorter than typical (vs 50)
@@ -19689,7 +19685,7 @@ function createPlayerShipGorn()
 	return playerGorn
 end
 function createPlayerShipGuinevere()
-	playerGuinevere = PlayerSpaceship():setTemplate("Crucible"):setFaction("Human Navy"):setCallSign("Guinevere")
+	playerGuinevere = PlayerSpaceship():setTemplate("Crucible"):setFaction("Cultists"):setCallSign("Guinevere")
 	playerGuinevere:setTypeName("Caretaker")
 	playerGuinevere:setWarpDrive(false)						--no warp drive (vs warp)
 	playerGuinevere:setJumpDrive(true)						--jump drive (vs warp)
@@ -19721,7 +19717,7 @@ function createPlayerShipGuinevere()
 end
 function createPlayerShipHalberd()
 	--destroyed 29Feb2020
-	playerHalberd = PlayerSpaceship():setTemplate("Atlantis"):setFaction("Human Navy"):setCallSign("Halberd")
+	playerHalberd = PlayerSpaceship():setTemplate("Atlantis"):setFaction("Cultists"):setCallSign("Halberd")
 	playerHalberd:setTypeName("Proto-Atlantis")
 	playerHalberd:setRepairCrewCount(4)					--more repair crew (vs 3)
 	playerHalberd:setImpulseMaxSpeed(70)				--slower impulse max (vs 90)
@@ -19754,7 +19750,7 @@ function createPlayerShipHalberd()
 	return playerHalberd
 end
 function createPlayerShipHeadhunter()
-	playerHeadhunter = PlayerSpaceship():setTemplate("Piranha"):setFaction("Human Navy"):setCallSign("Headhunter")
+	playerHeadhunter = PlayerSpaceship():setTemplate("Piranha"):setFaction("Cultists"):setCallSign("Headhunter")
 	playerHeadhunter:setTypeName("Redhook")
 	playerHeadhunter:setRepairCrewCount(4)						--more repair crew (vs 2)
 	playerHeadhunter.max_jump_range = 25000				--shorter than typical (vs 50)
@@ -19793,7 +19789,7 @@ function createPlayerShipHeadhunter()
 	return playerHeadhunter
 end
 function createPlayerShipHearken()
-	playerHearken = PlayerSpaceship():setTemplate("Piranha"):setFaction("Human Navy"):setCallSign("Hearken")
+	playerHearken = PlayerSpaceship():setTemplate("Piranha"):setFaction("Cultists"):setCallSign("Hearken")
 	playerHearken:setTypeName("Redhook")
 	playerHearken:setRepairCrewCount(4)						--more repair crew (vs 2)
 	playerHearken.max_jump_range = 30000					--shorter than typical (vs 50)
@@ -19842,7 +19838,7 @@ function createPlayerShipHearken()
 	return playerHearken
 end
 function createPlayerShipHrothgar()
-	playerNusret = PlayerSpaceship():setTemplate("Nautilus"):setFaction("Human Navy"):setCallSign("Hrothgar")
+	playerNusret = PlayerSpaceship():setTemplate("Nautilus"):setFaction("Cultists"):setCallSign("Hrothgar")
 	--aka Beowulf
 	playerNusret:setTypeName("Nusret")
 	playerNusret:setHullMax(150)						--stronger hull (vs 100)
@@ -19891,7 +19887,7 @@ function createPlayerShipHrothgar()
 	return playerNusret
 end
 function createPlayerShipHummer()
-	playerHummer = PlayerSpaceship():setTemplate("ZX-Lindworm"):setFaction("Human Navy"):setCallSign("Hummer")
+	playerHummer = PlayerSpaceship():setTemplate("ZX-Lindworm"):setFaction("Cultists"):setCallSign("Hummer")
 	playerHummer:setTypeName("XR-Lindworm")
 	playerHummer:setRepairCrewCount(3)			--more repair crew (vs 1)
 	playerHummer:setWarpDrive(true)				--warp drive (vs none)
@@ -19933,7 +19929,7 @@ function createPlayerShipHummer()
 	return playerHummer
 end
 function createPlayerShipInk()
-	playerInk = PlayerSpaceship():setTemplate("Piranha"):setFaction("Human Navy"):setCallSign("Ink")
+	playerInk = PlayerSpaceship():setTemplate("Piranha"):setFaction("Cultists"):setCallSign("Ink")
 	playerInk:setTypeName("Squid")
 	playerInk:setRepairCrewCount(5)					--more repair crew (vs 2)
 	playerInk:setShieldsMax(100, 100)				--stronger shields (vs 70, 70)
@@ -19980,7 +19976,7 @@ function createPlayerShipInk()
 	return playerInk
 end
 function createPlayerShipJarvis()
-	playerJarvis = PlayerSpaceship():setTemplate("Crucible"):setFaction("Human Navy"):setCallSign("Jarvis")
+	playerJarvis = PlayerSpaceship():setTemplate("Crucible"):setFaction("Cultists"):setCallSign("Jarvis")
 	playerJarvis:setTypeName("Butler")
 	playerJarvis:setImpulseMaxSpeed(70)						--slower impulse max (vs 80)
 	playerJarvis:setWarpSpeed(400)							--slower (vs 750)
@@ -20027,7 +20023,7 @@ function createPlayerShipJarvis()
 	return playerJarvis
 end
 function createPlayerShipJeeves()
-	playerJeeves = PlayerSpaceship():setTemplate("Crucible"):setFaction("Human Navy"):setCallSign("Jeeves")
+	playerJeeves = PlayerSpaceship():setTemplate("Crucible"):setFaction("Cultists"):setCallSign("Jeeves")
 	playerJeeves:setTypeName("Butler")
 	playerJeeves:setWarpSpeed(400)							--slower (vs 750)
 	playerJeeves:setHullMax(100)							--weaker hull (vs 160)
@@ -20055,7 +20051,7 @@ function createPlayerShipJeeves()
 	return playerJeeves
 end
 function createPlayerShipKindling()
-	playerKindling = PlayerSpaceship():setTemplate("Player Cruiser"):setFaction("Human Navy"):setCallSign("Kindling")
+	playerKindling = PlayerSpaceship():setTemplate("Player Cruiser"):setFaction("Cultists"):setCallSign("Kindling")
 	playerKindling:setTypeName("Phoenix")
 	playerKindling.max_jump_range = 28000					--shorter than typical (vs 50)
 	playerKindling.min_jump_range = 3000					--shorter than typical (vs 5)
@@ -20095,7 +20091,7 @@ function createPlayerShipKindling()
 	return playerKindling
 end
 function createPlayerShipKnick()
-	playerKnick = PlayerSpaceship():setTemplate("ZX-Lindworm"):setFaction("Human Navy"):setCallSign("Knick")
+	playerKnick = PlayerSpaceship():setTemplate("ZX-Lindworm"):setFaction("Cultists"):setCallSign("Knick")
 	playerKnick:setTypeName("Glass Cannon")
 	playerKnick:setTubeSize(0, "large")
 	playerKnick:setTubeSize(1, "large")
@@ -20105,7 +20101,7 @@ function createPlayerShipKnick()
 	return playerKnick
 end
 function createPlayerShipLancelot()
-	playerLancelot = PlayerSpaceship():setTemplate("Player Cruiser"):setFaction("Human Navy"):setCallSign("Lancelot")
+	playerLancelot = PlayerSpaceship():setTemplate("Player Cruiser"):setFaction("Cultists"):setCallSign("Lancelot")
 	playerLancelot:setTypeName("Noble")
 	playerLancelot:setRepairCrewCount(5)					--more repair crew (vs 3)
 	playerLancelot:setMaxEnergy(800)						--less maximum energy (vs 1000)
@@ -20161,7 +20157,7 @@ function createPlayerShipLancelot()
 	return playerLancelot
 end
 function createPlayerShipMagnum()
-	playerMagnum = PlayerSpaceship():setTemplate("Crucible"):setFaction("Human Navy"):setCallSign("Magnum")
+	playerMagnum = PlayerSpaceship():setTemplate("Crucible"):setFaction("Cultists"):setCallSign("Magnum")
 	playerMagnum:setTypeName("Focus")
 	playerMagnum:setImpulseMaxSpeed(70)						--slower (vs 80)
 	playerMagnum:setRotationMaxSpeed(20)					--faster spin (vs 15)
@@ -20195,7 +20191,7 @@ function createPlayerShipMagnum()
 	return playerMagnum
 end
 function createPlayerShipMixer()
-	playerAmalgam = PlayerSpaceship():setTemplate("Atlantis"):setFaction("Human Navy"):setCallSign("Mixer")
+	playerAmalgam = PlayerSpaceship():setTemplate("Atlantis"):setFaction("Cultists"):setCallSign("Mixer")
 	playerAmalgam:setTypeName("Amalgam")
 	playerAmalgam:setRepairCrewCount(5)					--more repair crew (vs 3)
 	playerAmalgam.max_jump_range = 40000				--shorter (vs 50)
@@ -20242,7 +20238,7 @@ function createPlayerShipMixer()
 	return playerAmalgam
 end
 function createPlayerShipManxman()
-	playerManxman = PlayerSpaceship():setTemplate("Nautilus"):setFaction("Human Navy"):setCallSign("Manxman")
+	playerManxman = PlayerSpaceship():setTemplate("Nautilus"):setFaction("Cultists"):setCallSign("Manxman")
 	playerManxman:setTypeName("Nusret")
 	playerManxman.max_jump_range = 30000					--shorter than typical (vs 50)
 	playerManxman.min_jump_range = 3000						--shorter than typical (vs 5)
@@ -20262,7 +20258,7 @@ function createPlayerShipManxman()
 end
 function createPlayerShipNarsil()
 	--experimental
-	playerNarsil = PlayerSpaceship():setTemplate("Atlantis"):setFaction("Human Navy"):setCallSign("Narsil")
+	playerNarsil = PlayerSpaceship():setTemplate("Atlantis"):setFaction("Cultists"):setCallSign("Narsil")
 	playerNarsil:setTypeName("Proto-Atlantis 2")
 	playerNarsil:setRepairCrewCount(4)					--more repair crew (vs 3)
 	playerNarsil:setImpulseMaxSpeed(70)					--slower impulse max (vs 90)
@@ -20296,7 +20292,7 @@ function createPlayerShipNarsil()
 	return playerNarsil
 end
 function createPlayerShipNimbus()
-	playerNimbus = PlayerSpaceship():setTemplate("Phobos M3P"):setFaction("Human Navy"):setCallSign("Nimbus")
+	playerNimbus = PlayerSpaceship():setTemplate("Phobos M3P"):setFaction("Cultists"):setCallSign("Nimbus")
 	playerNimbus:setTypeName("Phobos T2.2")
 	playerNimbus:setRepairCrewCount(5)					--more repair crew (vs 3)
 	playerNimbus:setJumpDrive(true)						--jump drive (vs none)
@@ -20325,7 +20321,7 @@ function createPlayerShipNimbus()
 end
 function createPlayerShipOsprey()
 	--destroyed 29Feb2020
-	playerOsprey = PlayerSpaceship():setTemplate("Flavia P.Falcon"):setFaction("Human Navy"):setCallSign("Osprey")
+	playerOsprey = PlayerSpaceship():setTemplate("Flavia P.Falcon"):setFaction("Cultists"):setCallSign("Osprey")
 	playerOsprey:setTypeName("Flavia 2C")
 	playerOsprey:setRotationMaxSpeed(20)					--faster spin (vs 10)
 	playerOsprey:setImpulseMaxSpeed(70)						--faster (vs 60)
@@ -20352,7 +20348,7 @@ function createPlayerShipOsprey()
 	return playerOsprey
 end
 function createPlayerShipOutcast()
-	playerOutcast = PlayerSpaceship():setTemplate("Hathcock"):setFaction("Human Navy"):setCallSign("Outcast")
+	playerOutcast = PlayerSpaceship():setTemplate("Hathcock"):setFaction("Cultists"):setCallSign("Outcast")
 	playerOutcast:setTypeName("Scatter")
 	playerOutcast:setRepairCrewCount(4)					--more repair crew (vs 2)
 	playerOutcast:setImpulseMaxSpeed(65)				--faster impulse max (vs 50)
@@ -20390,7 +20386,7 @@ function createPlayerShipOutcast()
 	return playerOutcast
 end
 function createPlayerShipPinwheel()
-	playerRotor = PlayerSpaceship():setTemplate("Maverick"):setFaction("Human Navy"):setCallSign("Pinwheel")
+	playerRotor = PlayerSpaceship():setTemplate("Maverick"):setFaction("Cultists"):setCallSign("Pinwheel")
 	playerRotor:setTypeName("Rotor")
 	playerRotor:setWarpSpeed(450)							--slower (vs 800)
 --                  		    Arc, Dir,  Range,   CycleTime, Dmg
@@ -20440,7 +20436,7 @@ function createPlayerShipPinwheel()
 	return playerRotor
 end
 function createPlayerShipQuarter()
-	playerBarrow = PlayerSpaceship():setTemplate("Benedict"):setFaction("Human Navy"):setCallSign("Quarter")
+	playerBarrow = PlayerSpaceship():setTemplate("Benedict"):setFaction("Cultists"):setCallSign("Quarter")
 	playerBarrow:setTypeName("Barrow")
 	playerBarrow:setShieldsMax(100, 100)				--stronger shields (vs 70, 70)
 	playerBarrow:setShields(100, 100)
@@ -20458,7 +20454,7 @@ function createPlayerShipQuarter()
 	return playerBarrow
 end
 function createPlayerShipQuick()
-	playerQuick = PlayerSpaceship():setTemplate("ZX-Lindworm"):setFaction("Human Navy"):setCallSign("Quicksilver")
+	playerQuick = PlayerSpaceship():setTemplate("ZX-Lindworm"):setFaction("Cultists"):setCallSign("Quicksilver")
 	playerQuick:setTypeName("XR-Lindworm")
 	playerQuick:setRepairCrewCount(2)			--more repair crew (vs 1)
 	playerQuick:setWarpDrive(true)				--warp drive (vs none)
@@ -20497,7 +20493,7 @@ function createPlayerShipQuick()
 	return playerQuick
 end
 function createPlayerShipQuill()
-	playerQuill = PlayerSpaceship():setTemplate("Flavia P.Falcon"):setFaction("Human Navy"):setCallSign("Quill")
+	playerQuill = PlayerSpaceship():setTemplate("Flavia P.Falcon"):setFaction("Cultists"):setCallSign("Quill")
 	playerQuill:setTypeName("Porcupine")
 	-- weapons are designed from scratch, so no comparision vs stock
 	-- 5 tubes on the left side, all small
@@ -20554,7 +20550,7 @@ function createPlayerShipQuill()
 	return playerQuill
 end
 function createPlayerShipRaptor()
-	playerRaptor = PlayerSpaceship():setTemplate("Player Cruiser"):setFaction("Human Navy"):setCallSign("Raptor")
+	playerRaptor = PlayerSpaceship():setTemplate("Player Cruiser"):setFaction("Cultists"):setCallSign("Raptor")
 	playerRaptor:setTypeName("Destroyer IV")
 	playerRaptor.max_jump_range = 32000						--shorter than typical (vs 50)
 	playerRaptor.min_jump_range = 3000						--shorter than typical (vs 5)
@@ -20583,7 +20579,7 @@ function createPlayerShipRaptor()
 	return playerRaptor
 end
 function createPlayerShipRattler()
-	playerRattler = PlayerSpaceship():setTemplate("ZX-Lindworm"):setFaction("Human Navy"):setCallSign("Rattler")
+	playerRattler = PlayerSpaceship():setTemplate("ZX-Lindworm"):setFaction("Cultists"):setCallSign("Rattler")
 	playerRattler:setTypeName("MX-Lindworm")
 	playerRattler:setRepairCrewCount(2)						--more (vs 1)
 	playerRattler:setJumpDrive(true)
@@ -20619,7 +20615,7 @@ function createPlayerShipRattler()
 	return playerRattler
 end
 function createPlayerShipRip()
-	playerLurker = PlayerSpaceship():setTemplate("ZX-Lindworm"):setFaction("Human Navy"):setCallSign("Rip")
+	playerLurker = PlayerSpaceship():setTemplate("ZX-Lindworm"):setFaction("Cultists"):setCallSign("Rip")
 	playerLurker:setTypeName("Lurker")
 	playerLurker:setHullMax(100)						--stronger hull (vs 75)
 	playerLurker:setHull(100)
@@ -20679,7 +20675,7 @@ function createPlayerShipRip()
 	return playerLurker	
 end
 function createPlayerShipRoc()
-	playerRoc = PlayerSpaceship():setTemplate("Phobos M3P"):setFaction("Human Navy"):setCallSign("Swoop")
+	playerRoc = PlayerSpaceship():setTemplate("Phobos M3P"):setFaction("Cultists"):setCallSign("Swoop")
 	playerRoc:setTypeName("Roc")
 	playerRoc:setRepairCrewCount(5)					--more repair crew (vs 3)
 	playerRoc:setWarpDrive(true)					--warp drive (vs none)
@@ -20746,7 +20742,7 @@ function createPlayerShipRoc()
 	return playerRoc	
 end
 function createPlayerShipRocinante()
-	playerWindmill = PlayerSpaceship():setTemplate("Flavia P.Falcon"):setFaction("Human Navy"):setCallSign("Rocinante")
+	playerWindmill = PlayerSpaceship():setTemplate("Flavia P.Falcon"):setFaction("Cultists"):setCallSign("Rocinante")
 	playerWindmill:setTypeName("Windmill")
 	playerWindmill:setImpulseMaxSpeed(100)	--faster impulse max (vs 60)
 	playerWindmill:setWarpSpeed(350)		--slower (vs 500)
@@ -20801,7 +20797,7 @@ function createPlayerShipRocinante()
 	return playerWindmill
 end
 function createPlayerShipRogue()
-	playerRogue = PlayerSpaceship():setTemplate("Maverick"):setFaction("Human Navy"):setCallSign("Rogue")
+	playerRogue = PlayerSpaceship():setTemplate("Maverick"):setFaction("Cultists"):setCallSign("Rogue")
 	playerRogue:setTypeName("Maverick XP")
 	playerRogue:setImpulseMaxSpeed(65)						--slower impulse max (vs 80)
 	playerRogue:setWarpDrive(false)							--no warp
@@ -20829,7 +20825,7 @@ function createPlayerShipRogue()
 	return playerRogue
 end
 function createPlayerShipSimian()
-	playerSimian = PlayerSpaceship():setTemplate("Player Missile Cr."):setFaction("Human Navy"):setCallSign("Knuckle Drag")
+	playerSimian = PlayerSpaceship():setTemplate("Player Missile Cr."):setFaction("Cultists"):setCallSign("Knuckle Drag")
 	--aka Knuckle Drag or Simian
 	playerSimian:setTypeName("Destroyer III")
 	playerSimian:setWarpDrive(false)
@@ -20883,7 +20879,7 @@ function createPlayerShipSimian()
 	return playerSimian
 end
 function createPlayerShipSlingshot()
-	playerWrocket = PlayerSpaceship():setTemplate("Piranha"):setFaction("Human Navy"):setCallSign("Slingshot")
+	playerWrocket = PlayerSpaceship():setTemplate("Piranha"):setFaction("Cultists"):setCallSign("Slingshot")
 	playerWrocket:setTypeName("Wrocket")
 	playerWrocket:setShieldsMax(100,100)				--stronger shields (vs 80,80)
 	playerWrocket:setShields(100,100)
@@ -20929,7 +20925,7 @@ function createPlayerShipSlingshot()
 	return playerWrocket
 end
 function createPlayerShipSloop()
-	playerSloop = PlayerSpaceship():setTemplate("Phobos M3P"):setFaction("Human Navy"):setCallSign("Levant")
+	playerSloop = PlayerSpaceship():setTemplate("Phobos M3P"):setFaction("Cultists"):setCallSign("Levant")
 	playerSloop:setTypeName("Sloop")
 	playerSloop:setRepairCrewCount(5)				--more repair crew (vs 3)
 	playerSloop:setJumpDrive(true)
@@ -20967,7 +20963,7 @@ function createPlayerShipSloop()
 	return playerSloop	
 end
 function createplayerShipSneak()
-	playerSneak = PlayerSpaceship():setTemplate("Repulse"):setTypeName("Skray"):setFaction("Human Navy"):setCallSign("5N3AK-E")
+	playerSneak = PlayerSpaceship():setTemplate("Repulse"):setTypeName("Skray"):setFaction("Cultists"):setCallSign("5N3AK-E")
 	playerSneak:setWeaponStorageMax("Homing", 10)
 	playerSneak:setWeaponStorage("Homing", 10)
 	playerSneak:setWeaponStorageMax("HVLI", 10)
@@ -20984,7 +20980,7 @@ function createplayerShipSneak()
 	return playerSneak
 end
 function createPlayerShipSparrow()
-	playerSparrow = PlayerSpaceship():setTemplate("Player Fighter"):setFaction("Human Navy"):setCallSign("Sparrow")
+	playerSparrow = PlayerSpaceship():setTemplate("Player Fighter"):setFaction("Cultists"):setCallSign("Sparrow")
 	playerSparrow:setTypeName("Vermin")
 	playerSparrow:setRepairCrewCount(4)						--more repair crew (vs 3)
 	playerSparrow:setMaxEnergy(500)							--more maximum energy (vs 400)
@@ -21007,7 +21003,7 @@ function createPlayerShipSparrow()
 	return playerSparrow
 end
 function createPlayerShipSplinter()
-	playerFresnel = PlayerSpaceship():setTemplate("Player Fighter"):setFaction("Human Navy"):setCallSign("Splinter")
+	playerFresnel = PlayerSpaceship():setTemplate("Player Fighter"):setFaction("Cultists"):setCallSign("Splinter")
 	playerFresnel:setTypeName("Fresnel")
 	playerFresnel:setRadarTrace(getFilenameCompatible("ktlitan_fighter.png"))	--different radar trace
 	playerFresnel:setMaxEnergy(500)								--more maximum energy (vs 400)
@@ -21041,7 +21037,7 @@ function createPlayerShipSplinter()
 end
 function createPlayerShipSpyder()
 	--experimental
-	playerSpyder = PlayerSpaceship():setTemplate("Atlantis"):setFaction("Human Navy"):setCallSign("Spyder")
+	playerSpyder = PlayerSpaceship():setTemplate("Atlantis"):setFaction("Cultists"):setCallSign("Spyder")
 	playerSpyder:setTypeName("Atlantis II")
 	playerSpyder:setRepairCrewCount(4)					--more repair crew (vs 3)
 	playerSpyder:setImpulseMaxSpeed(80)					--slower impulse max (vs 90)
@@ -21075,7 +21071,7 @@ function createPlayerShipSpyder()
 	return playerSpyder
 end
 function createPlayerShipStick()
-	playerStick = PlayerSpaceship():setTemplate("Hathcock"):setFaction("Human Navy"):setCallSign("Spike")	
+	playerStick = PlayerSpaceship():setTemplate("Hathcock"):setFaction("Cultists"):setCallSign("Spike")	
 	--aka stick or spike
 	playerStick:setTypeName("Surkov")
 	playerStick:setRepairCrewCount(3)	--more repair crew (vs 2)
@@ -21124,7 +21120,7 @@ function createPlayerShipStick()
 end
 function createPlayerShipSting()
 	--sent to Kraylor war front. May return later
-	playerSting = PlayerSpaceship():setTemplate("Hathcock"):setFaction("Human Navy"):setCallSign("Sting")
+	playerSting = PlayerSpaceship():setTemplate("Hathcock"):setFaction("Cultists"):setCallSign("Sting")
 	playerSting:setTypeName("Surkov")
 	playerSting:setRepairCrewCount(4)	--more repair crew (vs 2)
 	playerSting:setImpulseMaxSpeed(60)	--faster impulse max (vs 50)
@@ -21154,7 +21150,7 @@ function createPlayerShipSting()
 	return playerSting
 end
 function createPlayerShipTango()
-	playerTwister = PlayerSpaceship():setTemplate("Hathcock"):setFaction("Human Navy"):setCallSign("Tango")
+	playerTwister = PlayerSpaceship():setTemplate("Hathcock"):setFaction("Cultists"):setCallSign("Tango")
 	playerTwister:setTypeName("Twister")
 	playerTwister:setRadarTrace(getFilenameCompatible("ktlitan_destroyer.png"))				--different radar trace
 	playerTwister:setRepairCrewCount(5)										--more repair crew (vs 2)
@@ -21226,7 +21222,7 @@ function createPlayerShipTango()
 	return playerTwister
 end
 function createPlayerShipTerror()
-	playerPhobosT2 = PlayerSpaceship():setTemplate("Phobos M3P"):setFaction("Human Navy"):setCallSign("Terror")
+	playerPhobosT2 = PlayerSpaceship():setTemplate("Phobos M3P"):setFaction("Cultists"):setCallSign("Terror")
 	playerPhobosT2:setTypeName("Phobos T2.2")
 	playerPhobosT2:setRepairCrewCount(4)					--more repair crew (vs 3)
 	playerPhobosT2:setJumpDrive(true)						--jump drive (vs none)
@@ -21258,7 +21254,7 @@ function createPlayerShipTerror()
 	return playerPhobosT2
 end
 function createPlayerShipThelonius()
-	playerThelonius = PlayerSpaceship():setTemplate("Crucible"):setFaction("Human Navy"):setCallSign("Thelonius")
+	playerThelonius = PlayerSpaceship():setTemplate("Crucible"):setFaction("Cultists"):setCallSign("Thelonius")
 	playerThelonius:setTypeName("Crab")
 	playerThelonius:setWarpSpeed(450)						--slower (vs 750)
 	playerThelonius:setShieldsMax(300,300)					--stronger (vs 160,160) Lingling effect
@@ -21300,7 +21296,7 @@ function createPlayerShipThelonius()
 end
 function createPlayerShipThunderbird()
 	--destroyed 29Feb2020
-	playerThunderbird = PlayerSpaceship():setTemplate("Player Cruiser"):setFaction("Human Navy"):setCallSign("Thunderbird")
+	playerThunderbird = PlayerSpaceship():setTemplate("Player Cruiser"):setFaction("Cultists"):setCallSign("Thunderbird")
 	playerThunderbird:setTypeName("Destroyer IV")
 	playerThunderbird.max_jump_range = 28000					--shorter than typical (vs 50)
 	playerThunderbird.min_jump_range = 3000						--shorter than typical (vs 5)
@@ -21329,7 +21325,7 @@ function createPlayerShipThunderbird()
 	return playerThunderbird
 end
 function createPlayerShipTorch()
-	playerTorch = PlayerSpaceship():setTemplate("Player Fighter"):setFaction("Human Navy"):setCallSign("Ignite")
+	playerTorch = PlayerSpaceship():setTemplate("Player Fighter"):setFaction("Cultists"):setCallSign("Ignite")
 	playerTorch:setTypeName("Torch")
 	playerTorch:setWarpDrive(true)					--add warp (vs none)
 	playerTorch:setImpulseMaxSpeed(100)				--slower impulse max (vs 110)
@@ -21362,7 +21358,7 @@ function createPlayerShipTorch()
 	return playerTorch
 end
 function createPlayerShipVision()
-	playerVision = PlayerSpaceship():setTemplate("Flavia P.Falcon"):setFaction("Human Navy"):setCallSign("Vision")
+	playerVision = PlayerSpaceship():setTemplate("Flavia P.Falcon"):setFaction("Cultists"):setCallSign("Vision")
 	playerVision:setTypeName("Era")
 	playerVision:setRotationMaxSpeed(15)									--faster spin (vs 10)
 --                 				 Arc, Dir, Range, CycleTime, Damage
@@ -21379,7 +21375,7 @@ function createPlayerShipVision()
 	return playerVision
 end
 function createPlayerShipWiggy()
-	playerWiggy = PlayerSpaceship():setTemplate("Flavia P.Falcon"):setFaction("Human Navy"):setCallSign("Wiggy")
+	playerWiggy = PlayerSpaceship():setTemplate("Flavia P.Falcon"):setFaction("Cultists"):setCallSign("Wiggy")
 	playerWiggy:setTypeName("Gull")
 	playerWiggy:setRotationMaxSpeed(12)									--faster spin (vs 10)
 --                 				 Arc, Dir, Range, CycleTime, Damage
@@ -21404,7 +21400,7 @@ function createPlayerShipWiggy()
 	return playerWiggy
 end
 function createPlayerShipWatson()
-	playerHolmes = PlayerSpaceship():setTemplate("Crucible"):setFaction("Human Navy"):setCallSign("Watson")
+	playerHolmes = PlayerSpaceship():setTemplate("Crucible"):setFaction("Cultists"):setCallSign("Watson")
 	playerHolmes:setTypeName("Holmes")
 	playerHolmes:setImpulseMaxSpeed(70)						--slower (vs 80)
 --                  			 Arc, Dir,  Range,CycleTime, Dmg
@@ -21439,7 +21435,7 @@ function createPlayerShipWatson()
 	return playerHolmes
 end
 function createPlayerShipWesson()
-	playerChavez = PlayerSpaceship():setTemplate("Hathcock"):setFaction("Human Navy"):setCallSign("Wesson")
+	playerChavez = PlayerSpaceship():setTemplate("Hathcock"):setFaction("Cultists"):setCallSign("Wesson")
 	playerChavez:setTypeName("Chavez")
 	playerChavez:setRepairCrewCount(5)		--more (vs 2)
 	playerChavez.maxRepairCrew = playerChavez:getRepairCrewCount()
@@ -21487,7 +21483,7 @@ function createPlayerShipWesson()
 	return playerChavez
 end
 function createPlayerShipYorik()
-	playerYorik = PlayerSpaceship():setTemplate("Repulse"):setFaction("Human Navy"):setCallSign("Yorik")
+	playerYorik = PlayerSpaceship():setTemplate("Repulse"):setFaction("Cultists"):setCallSign("Yorik")
 	playerYorik:setTypeName("Rook")
 	playerYorik.max_jump_range = 30000					--shorter than typical (vs 50)
 	playerYorik.min_jump_range = 3000						--shorter than typical (vs 5)
@@ -21526,7 +21522,7 @@ function createPlayerShipYorik()
 end
 --	Specialized ships spawned by a carrier
 function createPlayerShipFowl()
-	playerFowl = PlayerSpaceship():setTemplate("Player Fighter"):setFaction("Human Navy"):setCallSign("Chack")
+	playerFowl = PlayerSpaceship():setTemplate("Player Fighter"):setFaction("Cultists"):setCallSign("Chack")
 	playerFowl:setTypeName("Fowl")
 	playerFowl:setRepairCrewCount(4)					--more repair crew (vs 3)
 	playerFowl:setMaxEnergy(500)						--more maximum energy (vs 400)
@@ -21547,7 +21543,7 @@ function createPlayerShipFowl()
 	return playerFowl
 end
 function createPlayerShipPhargus()
-	playerPhargus = PlayerSpaceship():setTemplate("Phobos M3P"):setFaction("Human Navy"):setCallSign("Gringo")
+	playerPhargus = PlayerSpaceship():setTemplate("Phobos M3P"):setFaction("Cultists"):setCallSign("Gringo")
 	--aka Gringo
 	playerPhargus:setTypeName("Phargus")
 	playerPhargus:setShieldsMax(70,50)					--weaker (vs 100,100)
@@ -21565,7 +21561,7 @@ function createPlayerShipPhargus()
 	return playerPhargus
 end
 function stockPlayer(template)
-	local ship = PlayerSpaceship():setTemplate(template):setFaction("Human Navy")
+	local ship = PlayerSpaceship():setTemplate(template):setFaction("Cultists")
 	ship:onTakingDamage(playerShipDamage)
 	return ship
 end
@@ -22365,6 +22361,39 @@ function setGMFleetFaction()
 		fleetSpawnFaction = "CUF"
 		spawnGMFleet()
 	end)
+	local GMSetFleetFactionIU = "Interplanetary Union"
+	if fleetSpawnFaction == "Interplanetary Union" then
+		GMSetFleetFactionIU = "Interplanetary Union*"
+	end
+	addGMFunction(GMSetFleetFactionIU,function()
+		fleetSpawnFaction = "Interplanetary Union"
+		spawnGMFleet()
+	end)
+	local GMSetFleetFactionColonists = "Colonists"
+	if fleetSpawnFaction == "Colonists" then
+		GMSetFleetFactionColonists = "Colonists*"
+	end
+	addGMFunction(GMSetFleetFactionColonists,function()
+		fleetSpawnFaction = "Colonists"
+		spawnGMFleet()
+	end)
+	local GMSetFleetFactionCriminals = "Criminals"
+	if fleetSpawnFaction == "Criminals" then
+		GMSetFleetFactionCriminals = "Criminals*"
+	end
+	addGMFunction(GMSetFleetFactionCriminals,function()
+		fleetSpawnFaction = "Criminals"
+		spawnGMFleet()
+	end)
+	local GMSetFleetFactionCultists = "Cultists"
+	if fleetSpawnFaction == "Cultists" then
+		GMSetFleetFactionCultists = "Cultists*"
+	end
+	addGMFunction(GMSetFleetFactionCultists,function()
+		fleetSpawnFaction = "Cultists"
+		spawnGMFleet()
+	end)
+
 end
 -------------------------------------------------------------
 --  Spawn Ship(s) > Spawn Fleet > Relative Fleet Strength  --
@@ -24376,7 +24405,7 @@ function getFactionPrefix(faction)
 		faction_prefix = independent_names[independent_name_choice]
 		table.remove(independent_names,independent_name_choice)
 	end
-	if faction == "Human Navy" then
+	if faction == "Human Navy" or faction == "Interplanetary Union" then
 		if human_names == nil then
 			setHumanNames()
 		else
@@ -24412,7 +24441,7 @@ function getFactionPrefix(faction)
 		faction_prefix = usn_names[usn_name_choice]
 		table.remove(usn_names,usn_name_choice)
 	end
-	if faction == "TSN" then
+	if faction == "TSN" or faction == "Colonists" then
 		if tsn_names == nil then
 			setTsnNames()
 		else
@@ -24424,7 +24453,7 @@ function getFactionPrefix(faction)
 		faction_prefix = tsn_names[tsn_name_choice]
 		table.remove(tsn_names,tsn_name_choice)
 	end
-	if faction == "CUF" then
+	if faction == "CUF" or faction == "Criminals" then
 		if cuf_names == nil then
 			setCufNames()
 		else
@@ -38602,6 +38631,18 @@ function endMission()
 	addGMFunction("CUF Victory",function()
 		victory("CUF")
 	end)
+	addGMFunction("Cultists Victory",function()
+		victory("Cultists")
+	end)
+	addGMFunction("Criminals Victory",function()
+		victory("Criminals")
+	end)
+	addGMFunction("Colonists Victory",function()
+		victory("Colonists")
+	end)
+	addGMFunction("Interplanetary Union Victory",function()
+		victory("Interplanetary Union")
+	end)
 end
 --	*										   *  --
 --	**										  **  --
@@ -42062,6 +42103,10 @@ function enemyComms(comms_data)
 		["CUF"] =		11,
 		["Human Navy"] =12,
 		["Independent"]=18,
+		["Interplanetary Union"] =		11,
+		["Colonists"] =		10,
+		["Criminals"] =		30,
+		["Cultists"] =		20,
 	}
 	if taunt_chat_by_faction[faction] ~= nil then
 		taunt_chat = taunt_chat_by_faction[faction]
@@ -42085,6 +42130,10 @@ function enemyComms(comms_data)
 		["CUF"] =		21,
 		["Human Navy"] =23,
 		["Independent"]=32,
+		["Cultists"] =		21,
+		["Criminals"] =		30,
+		["Colonists"] =		20,
+		["Interplanetary Union"] =		25,
 	}
 	if amenable_chat_by_faction[faction] ~= nil then
 		amenable_chat = amenable_chat_by_faction[faction]
@@ -42147,6 +42196,20 @@ function influenceEnemy(tauntable,amenable,enemy_health,rep)
 		["Independent"]={
 							"Make it quick.",
 						},
+		["Interplanetary Union"] =		{
+							"State your business",
+						},
+		["Colonists"] =		{
+							"What do you want? (not that we care)",
+						},
+		["Criminals"] =		{
+							"Don't waste our time",
+							"Do I have to talk to such losers?\n*sigh*\nOk, start talking.",
+						},
+		["Cultists"] ={
+							"Mind your own business!",
+						},
+
 	}
 	if hail_message_by_faction[faction] ~= nil then
 		hail_message = hail_message_by_faction[faction][math.random(1,#hail_message_by_faction[faction])]
@@ -42164,6 +42227,10 @@ function influenceEnemy(tauntable,amenable,enemy_health,rep)
 		["CUF"] =		.7	,
 		["Human Navy"] =.9	,
 		["Independent"]=1	,
+		["Cultists"] =		.6	,
+		["Criminals"] =		.5	,
+		["Interplanetary Union"] =		.7	,
+		["Colonists"] =.9	,
 	}
 	if rep_effect_by_faction[faction] ~= nil then
 		rep_effect = rep_effect_by_faction[faction]
@@ -42180,6 +42247,10 @@ function influenceEnemy(tauntable,amenable,enemy_health,rep)
 		["CUF"] =		.9	,
 		["Human Navy"] =1.1	,
 		["Independent"]=1	,
+		["Cultists"] =		1.1	,
+		["Criminals"] =		1.4	,
+		["Interplanetary Union"] =		.9	,
+		["Colonists"] =1.1	,
 	}
 	if dist_effect_by_faction[faction] ~= nil then
 		dist_effect = dist_effect_by_faction[faction]
@@ -42205,6 +42276,10 @@ function influenceEnemy(tauntable,amenable,enemy_health,rep)
 		["CUF"] =		11	,
 		["Human Navy"] =5	,
 		["Independent"]=10	,
+		["Colonists"] =		10	,
+		["Criminals"] =		9	,
+		["Interplanetary Union"] =		11	,
+		["Cultists"] =5	,
 	}
 	if target_lock_by_faction[faction] ~= nil then
 		target_lock = target_lock_by_faction[faction]
@@ -42887,6 +42962,10 @@ function revertCheck(delta)
 			["CUF"] =		4	,
 			["Human Navy"]=	6	,
 			["Independent"]=10	,
+			["Cultists"] =		3	,
+			["Colonists"] =		3.5	,
+			["Criminals"] =		4	,
+			["Interplanetary Union"]=	6	,
 		}
 		local amenable_expiration_chance_by_faction = {
 			["Kraylor"] =	2.5	,
@@ -42899,6 +42978,10 @@ function revertCheck(delta)
 			["CUF"] =		3	,
 			["Human Navy"]=	4	,
 			["Independent"]=9	,
+			["Cultists"] =		3.5	,
+			["Colonists"] =		2.8	,
+			["Criminals"] =		3	,
+			["Interplanetary Union"]=	4	,
 		}
 		for revert_index, enemy in ipairs(enemy_reverts) do
 			if enemy ~= nil and enemy:isValid() then
