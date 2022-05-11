@@ -1549,6 +1549,37 @@ function createSkeletonUniverse()
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
         goods = {	food = 		{quantity = 10,		cost = 1},
         			medicine =	{quantity = 10,		cost = 5}	},
+		-- Icarus as main station buys everything, but to a low price (about second highest possible price sold).
+        buy = {
+			food			= 1,
+			medicine 		= 2,
+			luxury			= 80,
+			nickel			= 80,
+			platinum		= 75,
+			gold			= 85,
+			dilithium		= 90,
+			tritanium		= 80,
+			cobalt			= 90,
+			impulse			= 100,
+			warp			= 100,
+			shield			= 100,
+			tractor			= 100,
+			repulsor		= 100,
+			beam			= 100,
+			optic			= 100,
+			robotic			= 100,
+			filament		= 100,
+			transporter		= 100,
+			sensor			= 70,
+			communication	= 100,
+			autodoc			= 100,
+			lifter			= 100,
+			android			= 100,
+			nanites			= 100,
+			software		= 100,
+			circuit			= 100,
+			battery			= 90,
+		},
         trade = {	food = false, medicine = false, luxury = false },
         tradeChances = {	food = 0, medicine = 0, luxury = 0 },
         public_relations = true,
@@ -39607,53 +39638,7 @@ function pithlitOneOff()
 	addGMFunction("-Custom",customButtons)
 	addGMFunction("-One-Offs",oneOffs)
 	addGMFunction("+Create Icarus Stuff",createIcarusStuff)
-	addGMFunction("+Icarus Defense",createIcarusDefense)
 	addGMFunction("+Create Ktlitans",createKtlitans)
-end
-----------------------------------
---	Custom > One-Offs > Pithlit > Icarus Defense
-----------------------------------
--- Button Text		   FD*	Related Function(s)
--- -MAIN FROM KOSAI	F	initialGMFunctions
--- -CUSTOM				F	customButtons
--- -ONE-OFFS			F	oneOffs
--- -PITHLIT			F	pithlitOneOff
-function createIcarusDefense()
-	clearGMFunctions()
-	addGMFunction("-Main From Enemies",initialGMFunctions)
-	addGMFunction("-Custom",customButtons)
-	addGMFunction("-One-Offs",oneOffs)
-	addGMFunction("-Pithlit",pithlitOneOff)
-
---	local icx, icy = stationIcarus:getPosition()
---	local startAngle = 23
---	for i=1,6 do
---		local dpx, dpy = vectorFromAngle(startAngle,8000)
---		if i == 6 then
---			dp6Zone = squareZone(icx+dpx,icy+dpy,"idp6")
---			dp6Zone:setColor(0,128,0):setLabel("6")
---		elseif i == 1 then
---			dp1Zone = squareZone(icx+dpx,icy+dpy,"idp1")
---			dp1Zone:setColor(0,128,0):setLabel("1")
---		elseif i == 2 then
---			dp2Zone = squareZone(icx+dpx,icy+dpy,"idp2")
---			dp2Zone:setColor(0,128,0):setLabel("2")
---		elseif i == 3 then
---			dp3Zone = squareZone(icx+dpx,icy+dpy,"idp3")
---			dp3Zone:setColor(0,128,0):setLabel("3")
---		else		
---			local dp = CpuShip():setTemplate("Defense platform"):setFaction("Human Navy"):setPosition(icx+dpx,icy+dpy):setScannedByFaction("Human Navy",true):setCallSign(string.format("IDP%i",i)):setDescription(string.format("Icarus defense platform %i",i)):orderRoaming()
---			station_names[dp:getCallSign()] = {dp:getSectorName(), dp}
---			dp:setLongRangeRadarRange(20000):setCommsScript(""):setCommsFunction(commsStation)
---			table.insert(icarusDefensePlatforms,dp)
---		end
---		for j=1,5 do
---			dpx, dpy = vectorFromAngle(startAngle+17+j*4,8000)
---			local dm = Mine():setPosition(icx+dpx,icy+dpy)
---			table.insert(icarusMines,dm)
---		end
---		startAngle = startAngle + 60
---	end
 end
 ----------------------------------
 --	Custom > One-Offs > Pithlit > Create Ktlitans
@@ -39738,14 +39723,13 @@ function toggleZoneAquarius()
 	createIcarusStuff()
 end
 function createStationAquarius()
+	-- first colonist station, will need food
     stationAquarius = SpaceStation():setTemplate("Small Station"):setFaction("Independent"):setCallSign("Aquarius IX"):setPosition(-4295, 14159):setDescription("Mining"):setCommsScript(""):setCommsFunction(commsStation)
 
     if random(1,100) <= 30 then nukeAvail = true else nukeAvail = false end
     if random(1,100) <= 50 then mineAvail = true else mineAvail = false end
     if random(1,100) <= 60 then homeAvail = true else homeAvail = false end
     tradeChanceMedicine = 39
-
-    tradeChanceFood = 82
 
     stationAquarius.comms_data = {
     	friendlyness = 67,
@@ -39778,8 +39762,8 @@ function createStationAquarius()
         max_weapon_refill_amount = {friend = 1.0, neutral = 0.5 },
         goods = {	platinum = 	{quantity = math.random(4,8),	cost = math.random(50,80)},
         			nickel =	{quantity = math.random(6,12),	cost = math.random(45,65)}	},
-        trade = {	food = tradeFood, medicine = tradeMedicine, luxury = false },
-        tradeChances = {	food = tradeChanceFood, medicine = tradeChanceMedicine, luxury = 0 },
+        trade = {	food = true, medicine = tradeMedicine, luxury = false },
+        tradeChances = {	food = 0, medicine = tradeChanceMedicine, luxury = 0 },
         public_relations = true,
         general_information = "Facilitate mining the nearby asteroids",
     	history = "Station named after the platinum mine on ancient Earth on the African continent",
