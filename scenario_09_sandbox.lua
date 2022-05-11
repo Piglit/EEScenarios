@@ -17251,13 +17251,13 @@ function changePlayerRepairCrew()
 			addGMMessage(string.format("1 repair crew added to %s for a new total of %i repair crew",p:getCallSign(),p:getRepairCrewCount()))
 			for i=1,#regionStations do
 				if p:isDocked(regionStations[i]) then
-					p:wrappedAddCustomMessage("Engineering","added_repair_crew_message",string.format("A volunteer from station %s has boarded to work as one of your repair crew",regionStations[i]:getCallSign()))
+					p:wrappedAddCustomMessage("Engineering","added_repair_crew_message",string.format("A android from station %s has boarded to work as one of your repair robots",regionStations[i]:getCallSign()))
 					crew_reason_given = true
 					break
 				end
 			end
 			if not crew_reason_given then
-				p:wrappedAddCustomMessage("Engineering","added_repair_crew_message","A crew member from a different department has completed training and has transferred to your repair crew")
+				p:wrappedAddCustomMessage("Engineering","added_repair_crew_message","An android from a different department has completed training and has transferred to your repair crew")
 			end
 		else
 			addGMMessage("No player selected. No action taken")
@@ -17273,13 +17273,13 @@ function changePlayerRepairCrew()
 				addGMMessage(string.format("1 repair crew removed from %s for a new total of %i repair crew",p:getCallSign(),p:getRepairCrewCount()))
 				for i=1,#regionStations do
 					if p:isDocked(regionStations[i]) then
-						p:wrappedAddCustomMessage("Engineering","removed_repair_crew_message",string.format("One of your repair crew has disembarked on to station %s claiming his work contract has been fulfilled",regionStations[i]:getCallSign()))
+						p:wrappedAddCustomMessage("Engineering","removed_repair_crew_message",string.format("One of your repair robots has disembarked on to station %s claiming his work contract has been fulfilled",regionStations[i]:getCallSign()))
 						crew_reason_given = true
 						break
 					end
 				end
 				if not crew_reason_given then
-					p:wrappedAddCustomMessage("Engineering","removed_repair_crew_message","One of your repair crew has become debilitatingly ill and can no longer conduct any repairs")
+					p:wrappedAddCustomMessage("Engineering","removed_repair_crew_message","One of your repair robots has become concious and can no longer conduct any repairs")
 				end
 			end
 		else
@@ -32521,7 +32521,7 @@ function marinePointPickupProcess(self,retriever)
 				end
 				if successful_action then
 					if self.action == "Drop" then
-						retriever:wrappedAddCustomMessage("Engineering","mprcd","One of your repair crew deployed with the marine team. They will return when the marines are picked up")
+						retriever:wrappedAddCustomMessage("Engineering","mprcd","One of your repair robots deployed with the marine team. It will return when the marines are picked up")
 					end
 					if retriever:getEnergy() > 50 then
 						retriever:setEnergy(retriever:getEnergy() - 50)
@@ -32847,7 +32847,7 @@ function engineerPointPickupProcess(self,retriever)
 				end
 				if successful_action then
 					if self.action == "Drop" then
-						retriever:wrappedAddCustomMessage("Engineering","eprcd","One of your repair crew deployed with the engineering team. They will return when the engineers are picked up")
+						retriever:wrappedAddCustomMessage("Engineering","eprcd","One of your repair robots deployed with the engineering team. It will return when the engineers are picked up")
 					end
 					if retriever:getEnergy() > 50 then
 						retriever:setEnergy(retriever:getEnergy() - 50)
@@ -33173,7 +33173,7 @@ function medicPointPickupProcess(self,retriever)
 				end
 				if successful_action then
 					if self.action == "Drop" then
-						retriever:wrappedAddCustomMessage("Engineering","mdprcd","One of your repair crew deployed with the medical team. They will return when the medical team is picked up")
+						retriever:wrappedAddCustomMessage("Engineering","mdprcd","One of your repair robots deployed with the medical team. It will return when the medical team is picked up")
 					end
 					if retriever:getEnergy() > 50 then
 						retriever:setEnergy(retriever:getEnergy() - 50)
@@ -44777,7 +44777,7 @@ function handleDockedState()
 	end
 end	--end of handleDockedState function
 function getRepairCrewFromStation(relationship)
-	addCommsReply(_("trade-comms","Recruit repair crew member"),function()
+	addCommsReply(_("trade-comms","Buy repair robot"),function()
 		if comms_target.comms_data.available_repair_crew == nil then
 			comms_target.comms_data.available_repair_crew = math.random(0,3)
 		end
@@ -44797,8 +44797,8 @@ function getRepairCrewFromStation(relationship)
 							hire_cost = math.random(45,90)
 						end
 					end
-					setCommsMessage(_("trade-comms","We have a repair crew candidate for you to consider"))
-					addCommsReply(string.format(_("trade-comms", "Recruit repair crew member for %i reputation"),hire_cost), function()
+					setCommsMessage(_("trade-comms","We have a repair robot for you to consider"))
+					addCommsReply(string.format(_("trade-comms", "Buy repair robot for %i reputation"),hire_cost), function()
 						if not comms_source:takeReputationPoints(hire_cost) then
 							setCommsMessage(_("needRep-comms", "Insufficient reputation"))
 						else
@@ -44807,15 +44807,15 @@ function getRepairCrewFromStation(relationship)
 							if comms_target.comms_data.available_repair_crew <= 0 then
 								comms_target.comms_data.new_repair_crew_delay = getScenarioTime() + random(200,500)
 							end
-							setCommsMessage(_("trade-comms", "Repair crew member hired"))
+							setCommsMessage(_("trade-comms", "Repair robot bought"))
 						end
 						addCommsReply(_("Back"), commsStation)
 					end)
 				else	--repair crew delayed
 					local delay_reason = {
-						_("trade-comms","A possible repair recruit is awaiting final certification. They should be available in "),
-						_("trade-comms","There's one repair crew candidate completing their license application. They should be available in "),
-						_("trade-comms","One repair crew should be getting here from their medical checkout in "),
+						_("trade-comms","A possible repair robot is awaiting final certification. It should be available in "),
+						_("trade-comms","There's one repair robot completing its license application. It should be available in "),
+						_("trade-comms","One repair robot should be getting here from its final checkout in "),
 					}
 					local delay_seconds = math.random(10,30)
 					comms_target.comms_data.crew_available_delay = getScenarioTime() + delay_seconds
@@ -44837,9 +44837,9 @@ function getRepairCrewFromStation(relationship)
 			if getScenarioTime() > comms_target.comms_data.new_repair_crew_delay then
 				comms_target.comms_data.available_repair_crew = math.random(1,3)
 				local delay_reason = {
-					_("trade-comms","A possible repair recruit is awaiting final certification. They should be available in "),
-					_("trade-comms","There's one repair crew candidate completing their license application. They should be available in "),
-					_("trade-comms","One repair crew should be getting here from their medical checkout in "),
+					_("trade-comms","A repair robot is awaiting final certification. It should be available in "),
+					_("trade-comms","There's one repair robot completing its license application. It should be available in "),
+					_("trade-comms","One repair robot should be getting here from its final checkout in "),
 				}
 				local delay_seconds = math.random(10,30)
 				comms_target.comms_data.crew_available_delay = getScenarioTime() + delay_seconds
@@ -44860,7 +44860,7 @@ function getRepairCrewFromStation(relationship)
 						delay_status = string.format(_("trade-comms","%i minute and %s"),delay_minutes,delay_status)
 					end							
 				end
-				setCommsMessage(string.format(_("trade-comms","There are some repair crew recruits in route for %s. Travel time remaining is %s."),comms_target:getCallSign(),delay_status))
+				setCommsMessage(string.format(_("trade-comms","There are some repair robots in route for %s. Travel time remaining is %s."),comms_target:getCallSign(),delay_status))
 			end
 		end
 		addCommsReply(_("Back"), commsStation)
@@ -45147,12 +45147,12 @@ function preOrderOrdnance()
 				else
 					hireCost = math.random(45,90)
 				end
-				addCommsReply(string.format("Recruit repair crew member for %i reputation",hireCost), function()
+				addCommsReply(string.format("Recruit repair robot for %i reputation",hireCost), function()
 					if not comms_source:takeReputationPoints(hireCost) then
 						setCommsMessage("Insufficient reputation")
 					else
 						comms_source.preorder_repair_crew = 1
-						setCommsMessage("Repair crew hired on your behalf. They will board when you dock")
+						setCommsMessage("Repair robot hired on your behalf. They will board when you dock")
 					end				
 					preorder_message = "Docking crew is standing by. Would you like to pre-order anything?"
 					addCommsReply("Back",preOrderOrdnance)
@@ -45298,7 +45298,7 @@ function handleUndockedState()
 					end
 					if comms_source.preorder_repair_crew ~= nil then
 						preorders_identified = true
-						existing_expedite = existing_expedite .. "\n   One repair crew"						
+						existing_expedite = existing_expedite .. "\n   One repair robot"						
 					end
 					if comms_source.preorder_coolant ~= nil then
 						preorders_identified = true
@@ -47612,7 +47612,7 @@ function updatePlayerDamageConsequences(p)
 			if math.random() < (fatalityChance) then
 				if p.initialCoolant == nil then
 					p:setRepairCrewCount(p:getRepairCrewCount() - 1)
-					p:wrappedAddCustomMessage("Engineering","repairCrewFatality","One of your repair crew has perished")
+					p:wrappedAddCustomMessage("Engineering","repairCrewFatality","One of your repair robots has perished")
 				else
 					local consequence = 0
 					local upper_consequence = 2
@@ -47653,7 +47653,7 @@ function updatePlayerDamageConsequences(p)
 					consequence = math.random(1,upper_consequence)
 					if consequence == 1 then
 						p:setRepairCrewCount(p:getRepairCrewCount() - 1)
-						p:wrappedAddCustomMessage("Engineering","repairCrewFatality","One of your repair crew has perished")
+						p:wrappedAddCustomMessage("Engineering","repairCrewFatality","One of your repair robots has perished")
 					elseif consequence == 2 then
 						local current_coolant = p:getMaxCoolant()
 						local lost_coolant = 0
@@ -47724,11 +47724,11 @@ function updatePlayerDamageConsequences(p)
 			p:setRepairCrewCount(1)
 			if p:hasPlayerAtPosition("Engineering") then
 				local repairCrewRecovery = "repairCrewRecovery"
-				p:addCustomMessage("Engineering",repairCrewRecovery,"Medical team has revived one of your repair crew")
+				p:addCustomMessage("Engineering",repairCrewRecovery,"One of your repair robots has revived itself")
 			end
 			if p:hasPlayerAtPosition("Engineering+") then
 				local repairCrewRecoveryPlus = "repairCrewRecoveryPlus"
-				p:addCustomMessage("Engineering+",repairCrewRecoveryPlus,"Medical team has revived one of your repair crew")
+				p:addCustomMessage("Engineering+",repairCrewRecoveryPlus,"One of your repair robots has revived itself")
 			end
 			resetPreviousSystemHealth(p)
 		end	--medical science triumph branch
@@ -47918,7 +47918,7 @@ function updatePlayerDamageControl(p)
 			end
 		end
 		if has_compromised_system then
-			max_health_msg = string.format("Maximum health of severely damaged systems repairable in the field by your repair crew:%s",max_health_msg)
+			max_health_msg = string.format("Maximum health of severely damaged systems repairable in the field by your repair robots:%s",max_health_msg)
 			p.max_health_eng = "max_health_eng"
 			p:addCustomButton("Engineering",p.max_health_eng,"Max Health",function()
 				p.max_health_msg_eng = "max_health_msg_eng"
