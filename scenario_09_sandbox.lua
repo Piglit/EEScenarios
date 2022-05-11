@@ -883,7 +883,7 @@ function setConstants()
 	addPlayerShip("Flipper",	"Midian",		createPlayerShipFlipper		,"W")
 	addPlayerShip("Florentine",	"Safari",		createPlayerShipFlorentine	,"W")
 	addPlayerShip("Gabble",		"Squid",		createPlayerShipGabble		,"J")
-	addPlayerShip("George",		"Rodent",		createPlayerShipGeorge		,"J")
+	addPlayerShip("George",		"Rodent",		createPlayerShipGeorge		,"B")
 	addPlayerShip("Gorn",		"Proto-Atlantis",createPlayerShipGorn		,"J")
 	addPlayerShip("Guinevere",	"Caretaker",	createPlayerShipGuinevere	,"J")
 	addPlayerShip("Halberd",	"Proto-Atlantis",createPlayerShipHalberd	,"J")	--proto-atlantis
@@ -934,12 +934,45 @@ function setConstants()
 	addPlayerShip("Wesson",		"Chavez",		createPlayerShipWesson		,"J")
 	addPlayerShip("Wiggy",		"Gull",			createPlayerShipWiggy		,"J")
 	addPlayerShip("Yorik",		"Rook",			createPlayerShipYorik		,"J")
-	makePlayerShipActive("Spyder")		--J
-	makePlayerShipActive("Argonaut")	--J
-	makePlayerShipActive("Nimbus")		--B
-	makePlayerShipActive("Sting")		--W
-	makePlayerShipActive("Sparrow")		--W
-	makePlayerShipActive("Narsil")		--W
+	--makePlayerShipActive("Spyder")		--J
+	--makePlayerShipActive("Argonaut")	--J
+	--makePlayerShipActive("Nimbus")		--B
+	--makePlayerShipActive("Sting")		--W
+	--makePlayerShipActive("Sparrow")		--W
+	--makePlayerShipActive("Narsil")		--W
+
+	makePlayerShipActive("George")	-- start with George
+	makePlayerShipActive("Ambition")
+	makePlayerShipActive("Argonaut")
+	makePlayerShipActive("Arwine")
+	makePlayerShipActive("Barracuda")
+	makePlayerShipActive("Eagle")
+	makePlayerShipActive("Endeavor")
+	makePlayerShipActive("Falcon")
+	makePlayerShipActive("Florentine")
+	makePlayerShipActive("Gabble")
+	makePlayerShipActive("Gorn")
+	makePlayerShipActive("Halberd")
+	makePlayerShipActive("Headhunter")
+	makePlayerShipActive("Hearken")
+	makePlayerShipActive("Hrothgar")
+	makePlayerShipActive("Hummer")
+	makePlayerShipActive("Ink")
+	makePlayerShipActive("Mixer")
+	makePlayerShipActive("Manxman")
+	makePlayerShipActive("Narsil")
+	makePlayerShipActive("Nimbus")
+	makePlayerShipActive("Osprey")
+	makePlayerShipActive("Outcast")
+	makePlayerShipActive("Quill")
+	makePlayerShipActive("Rattler")
+	makePlayerShipActive("Rip")
+	makePlayerShipActive("Rocinante")
+	makePlayerShipActive("Slingshot")
+	makePlayerShipActive("Tango")
+	makePlayerShipActive("Terror")
+	makePlayerShipActive("Wesson")
+
 	active_player_ship = true
 	--goodsList = {	{"food",0}, {"medicine",0},	{"nickel",0}, {"platinum",0}, {"gold",0}, {"dilithium",0}, {"tritanium",0}, {"luxury",0}, {"cobalt",0}, {"impulse",0}, {"warp",0}, {"shield",0}, {"tractor",0}, {"repulsor",0}, {"beam",0}, {"optic",0}, {"robotic",0}, {"filament",0}, {"transporter",0}, {"sensor",0}, {"communication",0}, {"autodoc",0}, {"lifter",0}, {"android",0}, {"nanites",0}, {"software",0}, {"circuit",0}, {"battery",0}	}
 	attackFleetFunction = {orderFleetAttack1,orderFleetAttack2,orderFleetAttack3,orderFleetAttack4,orderFleetAttack5,orderFleetAttack6,orderFleetAttack7,orderFleetAttack8}
@@ -19569,6 +19602,7 @@ function createPlayerShipGeorge()
 	playerRodent = PlayerSpaceship():setTemplate("Phobos M3P"):setFaction("Human Navy"):setCallSign("George")
 	playerRodent:setTypeName("Rodent")
 	playerRodent:setRepairCrewCount(5)					--more repair crew (vs 3)
+	playerRodent:setWarpSpeed(250)						--vs none
 	playerRodent:setJumpDrive(true)
 	playerRodent.max_jump_range = 37000					--shorter than typical (vs 50)
 	playerRodent.min_jump_range = 4000					--shorter than typical (vs 5)
