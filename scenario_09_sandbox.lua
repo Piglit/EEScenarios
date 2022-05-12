@@ -41252,88 +41252,284 @@ function createStationWookie()
 	createdIcarusStations["Wookie"] = true
 	createIcarusStuff()
 end
+
+function createTrnAquarius()
+	local templ = "Equipment Freighter " .. (string.len("Aquarius") % 5 + 1)
+	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Aquarius")
+	createdIcarusTransports["Aquarius"] = true
+	createIcarusStuff()
+end
+
+function createTrnMaximilian()
+	local templ = "Equipment Freighter " .. (string.len("Maximilian") % 5 + 1)
+	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Maximilian")
+	createdIcarusTransports["Maximilian"] = true
+	createIcarusStuff()
+end
+
+function createTrnElysium()
+	local templ = "Equipment Freighter " .. (string.len("Elysium") % 5 + 1)
+	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Elysium")
+	createdIcarusTransports["Elysium"] = true
+	createIcarusStuff()
+end
+
+function createTrnNerva()
+	local templ = "Equipment Freighter " .. (string.len("Nerva") % 5 + 1)
+	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Nerva")
+	createdIcarusTransports["Nerva"] = true
+	createIcarusStuff()
+end
+
+function createTrnMacassa()
+	local templ = "Equipment Freighter " .. (string.len("Macassa") % 5 + 1)
+	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Macassa")
+	createdIcarusTransports["Macassa"] = true
+	createIcarusStuff()
+end
+
+function createTrnPistil()
+	local templ = "Equipment Freighter " .. (string.len("Pistil") % 5 + 1)
+	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Pistil")
+	createdIcarusTransports["Pistil"] = true
+	createIcarusStuff()
+end
+
+function createTrnMermaid()
+	local templ = "Equipment Freighter " .. (string.len("Mermaid") % 5 + 1)
+	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Mermaid")
+	createdIcarusTransports["Mermaid"] = true
+	createIcarusStuff()
+end
+
+function createTrnWookie()
+	local templ = "Equipment Freighter " .. (string.len("Wookie") % 5 + 1)
+	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Wookie")
+	createdIcarusTransports["Wookie"] = true
+	createIcarusStuff()
+end
+
+function createTrnBorlan()
+	local templ = "Equipment Freighter " .. (string.len("Borlan") % 5 + 1)
+	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Borlan")
+	createdIcarusTransports["Borlan"] = true
+	createIcarusStuff()
+end
+
+function createTrnCindy()
+	local templ = "Equipment Freighter " .. (string.len("Cindy") % 5 + 1)
+	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Cindy")
+	createdIcarusTransports["Cindy"] = true
+	createIcarusStuff()
+end
+
+function createTrnRelay13()
+	local templ = "Equipment Freighter " .. (string.len("Relay13") % 5 + 1)
+	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Relay13")
+	createdIcarusTransports["Relay13"] = true
+	createIcarusStuff()
+end
+
+function createTrnStromboli()
+	local templ = "Equipment Freighter " .. (string.len("Stromboli") % 5 + 1)
+	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Stromboli")
+	createdIcarusTransports["Stromboli"] = true
+	createIcarusStuff()
+end
+
+function createTrnSlurry()
+	local templ = "Equipment Freighter " .. (string.len("Slurry") % 5 + 1)
+	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Slurry")
+	createdIcarusTransports["Slurry"] = true
+	createIcarusStuff()
+end
+
+function createTrnFinnegan()
+	local templ = "Equipment Freighter " .. (string.len("Finnegan") % 5 + 1)
+	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Finnegan")
+	createdIcarusTransports["Finnegan"] = true
+	createIcarusStuff()
+end
+
+function createTrnGagarin()
+	local templ = "Equipment Freighter " .. (string.len("Gagarin") % 5 + 1)
+	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Gagarin")
+	createdIcarusTransports["Gagarin"] = true
+	createIcarusStuff()
+end
+
+function createTrnMosEspa()
+	local templ = "Equipment Freighter " .. (string.len("MosEspa") % 5 + 1)
+	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT MosEspa")
+	createdIcarusTransports["MosEspa"] = true
+	createIcarusStuff()
+end
+
+function createTrnSovinec()
+	local templ = "Equipment Freighter " .. (string.len("Sovinec") % 5 + 1)
+	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Sovinec")
+	createdIcarusTransports["Sovinec"] = true
+	createIcarusStuff()
+end
+
+function createTrnSpeculator()
+	local templ = "Equipment Freighter " .. (string.len("Speculator") % 5 + 1)
+	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Speculator")
+	createdIcarusTransports["Speculator"] = true
+	createIcarusStuff()
+end
+
+function createTrnTransylvania()
+	local templ = "Equipment Freighter " .. (string.len("Transylvania") % 5 + 1)
+	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Transylvania")
+	createdIcarusTransports["Transylvania"] = true
+	createIcarusStuff()
+end
+
+
+
 function createIcarusStuff()
 	if createdIcarusStations == nil then
 		createdIcarusStations = {}
+		createdIcarusTransports = {}
 	end
 	clearGMFunctions()
 	addGMFunction("-Main from Icarus", initialGMFunctions)
 	addGMFunction("-Custom", customButtons)
 	addGMFunction("-One-Offs", oneOffs)
 	addGMFunction("-Pithlit", pithlitOneOff)
+	if createdIcarusTransports["Aquarius"] == nil then
+		addGMFunction("Trn. Aquarius", createTrnAquarius)
+	end
 	addGMFunction("Zone Aquarius (F4.9)", toggleZoneAquarius)
 	if createdIcarusStations["Aquarius"] == nil then
 		addGMFunction("Stn. Aquarius (F4.9)", createStationAquarius)
+	end
+	if createdIcarusTransports["Maximilian"] == nil then
+		addGMFunction("Trn. Maximilian", createTrnMaximilian)
 	end
 	addGMFunction("Zone Maximilian (E4)", toggleZoneMaximilian)
 	if createdIcarusStations["Maximilian"] == nil then
 		addGMFunction("Stn. Maximilian (E4)", createStationMaximilian)
 	end
+	if createdIcarusTransports["Elysium"] == nil then
+		addGMFunction("Trn. Elysium", createTrnElysium)
+	end
 	addGMFunction("Zone Elysium (F4.3)", toggleZoneElysium)
 	if createdIcarusStations["Elysium"] == nil then
 		addGMFunction("Stn. Elysium (F4.3)", createStationElysium)
+	end
+	if createdIcarusTransports["Nerva"] == nil then
+		addGMFunction("Trn. Nerva", createTrnNerva)
 	end
 	addGMFunction("Zone Nerva (E4)", toggleZoneNerva)
 	if createdIcarusStations["Nerva"] == nil then
 		addGMFunction("Stn. Nerva (E4)", createStationNerva)
 	end
+	if createdIcarusTransports["Macassa"] == nil then
+		addGMFunction("Trn. Macassa", createTrnMacassa)
+	end
 	addGMFunction("Zone Macassa (E5)", toggleZoneMacassa)
 	if createdIcarusStations["Macassa"] == nil then
 		addGMFunction("Stn. Macassa (E5)", createStationMacassa)
+	end
+	if createdIcarusTransports["Pistil"] == nil then
+		addGMFunction("Trn. Pistil", createTrnPistil)
 	end
 	addGMFunction("Zone Pistil (G6)", toggleZonePistil)
 	if createdIcarusStations["Pistil"] == nil then
 		addGMFunction("Stn. Pistil (G6)", createStationPistil)
 	end
+	if createdIcarusTransports["Mermaid"] == nil then
+		addGMFunction("Trn. Mermaid", createTrnMermaid)
+	end
 	addGMFunction("Zone Mermaid (E6)", toggleZoneMermaid)
 	if createdIcarusStations["Mermaid"] == nil then
 		addGMFunction("Stn. Mermaid (E6)", createStationMermaid)
+	end
+	if createdIcarusTransports["Wookie"] == nil then
+		addGMFunction("Trn. Wookie", createTrnWookie)
 	end
 	addGMFunction("Zone Wookie (F4)", toggleZoneWookie)
 	if createdIcarusStations["Wookie"] == nil then
 		addGMFunction("Stn. Wookie (F4)", createStationWookie)
 	end
 
+
+	if createdIcarusTransports["Borlan"] == nil then
+		addGMFunction("Trn. Borlan", createTrnBorlan)
+	end
 	addGMFunction("Zone Borlan (G8)", toggleZoneBorlan)
 	if createdIcarusStations["Borlan"] == nil then
 		addGMFunction("Stn. Borlan (G8)", createStationBorlan)
+	end
+	if createdIcarusTransports["Cindy"] == nil then
+		addGMFunction("Trn. Cindy", createTrnCindy)
 	end
 	addGMFunction("Zone Cindy (E9)", toggleZoneCindy)
 	if createdIcarusStations["Cindy"] == nil then
 		addGMFunction("Stn. Cindy (E9)", createStationCindy)
 	end
+	if createdIcarusTransports["Relay13"] == nil then
+		addGMFunction("Trn. Relay13", createTrnRelay13)
+	end
 	addGMFunction("Zone Relay13 (G8)", toggleZoneRelay13)
 	if createdIcarusStations["Relay13"] == nil then
 		addGMFunction("Stn. Relay13 (G8)", createStationRelay13)
 	end
+	if createdIcarusTransports["Stromboli"] == nil then
+		addGMFunction("Trn. Stromboli", createTrnStromboli)
+	end
 	addGMFunction("Zone Stromboli (F10)", toggleZoneStromboli)
 	if createdIcarusStations["Stromboli"] == nil then
 		addGMFunction("Stn. Stromboli (F10)", createStationStromboli)
+	end
+	if createdIcarusTransports["Slurry"] == nil then
+		addGMFunction("Trn. Slurry", createTrnSlurry)
 	end
 	addGMFunction("Zone Slurry (G10)", toggleZoneSlurry)
 	if createdIcarusStations["Slurry"] == nil then
 		addGMFunction("Stn. Slurry (G10)", createStationSlurry)
 	end
 
+
+	if createdIcarusTransports["Finnegan"] == nil then
+		addGMFunction("Trn. Finnegan", createTrnFinnegan)
+	end
 	addGMFunction("Zone Finnegan (J10)", toggleZoneFinnegan)
 	if createdIcarusStations["Finnegan"] == nil then
 		addGMFunction("Stn. Finnegan (J10)", createStationFinnegan)
+	end
+	if createdIcarusTransports["Gagarin"] == nil then
+		addGMFunction("Trn. Gagarin", createTrnGagarin)
 	end
 	addGMFunction("Zone Gagarin (I2)", toggleZoneGagarin)
 	if createdIcarusStations["Gagarin"] == nil then
 		addGMFunction("Stn. Gagarin (I2)", createStationGagarin)
 	end
+	if createdIcarusTransports["MosEspa"] == nil then
+		addGMFunction("Trn. MosEspa", createTrnMosEspa)
+	end
 	addGMFunction("Zone MosEspa (A10)", toggleZoneMosEspa)
 	if createdIcarusStations["MosEspa"] == nil then
 		addGMFunction("Stn. MosEspa (A10)", createStationMosEspa)
+	end
+	if createdIcarusTransports["Sovinec"] == nil then
+		addGMFunction("Trn. Sovinec", createTrnSovinec)
 	end
 	addGMFunction("Zone Sovinec (K11)", toggleZoneSovinec)
 	if createdIcarusStations["Sovinec"] == nil then
 		addGMFunction("Stn. Sovinec (K11)", createStationSovinec)
 	end
+	if createdIcarusTransports["Speculator"] == nil then
+		addGMFunction("Trn. Speculator", createTrnSpeculator)
+	end
 	addGMFunction("Zone Speculator (K7)", toggleZoneSpeculator)
 	if createdIcarusStations["Speculator"] == nil then
 		addGMFunction("Stn. Speculator (K7)", createStationSpeculator)
+	end
+	if createdIcarusTransports["Transylvania"] == nil then
+		addGMFunction("Trn. Transylvania", createTrnTransylvania)
 	end
 	addGMFunction("Zone Transylvania (K0)", toggleZoneTransylvania)
 	if createdIcarusStations["Transylvania"] == nil then
