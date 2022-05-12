@@ -41255,133 +41255,133 @@ end
 
 function createTrnAquarius()
 	local templ = "Equipment Freighter " .. (string.len("Aquarius") % 5 + 1)
-	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Aquarius")
+	CpuShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Aquarius")
 	createdIcarusTransports["Aquarius"] = true
 	createIcarusStuff()
 end
 
 function createTrnMaximilian()
 	local templ = "Equipment Freighter " .. (string.len("Maximilian") % 5 + 1)
-	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Maximilian")
+	CpuShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Maximilian")
 	createdIcarusTransports["Maximilian"] = true
 	createIcarusStuff()
 end
 
 function createTrnElysium()
 	local templ = "Equipment Freighter " .. (string.len("Elysium") % 5 + 1)
-	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Elysium")
+	CpuShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Elysium")
 	createdIcarusTransports["Elysium"] = true
 	createIcarusStuff()
 end
 
 function createTrnNerva()
 	local templ = "Equipment Freighter " .. (string.len("Nerva") % 5 + 1)
-	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Nerva")
+	CpuShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Nerva")
 	createdIcarusTransports["Nerva"] = true
 	createIcarusStuff()
 end
 
 function createTrnMacassa()
 	local templ = "Equipment Freighter " .. (string.len("Macassa") % 5 + 1)
-	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Macassa")
+	CpuShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Macassa")
 	createdIcarusTransports["Macassa"] = true
 	createIcarusStuff()
 end
 
 function createTrnPistil()
 	local templ = "Equipment Freighter " .. (string.len("Pistil") % 5 + 1)
-	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Pistil")
+	CpuShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Pistil")
 	createdIcarusTransports["Pistil"] = true
 	createIcarusStuff()
 end
 
 function createTrnMermaid()
 	local templ = "Equipment Freighter " .. (string.len("Mermaid") % 5 + 1)
-	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Mermaid")
+	CpuShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Mermaid")
 	createdIcarusTransports["Mermaid"] = true
 	createIcarusStuff()
 end
 
 function createTrnWookie()
 	local templ = "Equipment Freighter " .. (string.len("Wookie") % 5 + 1)
-	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Wookie")
+	CpuShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Wookie")
 	createdIcarusTransports["Wookie"] = true
 	createIcarusStuff()
 end
 
 function createTrnBorlan()
 	local templ = "Equipment Freighter " .. (string.len("Borlan") % 5 + 1)
-	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Borlan")
+	CpuShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Borlan")
 	createdIcarusTransports["Borlan"] = true
 	createIcarusStuff()
 end
 
 function createTrnCindy()
 	local templ = "Equipment Freighter " .. (string.len("Cindy") % 5 + 1)
-	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Cindy")
+	CpuShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Cindy")
 	createdIcarusTransports["Cindy"] = true
 	createIcarusStuff()
 end
 
 function createTrnRelay13()
 	local templ = "Equipment Freighter " .. (string.len("Relay13") % 5 + 1)
-	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Relay13")
+	CpuShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Relay13")
 	createdIcarusTransports["Relay13"] = true
 	createIcarusStuff()
 end
 
 function createTrnStromboli()
 	local templ = "Equipment Freighter " .. (string.len("Stromboli") % 5 + 1)
-	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Stromboli")
+	CpuShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Stromboli")
 	createdIcarusTransports["Stromboli"] = true
 	createIcarusStuff()
 end
 
 function createTrnSlurry()
 	local templ = "Equipment Freighter " .. (string.len("Slurry") % 5 + 1)
-	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Slurry")
+	CpuShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Slurry")
 	createdIcarusTransports["Slurry"] = true
 	createIcarusStuff()
 end
 
 function createTrnFinnegan()
 	local templ = "Equipment Freighter " .. (string.len("Finnegan") % 5 + 1)
-	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Finnegan")
+	CpuShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Finnegan")
 	createdIcarusTransports["Finnegan"] = true
 	createIcarusStuff()
 end
 
 function createTrnGagarin()
 	local templ = "Equipment Freighter " .. (string.len("Gagarin") % 5 + 1)
-	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Gagarin")
+	CpuShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Gagarin")
 	createdIcarusTransports["Gagarin"] = true
 	createIcarusStuff()
 end
 
 function createTrnMosEspa()
 	local templ = "Equipment Freighter " .. (string.len("MosEspa") % 5 + 1)
-	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT MosEspa")
+	CpuShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT MosEspa")
 	createdIcarusTransports["MosEspa"] = true
 	createIcarusStuff()
 end
 
 function createTrnSovinec()
 	local templ = "Equipment Freighter " .. (string.len("Sovinec") % 5 + 1)
-	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Sovinec")
+	CpuShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Sovinec")
 	createdIcarusTransports["Sovinec"] = true
 	createIcarusStuff()
 end
 
 function createTrnSpeculator()
 	local templ = "Equipment Freighter " .. (string.len("Speculator") % 5 + 1)
-	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Speculator")
+	CpuShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Speculator")
 	createdIcarusTransports["Speculator"] = true
 	createIcarusStuff()
 end
 
 function createTrnTransylvania()
 	local templ = "Equipment Freighter " .. (string.len("Transylvania") % 5 + 1)
-	CPUShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Transylvania")
+	CpuShip():setFaction("Colonists"):setTemplate(templ):setPosition(-50000, 18000):orderStandGround():setTypeName("Colonist Freighter"):setCallSign("FRT Transylvania")
 	createdIcarusTransports["Transylvania"] = true
 	createIcarusStuff()
 end
