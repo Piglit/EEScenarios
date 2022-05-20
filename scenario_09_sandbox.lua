@@ -22305,12 +22305,12 @@ function setGMFleetFaction()
 		fleetSpawnFaction = "Ghosts"
 		spawnGMFleet()
 	end)
-	local GMSetFleetFactionHuman = "Human Navy"
-	if fleetSpawnFaction == "Human Navy" then
-		GMSetFleetFactionHuman = "Human Navy*"
+	local GMSetFleetFactionHuman = "Human"
+	if fleetSpawnFaction == "Human" then
+		GMSetFleetFactionHuman = "Human*"
 	end
 	addGMFunction(GMSetFleetFactionHuman,function()
-		fleetSpawnFaction = "Human Navy"
+		fleetSpawnFaction = "Human"
 		spawnGMFleet()
 	end)
 	local GMSetFleetFactionKraylor = "Kraylor"
@@ -22329,71 +22329,6 @@ function setGMFleetFaction()
 		fleetSpawnFaction = "Ktlitans"
 		spawnGMFleet()
 	end)
-	local GMSetFleetFactionIndependent = "Independent"
-	if fleetSpawnFaction == "Independent" then
-		GMSetFleetFactionIndependent = "Independent*"
-	end
-	addGMFunction(GMSetFleetFactionIndependent,function()
-		fleetSpawnFaction = "Independent"
-		spawnGMFleet()
-	end)
-	local GMSetFleetFactionTSN = "TSN"
-	if fleetSpawnFaction == "TSN" then
-		GMSetFleetFactionTSN = "TSN*"
-	end
-	addGMFunction(GMSetFleetFactionTSN,function()
-		fleetSpawnFaction = "TSN"
-		spawnGMFleet()
-	end)
-	local GMSetFleetFactionUSN = "USN"
-	if fleetSpawnFaction == "USN" then
-		GMSetFleetFactionUSN = "USN*"
-	end
-	addGMFunction(GMSetFleetFactionUSN,function()
-		fleetSpawnFaction = "USN"
-		spawnGMFleet()
-	end)
-	local GMSetFleetFactionCUF = "CUF"
-	if fleetSpawnFaction == "CUF" then
-		GMSetFleetFactionCUF = "CUF*"
-	end
-	addGMFunction(GMSetFleetFactionCUF,function()
-		fleetSpawnFaction = "CUF"
-		spawnGMFleet()
-	end)
-	local GMSetFleetFactionIU = "Interplanetary Union"
-	if fleetSpawnFaction == "Interplanetary Union" then
-		GMSetFleetFactionIU = "Interplanetary Union*"
-	end
-	addGMFunction(GMSetFleetFactionIU,function()
-		fleetSpawnFaction = "Interplanetary Union"
-		spawnGMFleet()
-	end)
-	local GMSetFleetFactionColonists = "Colonists"
-	if fleetSpawnFaction == "Colonists" then
-		GMSetFleetFactionColonists = "Colonists*"
-	end
-	addGMFunction(GMSetFleetFactionColonists,function()
-		fleetSpawnFaction = "Colonists"
-		spawnGMFleet()
-	end)
-	local GMSetFleetFactionCriminals = "Criminals"
-	if fleetSpawnFaction == "Criminals" then
-		GMSetFleetFactionCriminals = "Criminals*"
-	end
-	addGMFunction(GMSetFleetFactionCriminals,function()
-		fleetSpawnFaction = "Criminals"
-		spawnGMFleet()
-	end)
-	local GMSetFleetFactionCultists = "Cultists"
-	if fleetSpawnFaction == "Cultists" then
-		GMSetFleetFactionCultists = "Cultists*"
-	end
-	addGMFunction(GMSetFleetFactionCultists,function()
-		fleetSpawnFaction = "Cultists"
-		spawnGMFleet()
-	end)
-
 end
 -------------------------------------------------------------
 --  Spawn Ship(s) > Spawn Fleet > Relative Fleet Strength  --
@@ -23909,7 +23844,8 @@ function matchesFleetComposition(current_ship_template)
 		return true
 	elseif fleetComposition == "Faction" then
 		if ship_template[current_ship_template].faction == fleetSpawnFaction then
-			-- TODO check if nil in .faction works
+			return true
+		elseif ship_template[current_ship_template].faction == nil and fleetSpawnFaction == "Human" then
 			return true
 		end
 	else
