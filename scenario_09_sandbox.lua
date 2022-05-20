@@ -45541,7 +45541,7 @@ function handleUndockedState()
 					goodsAvailableMsg = goodsAvailableMsg .. string.format("\n   %14s: %2i, %3i",good,goodData["quantity"],goodData["cost"])
 				end
 				if ctd.buy ~= nil then
-					goodsReport = goodsReport .. "\nGoods or components station will buy: price in reputation\n"
+					goodsAvailableMsg = goodsAvailableMsg .. "\nGoods or components station will buy: price in reputation\n"
 					for good, price in pairs(ctd.buy) do
 						goodsAvailableMsg = goodsAvailableMsg .. string.format("     %s: %i\n",good,price)
 					end
