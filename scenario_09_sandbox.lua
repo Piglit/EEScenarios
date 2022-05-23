@@ -41873,6 +41873,9 @@ end
 --	Ship communication  --
 --------------------------
 function commsShip()
+	if comms_target:getFaction() == "Ktlitans" then
+		return false
+	end
 	if comms_target.comms_data == nil then
 		comms_target.comms_data = {friendlyness = random(0.0, 100.0)}
 	end
